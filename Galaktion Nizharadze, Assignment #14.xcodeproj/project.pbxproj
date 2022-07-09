@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		9A363FDA2878CEFB006F3387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FD92878CEFB006F3387 /* AppDelegate.swift */; };
 		9A363FDC2878CEFB006F3387 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */; };
-		9A363FDE2878CEFB006F3387 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FDD2878CEFB006F3387 /* ViewController.swift */; };
+		9A363FDE2878CEFB006F3387 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FDD2878CEFB006F3387 /* SignInViewController.swift */; };
 		9A363FE12878CEFB006F3387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FDF2878CEFB006F3387 /* Main.storyboard */; };
 		9A363FE32878CEFD006F3387 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FE22878CEFD006F3387 /* Assets.xcassets */; };
 		9A363FE62878CEFD006F3387 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FE42878CEFD006F3387 /* LaunchScreen.storyboard */; };
+		9A363FEF2878DE47006F3387 /* UIElementModifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FEE2878DE47006F3387 /* UIElementModifications.swift */; };
+		9A363FF12878E1DF006F3387 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FF02878E1DF006F3387 /* SignUpViewController.swift */; };
+		9A363FF328794C57006F3387 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FF228794C57006F3387 /* NavigationViewController.swift */; };
+		9A363FF5287951B4006F3387 /* DetailsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FF4287951B4006F3387 /* DetailsPage.storyboard */; };
+		9A363FF7287951D0006F3387 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FF6287951D0006F3387 /* DetailsViewController.swift */; };
+		9A363FF928796F3B006F3387 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FF828796F3B006F3387 /* BottomSheetView.swift */; };
+		9A363FFB28796F49006F3387 /* BottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FFA28796F49006F3387 /* BottomSheetView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9A363FD62878CEFB006F3387 /* Galaktion Nizharadze, Assignment #14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Galaktion Nizharadze, Assignment #14.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A363FD92878CEFB006F3387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9A363FDD2878CEFB006F3387 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A363FDD2878CEFB006F3387 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9A363FE02878CEFB006F3387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A363FE22878CEFD006F3387 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A363FE52878CEFD006F3387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A363FE72878CEFD006F3387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A363FEE2878DE47006F3387 /* UIElementModifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementModifications.swift; sourceTree = "<group>"; };
+		9A363FF02878E1DF006F3387 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		9A363FF228794C57006F3387 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		9A363FF4287951B4006F3387 /* DetailsPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailsPage.storyboard; sourceTree = "<group>"; };
+		9A363FF6287951D0006F3387 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		9A363FF828796F3B006F3387 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		9A363FFA28796F49006F3387 /* BottomSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,70 @@
 		9A363FD82878CEFB006F3387 /* Galaktion Nizharadze, Assignment #14 */ = {
 			isa = PBXGroup;
 			children = (
-				9A363FD92878CEFB006F3387 /* AppDelegate.swift */,
-				9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */,
-				9A363FDD2878CEFB006F3387 /* ViewController.swift */,
-				9A363FDF2878CEFB006F3387 /* Main.storyboard */,
-				9A363FE22878CEFD006F3387 /* Assets.xcassets */,
-				9A363FE42878CEFD006F3387 /* LaunchScreen.storyboard */,
-				9A363FE72878CEFD006F3387 /* Info.plist */,
+				9A363FED2878D160006F3387 /* SupportingFiles */,
+				9A363FFC287985C7006F3387 /* Screens */,
 			);
 			path = "Galaktion Nizharadze, Assignment #14";
+			sourceTree = "<group>";
+		};
+		9A363FED2878D160006F3387 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9A363FE72878CEFD006F3387 /* Info.plist */,
+				9A363FEE2878DE47006F3387 /* UIElementModifications.swift */,
+				9A363FD92878CEFB006F3387 /* AppDelegate.swift */,
+				9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */,
+				9A363FE22878CEFD006F3387 /* Assets.xcassets */,
+				9A363FE42878CEFD006F3387 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		9A363FFC287985C7006F3387 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9A36400028798621006F3387 /* SignIn */,
+				9A3640012879863F006F3387 /* SignUp */,
+				9A363FFF28798601006F3387 /* Details */,
+				9A363FFE287985DE006F3387 /* BottomSheet */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		9A363FFE287985DE006F3387 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				9A363FF828796F3B006F3387 /* BottomSheetView.swift */,
+				9A363FFA28796F49006F3387 /* BottomSheetView.xib */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		9A363FFF28798601006F3387 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				9A363FF4287951B4006F3387 /* DetailsPage.storyboard */,
+				9A363FF6287951D0006F3387 /* DetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		9A36400028798621006F3387 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				9A363FF228794C57006F3387 /* NavigationViewController.swift */,
+				9A363FDD2878CEFB006F3387 /* SignInViewController.swift */,
+				9A363FDF2878CEFB006F3387 /* Main.storyboard */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		9A3640012879863F006F3387 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				9A363FF02878E1DF006F3387 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +194,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A363FF5287951B4006F3387 /* DetailsPage.storyboard in Resources */,
+				9A363FFB28796F49006F3387 /* BottomSheetView.xib in Resources */,
 				9A363FE62878CEFD006F3387 /* LaunchScreen.storyboard in Resources */,
 				9A363FE32878CEFD006F3387 /* Assets.xcassets in Resources */,
 				9A363FE12878CEFB006F3387 /* Main.storyboard in Resources */,
@@ -138,9 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A363FDE2878CEFB006F3387 /* ViewController.swift in Sources */,
+				9A363FF328794C57006F3387 /* NavigationViewController.swift in Sources */,
+				9A363FF928796F3B006F3387 /* BottomSheetView.swift in Sources */,
+				9A363FEF2878DE47006F3387 /* UIElementModifications.swift in Sources */,
+				9A363FDE2878CEFB006F3387 /* SignInViewController.swift in Sources */,
 				9A363FDA2878CEFB006F3387 /* AppDelegate.swift in Sources */,
+				9A363FF7287951D0006F3387 /* DetailsViewController.swift in Sources */,
 				9A363FDC2878CEFB006F3387 /* SceneDelegate.swift in Sources */,
+				9A363FF12878E1DF006F3387 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +365,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9BZ4794R5K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Galaktion Nizharadze, Assignment #14/Info.plist";
+				INFOPLIST_FILE = "Galaktion Nizharadze, Assignment #14/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +393,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9BZ4794R5K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Galaktion Nizharadze, Assignment #14/Info.plist";
+				INFOPLIST_FILE = "Galaktion Nizharadze, Assignment #14/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
