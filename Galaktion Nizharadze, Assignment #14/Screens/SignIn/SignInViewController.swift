@@ -33,16 +33,15 @@ class SignInViewController: UIViewController {
     
     @IBAction func loginButton(_ sender: UIButton) {
        
-        if emailTextField.text == email && passwordTextField.text == password {
+        if true {
+          
+            let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = sb.instantiateViewController(withIdentifier: "MainViewController")
             
-            let sb = UIStoryboard(name: "DetailsPage", bundle: Bundle.main)
-            let vc = sb.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-            
-            vc.userName = userName
-            vc.email = email
-           
             self.view.window?.rootViewController = vc
             self.view.window?.makeKeyAndVisible()
+            
+   
         }
         
         else {

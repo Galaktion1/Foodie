@@ -44,30 +44,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func checkIfUserCanSignUp() {
-        if usernameTextField.text == "" || emailTextField.text == "" || passwordTextField.text == "" || confirmPasswordTextField.text == "" {
-            
-            self.presentAlert(title: "Error", message: "You have to fill all textfields")
-        }
-        
-        else {
-            
-            if passwordTextField.text != confirmPasswordTextField.text {
-                self.presentAlert(title: "Error", message: "passwords doesn't match")
-            }
-            
-            else if !isPasswordValid(passwordTextField.text!) {
-                self.presentAlert(title: "Error", message: "This password is not secure")
-            }
-            
-            else {
-                let rootVC = self.navigationController?.viewControllers[0] as! SignInViewController
-                rootVC.password = passwordTextField.text
-                rootVC.email = emailTextField.text
-                rootVC.userName = usernameTextField.text
-        
-                navigationController?.popToRootViewController(animated: true)
-            }
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     func isPasswordValid(_ password : String) -> Bool{
@@ -75,9 +52,4 @@ class SignUpViewController: UIViewController {
         return passwordTest.evaluate(with: password)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! SignInViewController
-        vc.email = emailTextField.text!
-        vc.password = passwordTextField.text!
-    }
 }

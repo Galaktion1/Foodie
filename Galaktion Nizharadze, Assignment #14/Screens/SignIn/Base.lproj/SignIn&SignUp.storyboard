@@ -286,10 +286,10 @@
             </objects>
             <point key="canvasLocation" x="3108.6956521739135" y="92.410714285714278"/>
         </scene>
-        <!--Navigation View Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="RB7-ms-4sa">
             <objects>
-                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="vP5-Ya-HO4" customClass="NavigationViewController" customModule="Galaktion_Nizharadze__Assignment__14" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="vP5-Ya-HO4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bJ4-dv-mvA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
