@@ -14,6 +14,9 @@
 		9A0B884C288810E900F84D26 /* DishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B884A288810E900F84D26 /* DishCollectionViewCell.swift */; };
 		9A0B884D288810E900F84D26 /* DishCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B884B288810E900F84D26 /* DishCollectionViewCell.xib */; };
 		9A0B88502888275A00F84D26 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B884F2888275A00F84D26 /* MainViewViewModel.swift */; };
+		9A27EF1F288E82C000DAB437 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27EF1D288E82C000DAB437 /* MenuTableViewCell.swift */; };
+		9A27EF20288E82C000DAB437 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A27EF1E288E82C000DAB437 /* MenuTableViewCell.xib */; };
+		9A27EF22288EAB3B00DAB437 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27EF21288EAB3B00DAB437 /* MainNavigationController.swift */; };
 		9A363FDA2878CEFB006F3387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FD92878CEFB006F3387 /* AppDelegate.swift */; };
 		9A363FDC2878CEFB006F3387 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */; };
 		9A363FDE2878CEFB006F3387 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FDD2878CEFB006F3387 /* SignInViewController.swift */; };
@@ -22,6 +25,16 @@
 		9A363FE62878CEFD006F3387 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A363FE42878CEFD006F3387 /* LaunchScreen.storyboard */; };
 		9A363FEF2878DE47006F3387 /* UIElementModifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FEE2878DE47006F3387 /* UIElementModifications.swift */; };
 		9A363FF12878E1DF006F3387 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A363FF02878E1DF006F3387 /* SignUpViewController.swift */; };
+		9A3AD8C62892FC40000C5BA1 /* ChosenFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3AD8C52892FC40000C5BA1 /* ChosenFoodModel.swift */; };
+		9A3AD8CB28931B2D000C5BA1 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3AD8CA28931B2D000C5BA1 /* Cart.storyboard */; };
+		9A3AD8CD28931B3F000C5BA1 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3AD8CC28931B3F000C5BA1 /* CartViewController.swift */; };
+		9A424A8E288C09A9008636D8 /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A424A8D288C09A9008636D8 /* Restaurant.storyboard */; };
+		9A424A90288C09BC008636D8 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A424A8F288C09BC008636D8 /* RestaurantViewController.swift */; };
+		9A4EA603289A702800ADDF7F /* ChosenFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EA601289A702800ADDF7F /* ChosenFoodTableViewCell.swift */; };
+		9A4EA604289A702800ADDF7F /* ChosenFoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4EA602289A702800ADDF7F /* ChosenFoodTableViewCell.xib */; };
+		9A5E5F2E289D12D4008ED850 /* DeliveryDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5E5F2C289D12D4008ED850 /* DeliveryDetailsTableViewCell.swift */; };
+		9A5E5F2F289D12D4008ED850 /* DeliveryDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5E5F2D289D12D4008ED850 /* DeliveryDetailsTableViewCell.xib */; };
+		9A77DDB3288BDF6E000F0D5F /* APIFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */; };
 		9AC9B0AC2887EE2800B4E8AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC9B0AA2887EE2800B4E8AD /* MainViewController.swift */; };
 		9AC9B0AF2887EE6B00B4E8AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC9B0AE2887EE6B00B4E8AD /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -34,6 +47,9 @@
 		9A0B884A288810E900F84D26 /* DishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A0B884B288810E900F84D26 /* DishCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A0B884F2888275A00F84D26 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		9A27EF1D288E82C000DAB437 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		9A27EF1E288E82C000DAB437 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		9A27EF21288EAB3B00DAB437 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		9A363FD62878CEFB006F3387 /* Galaktion Nizharadze, Assignment #14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Galaktion Nizharadze, Assignment #14.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A363FD92878CEFB006F3387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A363FDB2878CEFB006F3387 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +60,16 @@
 		9A363FE72878CEFD006F3387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A363FEE2878DE47006F3387 /* UIElementModifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementModifications.swift; sourceTree = "<group>"; };
 		9A363FF02878E1DF006F3387 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		9A3AD8C52892FC40000C5BA1 /* ChosenFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenFoodModel.swift; sourceTree = "<group>"; };
+		9A3AD8CA28931B2D000C5BA1 /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
+		9A3AD8CC28931B3F000C5BA1 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		9A424A8D288C09A9008636D8 /* Restaurant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurant.storyboard; sourceTree = "<group>"; };
+		9A424A8F288C09BC008636D8 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		9A4EA601289A702800ADDF7F /* ChosenFoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenFoodTableViewCell.swift; sourceTree = "<group>"; };
+		9A4EA602289A702800ADDF7F /* ChosenFoodTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChosenFoodTableViewCell.xib; sourceTree = "<group>"; };
+		9A5E5F2C289D12D4008ED850 /* DeliveryDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		9A5E5F2D289D12D4008ED850 /* DeliveryDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchModel.swift; sourceTree = "<group>"; };
 		9AC9B0AA2887EE2800B4E8AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9AC9B0AE2887EE6B00B4E8AD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC9B0AE2887EE6B00B4E8AD /* Main.storyboard */,
+				9A27EF21288EAB3B00DAB437 /* MainNavigationController.swift */,
 				9A0B8848288810CA00F84D26 /* RestaurantCell */,
 				9A0B8849288810D500F84D26 /* DishCell */,
 			);
@@ -74,6 +101,7 @@
 			children = (
 				9A0B8844288808D200F84D26 /* RestaurantModel.swift */,
 				9A0B88462888108600F84D26 /* DishModel.swift */,
+				9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +130,15 @@
 				9A0B884F2888275A00F84D26 /* MainViewViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A27EF1C288E82A300DAB437 /* MenuFoodsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				9A27EF1D288E82C000DAB437 /* MenuTableViewCell.swift */,
+				9A27EF1E288E82C000DAB437 /* MenuTableViewCell.xib */,
+			);
+			path = MenuFoodsTableView;
 			sourceTree = "<group>";
 		};
 		9A363FCD2878CEFB006F3387 = {
@@ -148,6 +185,8 @@
 				9A36400028798621006F3387 /* SignIn */,
 				9A3640012879863F006F3387 /* SignUp */,
 				9AC9B0A92887EE0400B4E8AD /* Main */,
+				9A424A8C288C0990008636D8 /* Restaurant */,
+				9A3AD8C928931AC2000C5BA1 /* Cart */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -167,6 +206,70 @@
 				9A363FF02878E1DF006F3387 /* SignUpViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		9A3AD8C72892FD80000C5BA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A3AD8C52892FC40000C5BA1 /* ChosenFoodModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A3AD8C82892FD8F000C5BA1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A27EF1C288E82A300DAB437 /* MenuFoodsTableView */,
+				9A424A8D288C09A9008636D8 /* Restaurant.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A3AD8C928931AC2000C5BA1 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				9A4EA600289A6FF900ADDF7F /* View */,
+				9A3AD8CC28931B3F000C5BA1 /* CartViewController.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		9A424A8C288C0990008636D8 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				9A3AD8C72892FD80000C5BA1 /* Model */,
+				9A3AD8C82892FD8F000C5BA1 /* View */,
+				9A424A8F288C09BC008636D8 /* RestaurantViewController.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		9A4EA600289A6FF900ADDF7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A3AD8CA28931B2D000C5BA1 /* Cart.storyboard */,
+				9A5E5F29289D12AC008ED850 /* Delivery Details */,
+				9A518970289AD10300CD2FAA /* ChosenFood */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A518970289AD10300CD2FAA /* ChosenFood */ = {
+			isa = PBXGroup;
+			children = (
+				9A4EA602289A702800ADDF7F /* ChosenFoodTableViewCell.xib */,
+				9A4EA601289A702800ADDF7F /* ChosenFoodTableViewCell.swift */,
+			);
+			path = ChosenFood;
+			sourceTree = "<group>";
+		};
+		9A5E5F29289D12AC008ED850 /* Delivery Details */ = {
+			isa = PBXGroup;
+			children = (
+				9A5E5F2C289D12D4008ED850 /* DeliveryDetailsTableViewCell.swift */,
+				9A5E5F2D289D12D4008ED850 /* DeliveryDetailsTableViewCell.xib */,
+			);
+			path = "Delivery Details";
 			sourceTree = "<group>";
 		};
 		9AC9B0A92887EE0400B4E8AD /* Main */ = {
@@ -238,11 +341,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5E5F2F289D12D4008ED850 /* DeliveryDetailsTableViewCell.xib in Resources */,
 				9A363FE62878CEFD006F3387 /* LaunchScreen.storyboard in Resources */,
 				9A363FE32878CEFD006F3387 /* Assets.xcassets in Resources */,
+				9A3AD8CB28931B2D000C5BA1 /* Cart.storyboard in Resources */,
+				9A4EA604289A702800ADDF7F /* ChosenFoodTableViewCell.xib in Resources */,
+				9A424A8E288C09A9008636D8 /* Restaurant.storyboard in Resources */,
 				9A0B884D288810E900F84D26 /* DishCollectionViewCell.xib in Resources */,
 				9A363FE12878CEFB006F3387 /* SignIn&SignUp.storyboard in Resources */,
 				9A0B88412887FB3800F84D26 /* RestaurantsCollectionViewCell.xib in Resources */,
+				9A27EF20288E82C000DAB437 /* MenuTableViewCell.xib in Resources */,
 				9AC9B0AF2887EE6B00B4E8AD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,17 +362,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A27EF22288EAB3B00DAB437 /* MainNavigationController.swift in Sources */,
+				9A5E5F2E289D12D4008ED850 /* DeliveryDetailsTableViewCell.swift in Sources */,
 				9A363FEF2878DE47006F3387 /* UIElementModifications.swift in Sources */,
 				9A363FDE2878CEFB006F3387 /* SignInViewController.swift in Sources */,
+				9A27EF1F288E82C000DAB437 /* MenuTableViewCell.swift in Sources */,
 				9A0B88502888275A00F84D26 /* MainViewViewModel.swift in Sources */,
 				9A0B884C288810E900F84D26 /* DishCollectionViewCell.swift in Sources */,
 				9A0B8845288808D200F84D26 /* RestaurantModel.swift in Sources */,
 				9A363FDA2878CEFB006F3387 /* AppDelegate.swift in Sources */,
 				9A0B88472888108700F84D26 /* DishModel.swift in Sources */,
+				9A3AD8C62892FC40000C5BA1 /* ChosenFoodModel.swift in Sources */,
 				9AC9B0AC2887EE2800B4E8AD /* MainViewController.swift in Sources */,
+				9A4EA603289A702800ADDF7F /* ChosenFoodTableViewCell.swift in Sources */,
 				9A363FDC2878CEFB006F3387 /* SceneDelegate.swift in Sources */,
 				9A363FF12878E1DF006F3387 /* SignUpViewController.swift in Sources */,
+				9A3AD8CD28931B3F000C5BA1 /* CartViewController.swift in Sources */,
 				9A0B88402887FB3800F84D26 /* RestaurantsCollectionViewCell.swift in Sources */,
+				9A77DDB3288BDF6E000F0D5F /* APIFetchModel.swift in Sources */,
+				9A424A90288C09BC008636D8 /* RestaurantViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

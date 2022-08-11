@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeliveryDetailsTableViewCell" id="KGk-i7-Jjw" customClass="DeliveryDetailsTableViewCell" customModule="Galaktion_Nizharadze__Assignment__14" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="398" height="78"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="398" height="78"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Adg-Nn-RyZ">
+                        <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="PnM-TB-ZsU"/>
+                            <constraint firstAttribute="height" constant="78" id="Ybj-Af-OHo"/>
+                        </constraints>
+                    </mapView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWO-a6-S0o">
+                        <rect key="frame" x="90" y="2" width="50" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" name="specialYellow"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsy-Ya-uMQ">
+                        <rect key="frame" x="90" y="30" width="248" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQ1-Uq-jG0">
+                        <rect key="frame" x="353" y="25.5" width="30" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5O-Ss-K1d">
+                                <rect key="frame" x="7" y="7" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="d3O-GX-lTg"/>
+                                    <constraint firstAttribute="width" constant="16" id="fJp-9C-91w"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.right.circle" catalog="system" title=""/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98285645249999998" green="0.89536911249999995" blue="0.79998332260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="X5O-Ss-K1d" firstAttribute="centerX" secondItem="QQ1-Uq-jG0" secondAttribute="centerX" id="LJ0-ue-7zF"/>
+                            <constraint firstItem="X5O-Ss-K1d" firstAttribute="centerY" secondItem="QQ1-Uq-jG0" secondAttribute="centerY" id="a0x-aA-ANv"/>
+                            <constraint firstAttribute="width" constant="30" id="jq9-Fe-psB"/>
+                            <constraint firstAttribute="height" constant="30" id="uRC-o0-RJ6"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QQ1-Uq-jG0" firstAttribute="leading" secondItem="vsy-Ya-uMQ" secondAttribute="trailing" constant="15" id="0e8-Qb-YfL"/>
+                    <constraint firstItem="JWO-a6-S0o" firstAttribute="leading" secondItem="Adg-Nn-RyZ" secondAttribute="trailing" constant="12" id="0ib-e6-PVO"/>
+                    <constraint firstItem="vsy-Ya-uMQ" firstAttribute="leading" secondItem="Adg-Nn-RyZ" secondAttribute="trailing" constant="12" id="8oN-Fh-xRa"/>
+                    <constraint firstAttribute="trailing" secondItem="QQ1-Uq-jG0" secondAttribute="trailing" constant="15" id="AGg-ta-sy3"/>
+                    <constraint firstItem="JWO-a6-S0o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="IeZ-vQ-ko9"/>
+                    <constraint firstItem="QQ1-Uq-jG0" firstAttribute="centerY" secondItem="vsy-Ya-uMQ" secondAttribute="centerY" id="QyU-XD-mj3"/>
+                    <constraint firstItem="Adg-Nn-RyZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TET-OW-mkx"/>
+                    <constraint firstItem="Adg-Nn-RyZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="i5a-8g-uDz"/>
+                    <constraint firstItem="vsy-Ya-uMQ" firstAttribute="top" secondItem="JWO-a6-S0o" secondAttribute="bottom" constant="12" id="wwm-b2-M3s"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="vsy-Ya-uMQ" id="a1m-1U-xT7"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="specialYellow">
+            <color red="0.95800000429153442" green="0.81199997663497925" blue="0.43500000238418579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

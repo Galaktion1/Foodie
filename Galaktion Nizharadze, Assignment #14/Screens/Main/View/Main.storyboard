@@ -33,14 +33,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="yCu-5s-Xiw">
-                                                        <rect key="frame" x="0.0" y="37" width="63.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="37" width="62" height="20"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZTC-s1-CO8">
                                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="19"/>
                                                                 <color key="tintColor" name="specialYellow"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lagos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egM-9f-3cz">
-                                                                <rect key="frame" x="24" y="0.0" width="39.5" height="20"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tbilisi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egM-9f-3cz">
+                                                                <rect key="frame" x="24" y="0.0" width="38" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" name="specialOrange"/>
                                                                 <nil key="highlightedColor"/>
@@ -69,12 +69,12 @@
                                                 <rect key="frame" x="25" y="187" width="364" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-He-TFv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="60.5" height="28"/>
                                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="Nerby">
+                                                                <fragment content="All">
                                                                     <attributes>
                                                                         <font key="NSFont" size="17" name="Helvetica"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -83,45 +83,47 @@
                                                             </attributedString>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="nerbyButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5xJ-2A-6eN"/>
+                                                            <action selector="allRestaurantsButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XCp-3b-cln"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqO-Nc-In5">
-                                                        <rect key="frame" x="78.5" y="0.0" width="94" height="28"/>
+                                                        <rect key="frame" x="60.5" y="0.0" width="97.5" height="28"/>
                                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="Popular">
+                                                                <fragment content="Nerby">
                                                                     <attributes>
                                                                         <font key="NSFont" size="17" name="Helvetica"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                             </attributedString>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="popularButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6n7-RB-ELR"/>
+                                                            <action selector="nerbyButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VSL-2t-y4J"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFU-S1-iep">
-                                                        <rect key="frame" x="172.5" y="0.0" width="133.5" height="28"/>
+                                                        <rect key="frame" x="158" y="0.0" width="133.5" height="28"/>
                                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="New Combo">
+                                                                <fragment content="Favourite">
                                                                     <attributes>
                                                                         <font key="NSFont" size="17" name="Helvetica"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                             </attributedString>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="newComboButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VVn-u2-bdn"/>
+                                                            <action selector="favouriteRestaurantsButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NR4-KG-7vx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaK-6C-dXf">
-                                                        <rect key="frame" x="306" y="0.0" width="58" height="28"/>
+                                                        <rect key="frame" x="291.5" y="0.0" width="72.5" height="28"/>
                                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -134,7 +136,7 @@
                                                             </attributedString>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="topButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5L5-KU-q9R"/>
+                                                            <action selector="topButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8kl-jz-x4B"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -143,7 +145,7 @@
                                                 </constraints>
                                             </stackView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ic8-4g-ch1">
-                                                <rect key="frame" x="24" y="240" width="366" height="466"/>
+                                                <rect key="frame" x="24" y="219" width="366" height="466"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="466" id="79D-wG-qEM"/>
@@ -182,10 +184,10 @@
                                                 <cells/>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8M-so-QQH">
-                                                <rect key="frame" x="25" y="217" width="79" height="2"/>
+                                                <rect key="frame" x="25" y="217" width="60" height="2"/>
                                                 <color key="backgroundColor" name="specialOrange"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="79" id="ROQ-66-WjK"/>
+                                                    <constraint firstAttribute="width" constant="60" id="ROQ-66-WjK"/>
                                                     <constraint firstAttribute="height" constant="2" id="o7h-ze-wI7"/>
                                                 </constraints>
                                             </view>
@@ -195,7 +197,7 @@
                                             <constraint firstItem="nK1-JP-IMe" firstAttribute="top" secondItem="ts2-7e-vXV" secondAttribute="bottom" constant="14" id="5W5-xq-Jph"/>
                                             <constraint firstItem="C8M-so-QQH" firstAttribute="leading" secondItem="9Zs-hX-DJI" secondAttribute="leading" constant="25" id="9Bn-53-jDe"/>
                                             <constraint firstItem="4iW-JV-Wh4" firstAttribute="leading" secondItem="9Zs-hX-DJI" secondAttribute="leading" constant="25" id="DGj-bk-L7h"/>
-                                            <constraint firstItem="Ic8-4g-ch1" firstAttribute="top" secondItem="Cra-fv-d0j" secondAttribute="bottom" constant="25" id="Gb8-g3-ii4"/>
+                                            <constraint firstItem="Ic8-4g-ch1" firstAttribute="top" secondItem="Cra-fv-d0j" secondAttribute="bottom" constant="4" id="Gb8-g3-ii4"/>
                                             <constraint firstAttribute="trailing" secondItem="nK1-JP-IMe" secondAttribute="trailing" constant="25" id="Jjj-qx-EIP"/>
                                             <constraint firstAttribute="trailing" secondItem="Cra-fv-d0j" secondAttribute="trailing" constant="25" id="OCg-n0-0WV"/>
                                             <constraint firstAttribute="height" constant="896" id="U42-Zf-e1T"/>
@@ -232,13 +234,14 @@
                             <constraint firstItem="8aF-CR-vWD" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="wge-Vn-AZM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uXn-7r-QoY"/>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="activeIndicatorView" destination="C8M-so-QQH" id="NP4-05-DhL"/>
+                        <outlet property="allRestaurantsButtonOutlet" destination="HnH-He-TFv" id="ITa-2f-uWq"/>
                         <outlet property="backgroundView" destination="9Zs-hX-DJI" id="iWr-cS-VXR"/>
-                        <outlet property="nerbyButtonOutlet" destination="HnH-He-TFv" id="ITa-2f-uWq"/>
-                        <outlet property="newComboButtonOutlet" destination="IFU-S1-iep" id="Cxp-rO-5NJ"/>
-                        <outlet property="popularButtonOutlet" destination="MqO-Nc-In5" id="mKo-0S-Yil"/>
+                        <outlet property="favouriteRestaurantsButtonOutlet" destination="IFU-S1-iep" id="Cxp-rO-5NJ"/>
+                        <outlet property="nerbyButtonOutlet" destination="MqO-Nc-In5" id="mKo-0S-Yil"/>
                         <outlet property="recomendedDishesCollectionView" destination="xkH-Li-8r7" id="SO2-Fz-bhX"/>
                         <outlet property="restaurantsCollectionView" destination="Ic8-4g-ch1" id="DlV-6f-WVU"/>
                         <outlet property="scrollView" destination="8aF-CR-vWD" id="0M3-Ao-bX4"/>
@@ -247,7 +250,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82.608695652173921" y="87.723214285714278"/>
+            <point key="canvasLocation" x="1902.8985507246377" y="87.723214285714278"/>
+        </scene>
+        <!--Main Navigation Controller-->
+        <scene sceneID="qSn-zU-LYq">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="z2p-yT-EXU" customClass="MainNavigationController" customModule="Galaktion_Nizharadze__Assignment__14" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="svf-oX-Mvo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="bqC-Td-1kn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmz-cl-4kq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.75362318840587" y="87.723214285714278"/>
         </scene>
     </scenes>
     <designables>

@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         if true {
           
             let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let vc = sb.instantiateViewController(withIdentifier: "MainViewController")
+            let vc = sb.instantiateViewController(withIdentifier: "MainNavigationController")
             
             self.view.window?.rootViewController = vc
             self.view.window?.makeKeyAndVisible()

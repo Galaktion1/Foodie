@@ -11,49 +11,74 @@ class MainViewController: UIViewController{
     
     @IBOutlet weak var restaurantsCollectionView: UICollectionView!
     @IBOutlet weak var recomendedDishesCollectionView: UICollectionView!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var activeIndicatorView: UIView!
     
+    @IBOutlet weak var allRestaurantsButtonOutlet: UIButton!
     @IBOutlet weak var nerbyButtonOutlet: UIButton!
-    @IBOutlet weak var popularButtonOutlet: UIButton!
-    @IBOutlet weak var newComboButtonOutlet: UIButton!
+    @IBOutlet weak var favouriteRestaurantsButtonOutlet: UIButton!
     @IBOutlet weak var topButtonOutlet: UIButton!
     
     let viewModel = MainViewViewModel()
+    var favouriteRestaurantIds = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.fetchRestaurantsData()
+        favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
 
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
-        backgroundView.backgroundColor = .white.withAlphaComponent(0)
-        nerbyButtonOutlet.tintColor = UIColor(named: "specialOrange")
+        backgroundView.backgroundColor = .clear
+        allRestaurantsButtonOutlet.tintColor = UIColor(named: "specialOrange")
         configureCollectionViews()
+        
+        viewModel.reloadCollectionView = {
+            self.restaurantsCollectionView.reloadData()
+            self.recomendedDishesCollectionView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        restaurantsCollectionView.reloadData()  // სხვა სქრინიდან ყოველი დაბრუნებისას განახლდეს ინფო, რადგან მომხმარებელმა შესაძლოა დააფავორიტოს რესტორანი.
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    
+    
+    
+    @IBAction func allRestaurantsButtonAction(_ sender: UIButton) {
+        viewModel.setAllRestaurants()
+        viewModel.moveActiveIndicatorView(mainButton: allRestaurantsButtonOutlet,
+                                          button2: nerbyButtonOutlet,
+                                          button3: favouriteRestaurantsButtonOutlet,
+                                          button4: topButtonOutlet,
+                                          indicatorView: activeIndicatorView)
     }
     
     
     @IBAction func nerbyButtonAction(_ sender: UIButton) {
         viewModel.moveActiveIndicatorView(mainButton: nerbyButtonOutlet,
-                                          button2: popularButtonOutlet,
-                                          button3: newComboButtonOutlet,
+                                          button2: allRestaurantsButtonOutlet,
+                                          button3: favouriteRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
                                           indicatorView: activeIndicatorView)
     }
     
     
-    @IBAction func popularButtonAction(_ sender: UIButton) {
-        viewModel.moveActiveIndicatorView(mainButton: popularButtonOutlet,
+    @IBAction func favouriteRestaurantsButtonAction(_ sender: UIButton) {
+        viewModel.setFavouriteRestaurants()
+        viewModel.moveActiveIndicatorView(mainButton: favouriteRestaurantsButtonOutlet,
                                           button2: nerbyButtonOutlet,
-                                          button3: newComboButtonOutlet,
-                                          button4: topButtonOutlet,
-                                          indicatorView: activeIndicatorView)
-    }
-    
-    
-    @IBAction func newComboButtonAction(_ sender: UIButton) {
-        viewModel.moveActiveIndicatorView(mainButton: newComboButtonOutlet,
-                                          button2: popularButtonOutlet,
-                                          button3: nerbyButtonOutlet,
+                                          button3: allRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
                                           indicatorView: activeIndicatorView)
         
@@ -61,10 +86,11 @@ class MainViewController: UIViewController{
     
     
     @IBAction func topButtonAction(_ sender: UIButton) {
+        viewModel.setTopAllRestaurants()
         viewModel.moveActiveIndicatorView(mainButton: topButtonOutlet,
-                                          button2: popularButtonOutlet,
-                                          button3: newComboButtonOutlet,
-                                          button4: nerbyButtonOutlet,
+                                          button2: nerbyButtonOutlet,
+                                          button3: favouriteRestaurantsButtonOutlet,
+                                          button4: allRestaurantsButtonOutlet,
                                           indicatorView: activeIndicatorView)
     }
     
@@ -91,6 +117,7 @@ class MainViewController: UIViewController{
         
         recomendedDishesCollectionView.setCollectionViewLayout(layout, animated: true)
     }
+ 
 
 }
 
@@ -101,31 +128,48 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView == self.restaurantsCollectionView ? 4 : 5
+        collectionView == self.restaurantsCollectionView ? viewModel.numberOfItemsInSection() : viewModel.numberOfItemsInSection()
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.restaurantsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantsCollectionViewCell", for: indexPath) as! RestaurantsCollectionViewCell
             
-            cell.data = Restaurant(name: "Raw Bar",
-                                   rating: "🔴🔴🔴🔴🔴",
-                                   mainImage: UIImage(named: "img_bar")!,
-                                   favouriteImage: UIImage(systemName: "heart.fill")!,
-                                   distance: "54.12KM Away")
+            let currentData = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
+  
+            cell.data = currentData
+            cell.checkIfFav(id: currentData.id)
+            
             
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishCollectionViewCell", for: indexPath) as! DishCollectionViewCell
             
-            cell.data = Dish(dishImage: UIImage(named: "img_omlette")!,
-                             dishName: "Omlette Paradaise",
-                             dishPrice: "$ 12.25",
-                             dishFavImage: UIImage(systemName: "heart.fill")!)
+            cell.data = viewModel.foodsCellForItemAt(indexPath: indexPath)
             
             
             return cell
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == self.restaurantsCollectionView {
+            let sb = UIStoryboard(name: "Restaurant", bundle: Bundle.main)
+            guard let vc = sb.instantiateViewController(withIdentifier: "RestaurantViewController") as? RestaurantViewController else { return }
+            
+            _ = vc.view
+            
+            viewModel.restaurantImage(imgView: vc.mainImageView, indexPath: indexPath)
+
+            vc.data = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
+            
+            vc.checkIfFav(id: viewModel.restaurantsCellForRowAt(indexPath: indexPath).id)
+                        
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

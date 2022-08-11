@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Restaurant {
+struct RestaurantCellModel {
     let name: String
     let rating: String
     let mainImage: UIImage

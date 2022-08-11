@@ -20,7 +20,41 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jmt-lS-4Uz">
                         <rect key="frame" x="0.0" y="0.0" width="145" height="180"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7T-FW-qDc">
+                                <rect key="frame" x="109" y="135" width="28" height="28"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-md-3NF">
+                                        <rect key="frame" x="7" y="7" width="14" height="14"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                        <connections>
+                                            <action selector="favButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cwf-AJ-iCF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98285645249999998" green="0.89536911249999995" blue="0.79998332260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="tgl-md-3NF" firstAttribute="leading" secondItem="L7T-FW-qDc" secondAttribute="leading" constant="7" id="6lk-xW-9tl"/>
+                                    <constraint firstAttribute="height" constant="28" id="GCN-xR-a63"/>
+                                    <constraint firstAttribute="bottom" secondItem="tgl-md-3NF" secondAttribute="bottom" constant="7" id="H3B-HK-8xQ"/>
+                                    <constraint firstAttribute="width" constant="28" id="RA5-XD-Cfv"/>
+                                    <constraint firstAttribute="trailing" secondItem="tgl-md-3NF" secondAttribute="trailing" constant="7" id="RKD-lJ-Cgd"/>
+                                    <constraint firstItem="tgl-md-3NF" firstAttribute="top" secondItem="L7T-FW-qDc" secondAttribute="top" constant="7" id="tn9-7q-h2A"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="L7T-FW-qDc" firstAttribute="top" secondItem="Jmt-lS-4Uz" secondAttribute="top" constant="135" id="tsv-Kb-1Se"/>
+                            <constraint firstAttribute="trailing" secondItem="L7T-FW-qDc" secondAttribute="trailing" constant="8" id="wpM-pv-8WU"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="20"/>
                         </userDefinedRuntimeAttributes>
@@ -37,13 +71,13 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raw Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezE-Rs-7pM">
-                        <rect key="frame" x="4" y="117" width="62.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="4" y="117" width="56" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3xd-9a-cll">
-                        <rect key="frame" x="5" y="140" width="70" height="27"/>
+                        <rect key="frame" x="5" y="137.5" width="70" height="27"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔴🔴🔴🔴⭕️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioW-Od-S84">
                                 <rect key="frame" x="0.0" y="0.0" width="70" height="12"/>
@@ -59,29 +93,6 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UC-uZ-m2s">
-                        <rect key="frame" x="102.5" y="134" width="28.5" height="28"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PNr-52-PlQ">
-                                <rect key="frame" x="4" y="5.5" width="20.5" height="17.5"/>
-                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.98285645249999998" green="0.89536911249999995" blue="0.79998332260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="PNr-52-PlQ" firstAttribute="top" secondItem="7UC-uZ-m2s" secondAttribute="top" constant="4" id="AwF-1Z-qrF"/>
-                            <constraint firstAttribute="trailing" secondItem="PNr-52-PlQ" secondAttribute="trailing" constant="4" id="Zqs-kS-xp4"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="bRF-LG-tAt"/>
-                            <constraint firstAttribute="bottom" secondItem="PNr-52-PlQ" secondAttribute="bottom" constant="4" id="hdq-Mk-BIo"/>
-                            <constraint firstItem="PNr-52-PlQ" firstAttribute="leading" secondItem="7UC-uZ-m2s" secondAttribute="leading" constant="4" id="tFj-lw-P1N"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="wKT-IP-9aa"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="14"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -93,14 +104,6 @@
                 <constraint firstItem="ezE-Rs-7pM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="KiO-YW-1Kd"/>
                 <constraint firstAttribute="bottom" secondItem="Jmt-lS-4Uz" secondAttribute="bottom" id="OgO-o1-aZ9"/>
                 <constraint firstAttribute="trailing" secondItem="0n3-IT-YkX" secondAttribute="trailing" id="PwJ-Xb-fYm"/>
-                <constraint firstAttribute="trailing" secondItem="7UC-uZ-m2s" secondAttribute="trailing" constant="14" id="YNW-LI-xa5"/>
-                <constraint firstItem="7UC-uZ-m2s" firstAttribute="top" secondItem="0n3-IT-YkX" secondAttribute="bottom" constant="18" id="Zgh-I6-EB0">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </constraint>
                 <constraint firstAttribute="trailing" secondItem="Jmt-lS-4Uz" secondAttribute="trailing" id="fqq-xf-21S"/>
                 <constraint firstItem="0n3-IT-YkX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h4h-Tl-sQb"/>
                 <constraint firstItem="Jmt-lS-4Uz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lIU-bB-Xon"/>
@@ -109,8 +112,8 @@
             <size key="customSize" width="142" height="200"/>
             <connections>
                 <outlet property="distanceFromRestaurant" destination="da4-mt-aSL" id="otP-Fv-5gb"/>
+                <outlet property="favButtonOutlet" destination="tgl-md-3NF" id="ayU-5x-yvX"/>
                 <outlet property="restaurantImage" destination="0n3-IT-YkX" id="gam-Qu-U0X"/>
-                <outlet property="restaurantIsFavouriteImage" destination="PNr-52-PlQ" id="g2b-RV-vbT"/>
                 <outlet property="restaurantName" destination="ezE-Rs-7pM" id="sGY-nY-RTS"/>
                 <outlet property="restaurantRating" destination="ioW-Od-S84" id="LJp-4i-D3r"/>
             </connections>
