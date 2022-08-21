@@ -6,22 +6,23 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CartViewController: UIViewController {
     var deliveryPrice = Int.random(in: 2 ... 15)
-    var price = Double() {
+    var foodPrice = Double() {
         didSet {
-            price = Double(price.format(f: ".1"))!
+            foodPrice = Double(foodPrice.format(f: ".1"))!
         }
     }
     
     var foods: [ChosenFood]? {
         didSet {
             tableView.reloadData()
-            price = calculateOrderPrice()
-            orderLabel.text = "\(price) ₾"
+            foodPrice = calculateOrderPrice()
+            orderLabel.text = "\(foodPrice) ₾"
             deliveryLabel.text = "\(deliveryPrice) ₾"
-            summaryLabel.text = "\(price + Double(deliveryPrice)) ₾"
+            summaryLabel.text = "\(foodPrice + Double(deliveryPrice)) ₾"
         }
     }
     
@@ -46,7 +47,8 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func proceedButton(_ sender: UIButton) {
-        
+        let swiftUIController = UIHostingController(rootView: PurchaseView(foodPrice: foodPrice, deliveryPrice: Double(deliveryPrice), summaryPrice: foodPrice + Double(deliveryPrice)))
+        navigationController?.pushViewController(swiftUIController, animated: true)
     }
     
     private func calculateOrderPrice() -> Double {
@@ -129,8 +131,8 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CartViewController: ChosenFoodTableViewCellDelegate {
     func orderPriceChange(with number: Double) {
-        price = price + number
-        orderLabel.text = "\(price) ₾"
-        summaryLabel.text = "\(price + Double(deliveryPrice)) ₾"
+        foodPrice = foodPrice + number
+        orderLabel.text = "\(foodPrice) ₾"
+        summaryLabel.text = "\(foodPrice + Double(deliveryPrice)) ₾"
     }
 }
