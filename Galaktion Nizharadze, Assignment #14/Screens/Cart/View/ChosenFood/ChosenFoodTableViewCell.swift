@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ChosenFoodTableViewCellDelegate {
+protocol ChosenFoodTableViewCellDelegate: AnyObject {
     func orderPriceChange(with number: Double)
 }
 
@@ -25,11 +25,9 @@ class ChosenFoodTableViewCell: UITableViewCell {
     var price: Double!
     var chosen = true
     
-    var delegate: ChosenFoodTableViewCellDelegate?
+    weak var delegate: ChosenFoodTableViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
         // Initialization code
     }
 
@@ -45,7 +43,6 @@ class ChosenFoodTableViewCell: UITableViewCell {
         if sender.currentImage != UIImage(systemName: "checkmark.circle.fill") {
             unchooseButtonOutlet.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         }
-        
         
         foodAmount += 1
         
@@ -67,7 +64,6 @@ class ChosenFoodTableViewCell: UITableViewCell {
             self.foodPrice.text = "\((Double(foodAmount) * price).format(f: ".1"))"
             delegate?.orderPriceChange(with: -price)    // fasta sxvaoba
         }
-        
     }
     
     
@@ -82,9 +78,7 @@ class ChosenFoodTableViewCell: UITableViewCell {
             sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             delegate?.orderPriceChange(with: Double((Double(foodAmount) * price).format(f: ".1"))!)
         }
-        
     }
-    
     
     
     func setDataToElemets(img: UIImage, title: String, price: String, numberOfFood: Int) {
@@ -94,6 +88,4 @@ class ChosenFoodTableViewCell: UITableViewCell {
         self.numberOfFood.text = "\(numberOfFood)"
         self.price = Double(price.prefix(price.count - 2))
     }
-    
-    
 }

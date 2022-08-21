@@ -20,14 +20,12 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
     var data: Restaurant? {
         didSet {
             guard let data = data else { return }
-
+            
             restaurantRating.text = "\(data.rating!)"
             restaurantName.text = data.name
-            
+    
             guard let imgUrl =  data.restaurantImg else { return }
-            
             restaurantImage.loadImageUsingCache(withUrl: imgUrl)
-            
             distanceFromRestaurant.text = "7.8KM Away"
             
         }
@@ -48,9 +46,7 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
                 favButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
             }
         }
-
     }
-    
     
     
     @IBAction func favButton(_ sender: UIButton) {
@@ -72,20 +68,15 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
                 UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
             }
         }
-        
     }
-    
-    
-
 }
 
 
 
 
-let imageCache = NSCache<NSString, UIImage>()
-
 extension UIImageView {
     func loadImageUsingCache(withUrl urlString : String) {
+        let imageCache = NSCache<NSString, UIImage>()
         let url = URL(string: urlString)
         if url == nil {return}
         self.image = nil
@@ -115,7 +106,6 @@ extension UIImageView {
                     activityIndicator.removeFromSuperview()
                 }
             }
-
         }).resume()
     }
 }

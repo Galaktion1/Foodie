@@ -28,20 +28,16 @@ class SignInViewController: UIViewController {
         
         whiteView.backgroundColor = .white.withAlphaComponent(0)
         configureUIComponents()
-        
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
        
         if true {
-          
             let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vc = sb.instantiateViewController(withIdentifier: "MainNavigationController")
             
             self.view.window?.rootViewController = vc
             self.view.window?.makeKeyAndVisible()
-            
-   
         }
         
         else {
@@ -57,7 +53,6 @@ class SignInViewController: UIViewController {
         modifications.modifyTextFields(textField: emailTextField)
         modifications.modifyTextFields(textField: passwordTextField)
     }
-    
 }
 
 

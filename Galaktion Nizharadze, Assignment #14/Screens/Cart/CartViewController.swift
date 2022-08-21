@@ -43,7 +43,6 @@ class CartViewController: UIViewController {
         
         let nib2 = UINib(nibName: "DeliveryDetailsTableViewCell", bundle: Bundle.main)
         tableView.register(nib2, forCellReuseIdentifier: "DeliveryDetailsTableViewCell")
-        
     }
     
     @IBAction func proceedButton(_ sender: UIButton) {
@@ -55,8 +54,6 @@ class CartViewController: UIViewController {
             partialResult + (Double(food.price.prefix(food.price.count - 2)) ?? 0.0)
         }) ?? 0.0
     }
-    
-   
 }
 
 
@@ -95,7 +92,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         label.font = .systemFont(ofSize: 17)
         label.textColor = UIColor(named: "specialOrange")
         
-        
         headerView.addSubview(label)
         
         return headerView
@@ -108,8 +104,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
        
-        
-        
         switch indexPath.section {
         case foods?.count:
             let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryDetailsTableViewCell") as! DeliveryDetailsTableViewCell
@@ -130,8 +124,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }
-        
-        
     }
 }
 

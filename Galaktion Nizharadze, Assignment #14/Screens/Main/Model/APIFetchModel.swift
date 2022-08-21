@@ -1,11 +1,13 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
 //
-//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
+//  APIFetchModel.swift
+//  Galaktion Nizharadze, Assignment #14
+//
+//  Created by Gaga Nizharadze on 20.07.22.
+//
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - FetchedData
 struct FetchedData: Codable {
     let restaurants: [Restaurant]?
 }

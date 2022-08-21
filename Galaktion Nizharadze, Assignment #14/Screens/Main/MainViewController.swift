@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController{
+class MainViewController: UIViewController {
     
     @IBOutlet weak var restaurantsCollectionView: UICollectionView!
     @IBOutlet weak var recomendedDishesCollectionView: UICollectionView!
@@ -16,6 +16,7 @@ class MainViewController: UIViewController{
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var activeIndicatorView: UIView!
     
+    @IBOutlet weak var searchTextField: DesignableUITextField!
     @IBOutlet weak var allRestaurantsButtonOutlet: UIButton!
     @IBOutlet weak var nerbyButtonOutlet: UIButton!
     @IBOutlet weak var favouriteRestaurantsButtonOutlet: UIButton!
@@ -23,6 +24,7 @@ class MainViewController: UIViewController{
     
     let viewModel = MainViewViewModel()
     var favouriteRestaurantIds = [Int]()
+    var search: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +37,11 @@ class MainViewController: UIViewController{
         allRestaurantsButtonOutlet.tintColor = UIColor(named: "specialOrange")
         configureCollectionViews()
         
-        viewModel.reloadCollectionView = {
-            self.restaurantsCollectionView.reloadData()
-            self.recomendedDishesCollectionView.reloadData()
+        searchTextField.delegate = self
+        
+        viewModel.reloadCollectionView = { [weak self] in
+            self?.restaurantsCollectionView.reloadData()
+            self?.recomendedDishesCollectionView.reloadData()
         }
     }
     
@@ -164,12 +168,34 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             _ = vc.view
             
             viewModel.restaurantImage(imgView: vc.mainImageView, indexPath: indexPath)
-
             vc.data = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
-            
             vc.checkIfFav(id: viewModel.restaurantsCellForRowAt(indexPath: indexPath).id)
                         
             navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
+
+
+
+extension MainViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        var filtered = [Restaurant]()
+     
+        if (searchTextField.text?.count)! != 0 {
+            filtered.removeAll()
+            for each in viewModel.specialRestaurantsArray {
+                let range = each.name!.lowercased().range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
+                if range != nil {
+                    filtered.append(each)
+                }
+            }
+            viewModel.specialRestaurantsArray = filtered
+        }
+        
+        return true
+    }
+}
+

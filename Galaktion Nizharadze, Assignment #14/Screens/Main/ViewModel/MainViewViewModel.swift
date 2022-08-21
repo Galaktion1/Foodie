@@ -24,6 +24,8 @@ class MainViewViewModel {
     }
     
     
+    
+    
     private func apiService(completion: @escaping (Result<FetchedData, Error>) -> Void) {
         
         guard let url = URL(string: "https://run.mocky.io/v3/33a78899-3c38-428c-8460-7d800d94f413") else { return }
@@ -31,26 +33,21 @@ class MainViewViewModel {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print("data fetch response is", response)
             }
-            
             
             if let error = error {
                 print("error while data fetch ->", error)
             }
             
             if let data = data {
-                
                 do {
-                    
                     let decoder = JSONDecoder()
                     let jsonData = try decoder.decode(FetchedData.self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(jsonData))
-                        
                     }
                 }
                 catch let error {
@@ -86,6 +83,7 @@ class MainViewViewModel {
     func setAllRestaurants() {
         specialRestaurantsArray = allRestaurants
     }
+    
     func setTopAllRestaurants() {
         specialRestaurantsArray = allRestaurants.sorted { $0.rating! < $1.rating! }
     }
@@ -111,9 +109,6 @@ class MainViewViewModel {
         
         return data
     }
-    
-    
-    
     
     func moveActiveIndicatorView(mainButton: UIButton, button2: UIButton, button3: UIButton, button4: UIButton, indicatorView: UIView) {
         mainButton.tintColor = UIColor(named: "specialOrange")

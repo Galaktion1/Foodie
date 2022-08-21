@@ -245,6 +245,7 @@
                         <outlet property="recomendedDishesCollectionView" destination="xkH-Li-8r7" id="SO2-Fz-bhX"/>
                         <outlet property="restaurantsCollectionView" destination="Ic8-4g-ch1" id="DlV-6f-WVU"/>
                         <outlet property="scrollView" destination="8aF-CR-vWD" id="0M3-Ao-bX4"/>
+                        <outlet property="searchTextField" destination="nK1-JP-IMe" id="0Di-77-bCT"/>
                         <outlet property="topButtonOutlet" destination="kaK-6C-dXf" id="AW5-mB-PRj"/>
                     </connections>
                 </viewController>

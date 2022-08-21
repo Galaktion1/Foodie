@@ -35,7 +35,7 @@ class RestaurantViewController: UIViewController {
             titleLabel.text = data.name
             ratingLabel.text = "🔴🔴🔴🔴🔴" // !!!
             causineLabel.text = "Georgian"   //!!!
-//            foodieRanksLabel.text = ""  // !!!
+            //            foodieRanksLabel.text = ""  // !!!
             addressLabel.text = data.descriptions?.address
             phoneLabel.text = data.descriptions?.phone
             emailLabel.text = data.descriptions?.mail
@@ -92,7 +92,7 @@ class RestaurantViewController: UIViewController {
         
         return label
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "MenuTableViewCell", bundle: Bundle.main)
@@ -104,9 +104,6 @@ class RestaurantViewController: UIViewController {
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
         backgroundView.backgroundColor = .clear
         menuTableView.backgroundColor = .clear
-        
-
-        // Do any additional setup after loading the view.
     }
     
     func checkIfFav(id: Int?) {
@@ -118,8 +115,9 @@ class RestaurantViewController: UIViewController {
             } else {
                 favButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
             }
-        }    }
-
+        }
+    }
+    
     
     private func configureOrangeView() {
         addOrangeViewSubviewsAndGesture()
@@ -155,7 +153,6 @@ class RestaurantViewController: UIViewController {
         guard let vc = sb.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else { return }
         _ = vc.view
         vc.foods = chosenFood
-        
         vc.address = data.descriptions?.address
         
         navigationController?.pushViewController(vc, animated: true)
@@ -164,7 +161,7 @@ class RestaurantViewController: UIViewController {
     @IBAction func favButttonAction(_ sender: UIButton) {
         guard let data = data else { return }
         var favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
-
+        
         isFavourite.toggle()
         
         if isFavourite {
@@ -182,16 +179,15 @@ class RestaurantViewController: UIViewController {
         }
     }
     
-   
+    
     
     @IBAction func seeAllButton(_ sender: UIButton) {
-    
+        
         if sender.titleLabel?.text == "See All " {
-            
             let height : CGFloat = 15
             self.menuStackViewTopConstraint.constant = height
             self.menuStackViewHeight.constant = 630
-        
+            
             sender.setTitle("See Less", for: .normal)
             menuTableView.isScrollEnabled = true
             self.infoStackView?.isHidden = true
@@ -199,7 +195,6 @@ class RestaurantViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         } else {
-            
             let height: CGFloat = 385
             self.menuStackViewTopConstraint.constant = height
             sender.setTitle("See All ", for: .normal)
@@ -224,8 +219,8 @@ class RestaurantViewController: UIViewController {
             button.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         }) { (success) in
             
-                button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-               
+            button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+            
             
             UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {
                 button.transform = .identity
@@ -236,7 +231,7 @@ class RestaurantViewController: UIViewController {
 
 
 extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70
     }
@@ -261,20 +256,20 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//
-//        let sb = UIStoryboard(name: "PagerViewStoryboard", bundle: nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "PagerViewViewController") as! PagerViewViewController
-//
-//        UserDefaults.standard.setValue(indexPath.section, forKey: "numberOfSectionTappedInMyTask")
-//
-//        let data = viewModel.cellForRowAt(indexPath: indexPath)
-//        vc.data = data
-//
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        tableView.deselectRow(at: indexPath, animated: true)
+    //
+    //        let sb = UIStoryboard(name: "PagerViewStoryboard", bundle: nil)
+    //        let vc = sb.instantiateViewController(withIdentifier: "PagerViewViewController") as! PagerViewViewController
+    //
+    //        UserDefaults.standard.setValue(indexPath.section, forKey: "numberOfSectionTappedInMyTask")
+    //
+    //        let data = viewModel.cellForRowAt(indexPath: indexPath)
+    //        vc.data = data
+    //
+    //        vc.navigationItem.largeTitleDisplayMode = .never
+    //        navigationController?.pushViewController(vc, animated: true)
+    //    }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -303,7 +298,6 @@ extension RestaurantViewController: MenuTableViewCellDelegate {
             checkButtonAnimation(button: button)
         }
         else {
-         
             checkButtonAnimation(button: button)
             button.isUserInteractionEnabled = false
             chosenFood.append(food)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MenuTableViewCellDelegate {
+protocol MenuTableViewCellDelegate: AnyObject{
     func chosenFood(food: ChosenFood, button: UIButton)
 }
 
@@ -19,7 +19,7 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var foodPriceLabel: UILabel!
     @IBOutlet weak var isButtonChoosenOutlet: UIButton!
     
-    var delegate: MenuTableViewCellDelegate?
+    weak var delegate: MenuTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,6 @@ class MenuTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
