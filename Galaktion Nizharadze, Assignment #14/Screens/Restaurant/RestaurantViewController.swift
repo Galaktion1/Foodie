@@ -122,11 +122,11 @@ class RestaurantViewController: UIViewController {
         if isFavourite {
             sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             
-            favouriteRestaurantIds.append(data.id!)
+            favouriteRestaurantIds.append(data.id)
             UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
             
         } else {
-            if let index = favouriteRestaurantIds.firstIndex(of: data.id!) {
+            if let index = favouriteRestaurantIds.firstIndex(of: data.id) {
                 sender.setImage(UIImage(systemName: "heart"), for: .normal)
                 favouriteRestaurantIds.remove(at: index)
                 UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
@@ -182,10 +182,10 @@ class RestaurantViewController: UIViewController {
         ratingLabel.text = "🔴🔴🔴🔴🔴" // !!!
         causineLabel.text = "Georgian"   //!!!
         //            foodieRanksLabel.text = ""  // !!!
-        addressLabel.text = data.descriptions?.address
-        phoneLabel.text = data.descriptions?.phone
-        emailLabel.text = data.descriptions?.mail
-        webSiteLabel.text = data.descriptions?.website
+        addressLabel.text = data.descriptions.address
+        phoneLabel.text = data.descriptions.phone
+        emailLabel.text = data.descriptions.mail
+        webSiteLabel.text = data.descriptions.website
     }
     
     private func checkIfFav(id: Int?) {
@@ -238,7 +238,7 @@ class RestaurantViewController: UIViewController {
         guard let vc = sb.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else { return }
         _ = vc.view
         vc.foods = chosenFood
-        vc.address = data.descriptions?.address
+        vc.address = data.descriptions.address
         
         navigationController?.pushViewController(vc, animated: true)
     }

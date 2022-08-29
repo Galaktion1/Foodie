@@ -21,7 +21,7 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
         didSet {
             guard let data = data else { return }
             
-            restaurantRating.text = "\(data.rating!)"
+            restaurantRating.text = "\(data.rating)"
             restaurantName.text = data.name
     
             guard let imgUrl =  data.restaurantImg else { return }
@@ -58,11 +58,11 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
         if isFavourite {
             sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             
-            favouriteRestaurantIds.append(data.id!)
+            favouriteRestaurantIds.append(data.id)
             UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
             
         } else {
-            if let index = favouriteRestaurantIds.firstIndex(of: data.id!) {
+            if let index = favouriteRestaurantIds.firstIndex(of: data.id) {
                 sender.setImage(UIImage(systemName: "heart"), for: .normal)
                 favouriteRestaurantIds.remove(at: index)
                 UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")

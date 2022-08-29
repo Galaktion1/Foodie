@@ -70,13 +70,22 @@ class ChosenFoodTableViewCell: UITableViewCell {
     @IBAction func unchooseFood(_ sender: UIButton) {
         chosen.toggle()
         
+        
+        
         if !chosen {
-            delegate?.orderPriceChange(with: -Double((Double(foodAmount) * price).format())!)
+            if let priceChangedValue = Double((Double(foodAmount) * price).format()) {
+                delegate?.orderPriceChange(with: -priceChangedValue)
+            }
+            
             sender.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         }
         else {
             sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            delegate?.orderPriceChange(with: Double((Double(foodAmount) * price).format())!)
+            
+            if let priceChangedValue = Double((Double(foodAmount) * price).format()) {
+                delegate?.orderPriceChange(with: priceChangedValue)
+            }
+            
         }
     }
     

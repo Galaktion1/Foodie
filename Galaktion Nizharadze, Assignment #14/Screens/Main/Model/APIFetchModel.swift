@@ -14,18 +14,19 @@ struct FetchedData: Codable {
 
 // MARK: - Restaurant
 struct Restaurant: Codable {
-    let id: Int?
-    let name: String?
-    let rating: Int?
+    let id: Int
+    let name: String
+    let rating: Int
     let restaurantImg: String?
-    let descriptions: Descriptions?
+    let descriptions: Descriptions
     let foods: [Food]?
 }
 
 // MARK: - Descriptions
 struct Descriptions: Codable {
-    let address, city, phone, mail: String?
-    let website, shortAddress, descriptionsOpen: String?
+    let address, city, phone, mail: String
+    let website: String?
+    let shortAddress, descriptionsOpen: String
 
     enum CodingKeys: String, CodingKey {
         case address, city, phone, mail, website, shortAddress
@@ -35,10 +36,10 @@ struct Descriptions: Codable {
 
 // MARK: - Food
 struct Food: Codable {
-    let foodID: Int?
-    let foodName: String?
-    let price: Double?
-    let foodRank, cuisine, about: String?
+    let foodID: Int
+    let foodName: String
+    let price: Double
+    let foodRank, cuisine, about: String
     let foodImgURL: String?
 
     enum CodingKeys: String, CodingKey {

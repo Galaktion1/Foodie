@@ -194,7 +194,7 @@ extension MainViewController: UITextFieldDelegate {
         if (searchTextField.text?.count)! != 0 {
             filtered.removeAll()
             for each in viewModel.specialRestaurantsArray {
-                let range = each.name!.lowercased().range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
+                let range = each.name.lowercased().range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
                 if range != nil {
                     filtered.append(each)
                 }

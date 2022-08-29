@@ -15,7 +15,7 @@ struct PurchaseView: View {
     @State var address = "Tbilisi, Chavchavadzis 12"
     @State var addCardAction = false
     
-    weak var vc: UINavigationController?
+    weak var vc: UINavigationController!
     
     @State var dismissNewCardView = false
     
@@ -151,7 +151,7 @@ struct PurchaseView: View {
             
             
 
-            PurchaseButton(vc: vc!, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
+            PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
             
             
         }
@@ -217,7 +217,7 @@ struct PurchaseView: View {
                     
                     summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
                     
-                    PurchaseButton(vc: vc!, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
+                    PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
                         
                 }
             }

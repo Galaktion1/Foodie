@@ -74,7 +74,7 @@ class MainViewViewModel {
     
     func setFavouriteRestaurants() {
         let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
-        specialRestaurantsArray = specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id!) }
+        specialRestaurantsArray = specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id) }
     }
     
     
@@ -84,7 +84,7 @@ class MainViewViewModel {
     
     
     func setTopAllRestaurants() {
-        specialRestaurantsArray = allRestaurants.sorted { $0.rating! < $1.rating! }
+        specialRestaurantsArray = allRestaurants.sorted { $0.rating < $1.rating }
     }
     
     

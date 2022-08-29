@@ -23,7 +23,7 @@ class DishCollectionViewCell: UICollectionViewCell {
             
             mainImage.loadImageUsingCache(withUrl: imgUrl)
             title.text = data.foodName
-            price.text = "\(data.price!) Lari"
+            price.text = "\(data.price) Lari"
             favImage.image = UIImage(systemName: "heart.fill")
         }
     }
