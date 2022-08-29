@@ -12,7 +12,7 @@ class CartViewController: UIViewController {
     var deliveryPrice = Int.random(in: 2 ... 15)
     var foodPrice = Double() {
         didSet {
-            foodPrice = Double(foodPrice.format(f: ".1"))!
+            foodPrice = Double(foodPrice.format())!
         }
     }
     
@@ -24,6 +24,14 @@ class CartViewController: UIViewController {
             deliveryLabel.text = "\(deliveryPrice) ₾"
             summaryLabel.text = "\(foodPrice + Double(deliveryPrice)) ₾"
         }
+    }
+    
+    func setDataToUIElements() {
+        tableView.reloadData()
+        foodPrice = calculateOrderPrice()
+        orderLabel.text = "\(foodPrice) ₾"
+        deliveryLabel.text = "\(deliveryPrice) ₾"
+        summaryLabel.text = "\(foodPrice + Double(deliveryPrice)) ₾"
     }
     
     var address: String!
@@ -38,6 +46,7 @@ class CartViewController: UIViewController {
         title = "Your cart is ready to go"
         tableView.delegate = self
         tableView.dataSource = self
+        setDataToUIElements()
         
         let nib = UINib(nibName: "ChosenFoodTableViewCell", bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: "ChosenFoodTableViewCell")
@@ -46,9 +55,15 @@ class CartViewController: UIViewController {
         tableView.register(nib2, forCellReuseIdentifier: "DeliveryDetailsTableViewCell")
     }
     
+    deinit {
+        print("cartView deinited")
+    }
+    
     @IBAction func proceedButton(_ sender: UIButton) {
-        let swiftUIController = UIHostingController(rootView: PurchaseView(foodPrice: foodPrice, deliveryPrice: Double(deliveryPrice), summaryPrice: foodPrice + Double(deliveryPrice)))
-        navigationController?.pushViewController(swiftUIController, animated: true)
+        if let navigationController = navigationController {
+            let swiftUIController = UIHostingController(rootView: PurchaseView(vc: navigationController, foodPrice: foodPrice, deliveryPrice: Double(deliveryPrice), summaryPrice: foodPrice + Double(deliveryPrice)))
+            navigationController.pushViewController(swiftUIController, animated: true)
+        }
     }
     
     private func calculateOrderPrice() -> Double {
@@ -92,7 +107,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         label.font = .systemFont(ofSize: 17)
-        label.textColor = UIColor(named: "specialOrange")
+        label.textColor = CustomColors.specialOrangeColor
         
         headerView.addSubview(label)
         

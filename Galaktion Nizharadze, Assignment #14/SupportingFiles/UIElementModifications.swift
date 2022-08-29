@@ -10,8 +10,8 @@ import UIKit
 
 class UIElementModifications {
     
-    func modifyButtons(button: UIButton, colorString: String) {
-        button.backgroundColor = UIColor(named: colorString)!
+    func modifyButtons(button: UIButton, color: UIColor) {
+        button.backgroundColor = color
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 31
     }
@@ -20,13 +20,13 @@ class UIElementModifications {
         textField.layer.cornerRadius = 31
         textField.layer.masksToBounds = true
         textField.setLeftPaddingPoints(20)
-        textField.backgroundColor = UIColor(named: "specialGray")!
+        textField.backgroundColor = CustomColors.specialGrayColor!
     }
 }
 
 extension Double {
-    func format(f: String) -> String {
-        return String(format: "%\(f)f", self)
+    func format() -> String {
+        return String(format: "%.1f", self)
     }
 }
 

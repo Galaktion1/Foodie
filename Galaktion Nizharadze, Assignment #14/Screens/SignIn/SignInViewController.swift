@@ -47,8 +47,8 @@ class SignInViewController: UIViewController {
     
     
     private func configureUIComponents() {
-        modifications.modifyButtons(button: logInButtonOutlet, colorString: "specialOrange")
-        modifications.modifyButtons(button: signUpButtonOutlet, colorString: "specialYellow")
+        modifications.modifyButtons(button: logInButtonOutlet, color: CustomColors.specialOrangeColor!)
+        modifications.modifyButtons(button: signUpButtonOutlet, color: CustomColors.specialYellowColor!)
         
         modifications.modifyTextFields(textField: emailTextField)
         modifications.modifyTextFields(textField: passwordTextField)

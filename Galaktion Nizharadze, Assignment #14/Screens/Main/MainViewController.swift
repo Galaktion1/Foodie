@@ -34,15 +34,12 @@ class MainViewController: UIViewController {
 
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
         backgroundView.backgroundColor = .clear
-        allRestaurantsButtonOutlet.tintColor = UIColor(named: "specialOrange")
+        allRestaurantsButtonOutlet.tintColor = CustomColors.specialOrangeColor
         configureCollectionViews()
         
         searchTextField.delegate = self
         
-        viewModel.reloadCollectionView = { [weak self] in
-            self?.restaurantsCollectionView.reloadData()
-            self?.recomendedDishesCollectionView.reloadData()
-        }
+        collectionViewsReloading()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +54,16 @@ class MainViewController: UIViewController {
     }
     
     
+    deinit {
+        print("mainvc deinited")
+    }
     
+    func collectionViewsReloading() {
+        viewModel.reloadCollectionView = { [weak self] in
+            self?.restaurantsCollectionView.reloadData()
+            self?.recomendedDishesCollectionView.reloadData()
+        }
+    }
     
     @IBAction func allRestaurantsButtonAction(_ sender: UIButton) {
         viewModel.setAllRestaurants()
@@ -153,7 +159,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             cell.data = viewModel.foodsCellForItemAt(indexPath: indexPath)
             
-            
             return cell
         }
     }
@@ -164,12 +169,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == self.restaurantsCollectionView {
             let sb = UIStoryboard(name: "Restaurant", bundle: Bundle.main)
             guard let vc = sb.instantiateViewController(withIdentifier: "RestaurantViewController") as? RestaurantViewController else { return }
+
             
-            _ = vc.view
             
-            viewModel.restaurantImage(imgView: vc.mainImageView, indexPath: indexPath)
             vc.data = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
-            vc.checkIfFav(id: viewModel.restaurantsCellForRowAt(indexPath: indexPath).id)
+            vc.id = viewModel.restaurantsCellForRowAt(indexPath: indexPath).id
+            if let imgURLString = viewModel.getRestaurantImageURL(indexPath: indexPath) {
+                vc.mainImageURLString = imgURLString
+            }
                         
             navigationController?.pushViewController(vc, animated: true)
         }

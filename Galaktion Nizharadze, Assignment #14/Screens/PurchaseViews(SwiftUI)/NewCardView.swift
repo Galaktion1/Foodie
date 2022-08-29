@@ -22,7 +22,7 @@ struct NewCardView: View {
                 Text("Add New Card")
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(Color.init(UIColor(named: "specialOrange")!))
+                    .foregroundColor(Color.init(CustomColors.specialOrangeColor!))
                     .padding(.vertical)
                 
                 Spacer()
@@ -66,7 +66,7 @@ struct NewCardView: View {
                     .padding(.horizontal, 100)
                     .foregroundColor(.white)
                     .padding(5)
-                    .background(Color.init(UIColor(named: "specialOrange")!))
+                    .background(Color.init(CustomColors.specialOrangeColor!))
                     .clipShape(Rectangle())
                     .cornerRadius(15)
             }
@@ -93,7 +93,7 @@ struct CustomTextField: View {
             Text(title)
                 .font(.headline)
                 .fontWeight(.bold)
-                .foregroundColor(Color.init(uiColor: UIColor(named: "specialYellow")!))
+                .foregroundColor(Color.init(uiColor: CustomColors.specialYellowColor!))
             
             TextField(textFieldPlaceHolder, text: text)
                 Divider()

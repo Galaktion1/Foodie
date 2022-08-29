@@ -15,6 +15,8 @@ struct PurchaseView: View {
     @State var address = "Tbilisi, Chavchavadzis 12"
     @State var addCardAction = false
     
+    weak var vc: UINavigationController?
+    
     @State var dismissNewCardView = false
     
     @State var isOnByCash = false
@@ -25,7 +27,7 @@ struct PurchaseView: View {
     var deliveryPrice: Double
     var summaryPrice: Double
     
-    let specialOrange = Color.init(UIColor(named: "specialOrange")!)
+    let specialOrange = Color.init(CustomColors.specialOrangeColor!)
     
    
     func dismissNewCard() {
@@ -113,7 +115,7 @@ struct PurchaseView: View {
                     }
                     
                     
-                    Text("₾ \(getTotalAmount().format(f: ".1"))")
+                    Text("₾ \(getTotalAmount().format())")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
@@ -149,7 +151,7 @@ struct PurchaseView: View {
             
             
 
-            PurchaseButton()
+            PurchaseButton(vc: vc!, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
             
             
         }
@@ -206,7 +208,7 @@ struct PurchaseView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
                         
-                        Text("\(selectedCard.amount.format(f: ".1")) ₾")
+                        Text("\(selectedCard.amount.format()) ₾")
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
@@ -215,7 +217,7 @@ struct PurchaseView: View {
                     
                     summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
                     
-                    PurchaseButton()
+                    PurchaseButton(vc: vc!, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice)
                         
                 }
             }
@@ -256,7 +258,7 @@ struct PurchaseView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PurchaseView(foodPrice: 0, deliveryPrice: 0, summaryPrice: 0)
+            PurchaseView(vc: nil, foodPrice: 0, deliveryPrice: 0, summaryPrice: 0)
         }
         
     }
@@ -322,28 +324,67 @@ struct CardView: View {
 }
 
 
-
-struct PurchaseButton:  View {
+struct PurchaseButtonLabel: View {
     var body: some View {
-        Button(action: {
-            withAnimation(.interactiveSpring(response: 0.4, dampingFraction: 0.7, blendDuration: 0.5)) {
-                print(1)
-            }
-        }) {
-            Text("Purchase")
-                .font(.system(size: 23, weight: .semibold))
-                .padding(.horizontal, 50)
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.init(UIColor(named: "specialOrange")!))
-                .clipShape(Rectangle())
-                .cornerRadius(15)
-        }
-        .padding()
-        
+        Text("Purchase")
+                        .font(.system(size: 23, weight: .semibold))
+                        .padding(.horizontal, 50)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.init(CustomColors.specialOrangeColor!))
+                        .clipShape(Rectangle())
+                        .cornerRadius(15)
     }
 }
 
+struct PurchaseButton:  View {
+    
+    var vc: UINavigationController
+    var orderPrice: Double
+    var deliveryPrice: Double
+    var summaryPrice: Double
+    
+    @State private var moveToCompletedPurchaseVC = false
+    var body: some View {
+        
+        Button {
+            withAnimation(.interactiveSpring(response: 0.4, dampingFraction: 0.7, blendDuration: 0.5)) {
+                moveToCompletedPurchaseVC = true
+            }
+        } label: {
+            PurchaseButtonLabel()
+        }
+        .fullScreenCover(isPresented: $moveToCompletedPurchaseVC, content: {
+            CompletedOrderViewControllerRepresentation(navigationController: vc, orderPrice: orderPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice )
+        })
+    }
+    
+}
+
+struct CompletedOrderViewControllerRepresentation: UIViewControllerRepresentable {
+    
+    var navigationController: UINavigationController
+    var orderPrice: Double
+    var deliveryPrice: Double
+    var summaryPrice: Double
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<CompletedOrderViewControllerRepresentation>) -> CompletedOrderViewController {
+        let controller = CompletedOrderViewController()
+        
+        controller.orderPrice = "\(orderPrice.format()) ₾"
+        controller.deliveryPrice  = "\(deliveryPrice.format()) ₾"
+        controller.summaryPrice  = "\(summaryPrice.format()) ₾"
+        
+        
+        navigationController.viewControllers = [controller]
+        
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: CompletedOrderViewController, context: UIViewControllerRepresentableContext<CompletedOrderViewControllerRepresentation>) {
+
+    }
+}
 
 
 struct CheckboxToggleStyle: ToggleStyle {
@@ -395,9 +436,9 @@ struct summarySections: View {
             
             VStack {
                 Group {
-                    Text("\(order.format(f: ".1")) ₾")
-                    Text("\(delivery.format(f: ".1")) ₾")
-                    Text("\(summary.format(f: ".1")) ₾")
+                    Text("\(order.format()) ₾")
+                    Text("\(delivery.format()) ₾")
+                    Text("\(summary.format()) ₾")
                         .fontWeight(.bold)
                         .font(.system(size: 20))
                 }

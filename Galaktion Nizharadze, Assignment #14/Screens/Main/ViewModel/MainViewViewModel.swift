@@ -24,8 +24,6 @@ class MainViewViewModel {
     }
     
     
-    
-    
     private func apiService(completion: @escaping (Result<FetchedData, Error>) -> Void) {
         
         guard let url = URL(string: "https://run.mocky.io/v3/33a78899-3c38-428c-8460-7d800d94f413") else { return }
@@ -73,45 +71,45 @@ class MainViewViewModel {
         }
     }
     
-
     
     func setFavouriteRestaurants() {
         let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
         specialRestaurantsArray = specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id!) }
     }
     
+    
     func setAllRestaurants() {
         specialRestaurantsArray = allRestaurants
     }
+    
     
     func setTopAllRestaurants() {
         specialRestaurantsArray = allRestaurants.sorted { $0.rating! < $1.rating! }
     }
     
+    
     func numberOfItemsInSection() -> Int {
         specialRestaurantsArray.count
     }
     
+    
     func restaurantsCellForRowAt (indexPath: IndexPath) -> Restaurant {
-        let taskData = specialRestaurantsArray[indexPath.row]
-       
-        return taskData
+        specialRestaurantsArray[indexPath.row]
     }
     
-    func restaurantImage(imgView: UIImageView, indexPath: IndexPath)  {
-        guard let url = specialRestaurantsArray[indexPath.row].restaurantImg else { return }
-        imgView.loadImageUsingCache(withUrl: url)
+    
+    func getRestaurantImageURL(indexPath: IndexPath) -> String?  {
+        specialRestaurantsArray[indexPath.row].restaurantImg
     }
     
     
     func foodsCellForItemAt(indexPath: IndexPath) -> Food? {
-        let data = specialRestaurantsArray[indexPath.row].foods?.first
-        
-        return data
+        specialRestaurantsArray[indexPath.row].foods?.first
     }
     
+    
     func moveActiveIndicatorView(mainButton: UIButton, button2: UIButton, button3: UIButton, button4: UIButton, indicatorView: UIView) {
-        mainButton.tintColor = UIColor(named: "specialOrange")
+        mainButton.tintColor = CustomColors.specialOrangeColor
         button2.tintColor = .systemGray
         button3.tintColor = .systemGray
         button4.tintColor = .systemGray
@@ -122,7 +120,6 @@ class MainViewViewModel {
         UIView.animate(withDuration: 0.5, delay: 0.0, options:[], animations: {
             indicatorView.transform = CGAffineTransform(translationX: xCoordinant, y: 0)
             indicatorView.frame.size.width = mainButtonWidth
-            }, completion: nil)
+        }, completion: nil)
     }
-
 }

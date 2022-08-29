@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func modifyUIElements() {
-        modify.modifyButtons(button: signUpButtonOutlet, colorString: "specialOrange")
+        modify.modifyButtons(button: signUpButtonOutlet, color: CustomColors.specialOrangeColor!)
         
         modify.modifyTextFields(textField: usernameTextField)
         modify.modifyTextFields(textField: emailTextField)

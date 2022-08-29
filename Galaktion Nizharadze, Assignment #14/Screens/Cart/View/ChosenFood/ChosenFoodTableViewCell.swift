@@ -47,7 +47,7 @@ class ChosenFoodTableViewCell: UITableViewCell {
         foodAmount += 1
         
         numberOfFood.text = "\(foodAmount)"
-        self.foodPrice.text = "\((Double(foodAmount) * price).format(f: ".1"))"
+        self.foodPrice.text = "\((Double(foodAmount) * price).format())"
         delegate?.orderPriceChange(with: price)
     }
     
@@ -61,7 +61,7 @@ class ChosenFoodTableViewCell: UITableViewCell {
             }
             
             numberOfFood.text = "\(foodAmount)"
-            self.foodPrice.text = "\((Double(foodAmount) * price).format(f: ".1"))"
+            self.foodPrice.text = "\((Double(foodAmount) * price).format())"
             delegate?.orderPriceChange(with: -price)    // fasta sxvaoba
         }
     }
@@ -71,12 +71,12 @@ class ChosenFoodTableViewCell: UITableViewCell {
         chosen.toggle()
         
         if !chosen {
-            delegate?.orderPriceChange(with: -Double((Double(foodAmount) * price).format(f: ".1"))!)
+            delegate?.orderPriceChange(with: -Double((Double(foodAmount) * price).format())!)
             sender.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         }
         else {
             sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            delegate?.orderPriceChange(with: Double((Double(foodAmount) * price).format(f: ".1"))!)
+            delegate?.orderPriceChange(with: Double((Double(foodAmount) * price).format())!)
         }
     }
     
