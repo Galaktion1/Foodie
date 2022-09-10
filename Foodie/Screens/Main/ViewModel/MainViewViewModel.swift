@@ -7,23 +7,27 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
+import CoreLocation
 
 
 class MainViewViewModel {
     // MARK: - Closures for data set
     var reloadCollectionView: (() -> Void)?
+    var setLocationManagerConfigurations: (() -> Void)?
     var getName: ((String) -> Void)?
     
     // MARK: - Variables
     var allRestaurants = [Restaurant](){
         didSet {
             specialRestaurantsArray = allRestaurants
+            setLocationManagerConfigurations?()
         }
     }
     
     var specialRestaurantsArray = [Restaurant]() {
         didSet {
-            self.reloadCollectionView?()
+            reloadCollectionView?()
         }
     }
     
@@ -49,6 +53,13 @@ class MainViewViewModel {
         }
     }
     
+    func getDistance(currentLocation: CLLocation) {
+        for index in 0 ..< allRestaurants.count {
+            let locationService = LocationService(coordinators: allRestaurants[index].descriptions.coordinates)
+            allRestaurants[index].distance = locationService.getDistanceString(currentLocation: currentLocation)
+        }
+    }
+    
     
     func setFavouriteRestaurants() {
         let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
@@ -61,8 +72,14 @@ class MainViewViewModel {
     }
     
     
-    func setTopAllRestaurants() {
-        specialRestaurantsArray = allRestaurants.sorted { $0.rating < $1.rating }
+    func sortByTopAllRestaurants() {
+        specialRestaurantsArray = allRestaurants.sorted { $0.rating > $1.rating }
+    }
+    
+    func sortByNearby() {
+        if let _ = allRestaurants.first?.distance {
+            specialRestaurantsArray = allRestaurants.sorted { Double($0.distance!)! < Double($1.distance!)! }
+        }
     }
     
     
@@ -101,3 +118,4 @@ class MainViewViewModel {
         }, completion: nil)
     }
 }
+

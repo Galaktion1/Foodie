@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import CoreLocation
 
 class MainViewController: UIViewController, Storyboarded {
     // MARK: - Outlets
@@ -19,21 +21,22 @@ class MainViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var searchTextField: DesignableUITextField!
     @IBOutlet weak var allRestaurantsButtonOutlet: UIButton!
-    @IBOutlet weak var nerbyButtonOutlet: UIButton!
+    @IBOutlet weak var nearbyButtonOutlet: UIButton!
     @IBOutlet weak var favouriteRestaurantsButtonOutlet: UIButton!
     @IBOutlet weak var topButtonOutlet: UIButton!
     
     
     // MARK: - Variables
-    let viewModel = MainViewViewModel()
+    private let viewModel = MainViewViewModel()
     var coordinator: MainViewCoordinator?
+    private let locationManager = CLLocationManager()
     
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.fetchRestaurantsData()
-
+        configureLocationManager()
         configureCollectionViews()
         allRestaurantsButtonOutlet.tintColor = CustomColors.specialOrangeColor
         restaurantsCollectionView.backgroundColor = .clear
@@ -56,7 +59,6 @@ class MainViewController: UIViewController, Storyboarded {
         
         self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         backgroundView.backgroundColor = .clear
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,15 +75,16 @@ class MainViewController: UIViewController, Storyboarded {
     @IBAction func allRestaurantsButtonAction(_ sender: UIButton) {
         viewModel.setAllRestaurants()
         viewModel.moveActiveIndicatorView(mainButton: allRestaurantsButtonOutlet,
-                                          button2: nerbyButtonOutlet,
+                                          button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
                                           indicatorView: activeIndicatorView)
     }
     
     
-    @IBAction func nerbyButtonAction(_ sender: UIButton) {
-        viewModel.moveActiveIndicatorView(mainButton: nerbyButtonOutlet,
+    @IBAction func nearbyButtonAction(_ sender: UIButton) {
+        viewModel.sortByNearby()
+        viewModel.moveActiveIndicatorView(mainButton: nearbyButtonOutlet,
                                           button2: allRestaurantsButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
@@ -92,7 +95,7 @@ class MainViewController: UIViewController, Storyboarded {
     @IBAction func favouriteRestaurantsButtonAction(_ sender: UIButton) {
         viewModel.setFavouriteRestaurants()
         viewModel.moveActiveIndicatorView(mainButton: favouriteRestaurantsButtonOutlet,
-                                          button2: nerbyButtonOutlet,
+                                          button2: nearbyButtonOutlet,
                                           button3: allRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
                                           indicatorView: activeIndicatorView)
@@ -101,9 +104,9 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     @IBAction func topButtonAction(_ sender: UIButton) {
-        viewModel.setTopAllRestaurants()
+        viewModel.sortByTopAllRestaurants()
         viewModel.moveActiveIndicatorView(mainButton: topButtonOutlet,
-                                          button2: nerbyButtonOutlet,
+                                          button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: allRestaurantsButtonOutlet,
                                           indicatorView: activeIndicatorView)
@@ -111,6 +114,18 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     // MARK: - Funcs
+    
+    private func configureLocationManager() {
+        viewModel.setLocationManagerConfigurations = { [weak self] in
+            self?.locationManager.delegate = self
+            self?.locationManager.requestWhenInUseAuthorization()
+            self?.locationManager.startUpdatingLocation()
+            self?.locationManager.distanceFilter = 500 // distance changes you want to be informed about (in meters)
+            self?.locationManager.desiredAccuracy = 10 // biggest approximation you tolerate (in meters)
+            self?.locationManager.activityType = .automotiveNavigation // .automotiveNavigation will stop the updates when the device is not moving
+        }
+    }
+    
     private func getUsername() {
         viewModel.getUsername()
         viewModel.getName = { [weak self] username in
@@ -119,8 +134,6 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     
-  
-    
     func collectionViewsReloading() {
         viewModel.reloadCollectionView = { [weak self] in
             self?.restaurantsCollectionView.reloadData()
@@ -128,10 +141,6 @@ class MainViewController: UIViewController, Storyboarded {
         }
     }
     
-    @objc func moveToMyOrders() {
-        let vc = MyOrdersViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
     
     private func configureCollectionViews() {
         let nibRestaurant = UINib(nibName: "RestaurantsCollectionViewCell", bundle: nil)
@@ -172,7 +181,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
   
             cell.data = currentData
             cell.checkIfFav(id: currentData.id)
-            
             
             return cell
         }
@@ -217,3 +225,12 @@ extension MainViewController: UITextFieldDelegate {
     }
 }
 
+
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let currentLocation = locations.first?.coordinate else { return }
+        viewModel.getDistance(currentLocation: CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
+    }
+    
+}

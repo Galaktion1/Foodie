@@ -20,6 +20,7 @@ struct Restaurant: Decodable {
     let restaurantImg: String?
     let descriptions: Descriptions
     let foods: [Food]?
+    var distance: String?
 }
 
 // MARK: - Descriptions

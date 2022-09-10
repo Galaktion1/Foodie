@@ -27,7 +27,9 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
     
             guard let imgUrl =  data.restaurantImg else { return }
             restaurantImage.loadImageUsingCache(withUrl: imgUrl)
-            distanceFromRestaurant.text = "7.8KM Away"
+            if let distance = data.distance {
+                distanceFromRestaurant.text = distance + "KM Away"
+            }
         }
     }
 

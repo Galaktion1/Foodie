@@ -101,7 +101,7 @@
                                                             </attributedString>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="nerbyButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VSL-2t-y4J"/>
+                                                            <action selector="nearbyButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YhO-Xf-XJ0"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFU-S1-iep">
@@ -242,7 +242,7 @@
                         <outlet property="backgroundView" destination="9Zs-hX-DJI" id="iWr-cS-VXR"/>
                         <outlet property="favouriteRestaurantsButtonOutlet" destination="IFU-S1-iep" id="Cxp-rO-5NJ"/>
                         <outlet property="helloToUserLabel" destination="57O-7l-OZR" id="h5H-xq-MOR"/>
-                        <outlet property="nerbyButtonOutlet" destination="MqO-Nc-In5" id="mKo-0S-Yil"/>
+                        <outlet property="nearbyButtonOutlet" destination="MqO-Nc-In5" id="Zgt-5c-sNM"/>
                         <outlet property="recomendedDishesCollectionView" destination="xkH-Li-8r7" id="SO2-Fz-bhX"/>
                         <outlet property="restaurantsCollectionView" destination="Ic8-4g-ch1" id="DlV-6f-WVU"/>
                         <outlet property="scrollView" destination="8aF-CR-vWD" id="0M3-Ao-bX4"/>
