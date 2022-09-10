@@ -14,7 +14,6 @@ class SignInViewModel {
     var moveToMainScreen: (() -> Void)?
     var presentErrorAlert: ((String) -> Void)?
     
-    
     func signIn(emailTextField: UITextField, passwordTextField: UITextField) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             presentErrorAlert?("You should fill each textfield")

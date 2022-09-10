@@ -20,37 +20,37 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3za-v2-LaG">
-                                        <rect key="frame" x="0.0" y="0.0" width="413" height="900"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="413" height="872"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_foodieLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4rs-9p-D2g">
                                                 <rect key="frame" x="65" y="31" width="268" height="241"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-Jj-XFA">
-                                                <rect key="frame" x="28" y="302" width="357" height="301"/>
+                                                <rect key="frame" x="28" y="302" width="357" height="273"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVz-k6-xg0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="357" height="62"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="357" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="1af-ln-JbI"/>
+                                                            <constraint firstAttribute="height" constant="56" id="1af-ln-JbI"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTc-9C-y7y">
-                                                        <rect key="frame" x="0.0" y="84" width="357" height="62"/>
+                                                        <rect key="frame" x="0.0" y="78" width="357" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="LPd-Xp-snH"/>
+                                                            <constraint firstAttribute="height" constant="56" id="LPd-Xp-snH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-zq-W5J">
-                                                        <rect key="frame" x="0.0" y="168" width="357" height="133"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-zq-W5J">
+                                                        <rect key="frame" x="0.0" y="156" width="357" height="117"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY7-MC-r0J">
-                                                                <rect key="frame" x="0.0" y="0.0" width="357" height="63"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="357" height="55"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="63" id="87N-CQ-Zr4"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="87N-CQ-Zr4"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Log In">
@@ -61,9 +61,9 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKx-dI-7RK">
-                                                                <rect key="frame" x="0.0" y="70" width="357" height="63"/>
+                                                                <rect key="frame" x="0.0" y="62" width="357" height="55"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="63" id="Wk7-nL-xDf"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="Wk7-nL-xDf"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up">
@@ -78,7 +78,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J9-vG-3Vq">
-                                                <rect key="frame" x="60" y="658" width="293" height="73"/>
+                                                <rect key="frame" x="60" y="630" width="293" height="73"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2z-WE-fBp">
                                                         <rect key="frame" x="0.0" y="0.0" width="107" height="73"/>
@@ -125,6 +125,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="aeo-nx-3hJ" secondAttribute="bottom" id="Bo8-cv-S5F"/>
+                            <constraint firstItem="3za-v2-LaG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.997585" id="Ivi-12-wwm"/>
                             <constraint firstItem="aeo-nx-3hJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jjz-hS-bzP"/>
                             <constraint firstItem="aeo-nx-3hJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nUn-Dv-VzY"/>
                             <constraint firstAttribute="trailing" secondItem="aeo-nx-3hJ" secondAttribute="trailing" id="qvM-oI-DJE"/>
@@ -164,44 +165,44 @@
                                                 <rect key="frame" x="65" y="31" width="261" height="241"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="ga2-iN-ZkA">
-                                                <rect key="frame" x="28" y="302" width="350" height="399"/>
+                                                <rect key="frame" x="28" y="302" width="350" height="367"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dkD-dZ-oJN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="62"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="DrV-wS-WQk"/>
+                                                            <constraint firstAttribute="height" constant="56" id="DrV-wS-WQk"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cff-9V-XhS">
-                                                        <rect key="frame" x="0.0" y="84" width="350" height="62"/>
+                                                        <rect key="frame" x="0.0" y="78" width="350" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="R35-X6-XkX"/>
+                                                            <constraint firstAttribute="height" constant="56" id="R35-X6-XkX"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hfo-AK-GQh">
-                                                        <rect key="frame" x="0.0" y="168" width="350" height="62"/>
+                                                        <rect key="frame" x="0.0" y="156" width="350" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="uhP-Ch-5vc"/>
+                                                            <constraint firstAttribute="height" constant="56" id="uhP-Ch-5vc"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Al-aC-pMo">
-                                                        <rect key="frame" x="0.0" y="252" width="350" height="62"/>
+                                                        <rect key="frame" x="0.0" y="234" width="350" height="56"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="cmg-T1-PRS"/>
+                                                            <constraint firstAttribute="height" constant="56" id="cmg-T1-PRS"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCv-hQ-9eI">
-                                                        <rect key="frame" x="0.0" y="336" width="350" height="63"/>
+                                                        <rect key="frame" x="0.0" y="312" width="350" height="55"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="63" id="4Rx-u7-faY"/>
+                                                            <constraint firstAttribute="height" constant="55" id="4Rx-u7-faY"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Sign Up">
@@ -214,20 +215,20 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPS-dY-HG5">
-                                                <rect key="frame" x="60" y="756" width="286" height="73"/>
+                                                <rect key="frame" x="60" y="724" width="286" height="105"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQz-nI-epR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="73"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="105"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="img_google"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaM-qN-MeU">
-                                                        <rect key="frame" x="100" y="0.0" width="93" height="73"/>
+                                                        <rect key="frame" x="100" y="0.0" width="93" height="105"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="img_fb"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8v-mp-ORl">
-                                                        <rect key="frame" x="193" y="0.0" width="93" height="73"/>
+                                                        <rect key="frame" x="193" y="0.0" width="93" height="105"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="img_apple"/>
                                                     </button>

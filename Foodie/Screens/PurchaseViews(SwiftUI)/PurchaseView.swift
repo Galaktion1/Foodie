@@ -22,6 +22,7 @@ struct PurchaseView: View {
     var foodPrice: Double
     var deliveryPrice: Double
     var summaryPrice: Double
+    var foods: [ChosenFood]
     let specialOrange = Color.init(CustomColors.specialOrangeColor!)
     
     @Namespace var animation
@@ -32,14 +33,12 @@ struct PurchaseView: View {
     @State var cards = [Card]()
     private let viewModel = PurchaseViewModel()
     
-    
 
     private func getCards() {
         viewModel.fetchCards { cardsArray in
             cards = cardsArray
         }
     }
-    
     
     var body: some View {
        
@@ -58,9 +57,6 @@ struct PurchaseView: View {
                             .scaleEffect(selectedCard.id == cards[index].id ? 1 : index == 0 ? 1 : 0.9)
                         
                             .rotationEffect(.init(degrees: startAnimation ? 0 :  index == 1 ? -15 : (index == 2 ? 15 : 0)))
-                        
-                        
-                        
                             .onTapGesture {
                                 animateView(card: cards[index])
                             }
@@ -104,11 +100,7 @@ struct PurchaseView: View {
                                 .foregroundColor(.primary)
                                 .padding(.vertical)
                         })
-//                        .sheet(isPresented: $dismissNewCardView) {
-//                                    NewCardView()
-//                                }
                     }
-                    
                     
                     Text("₾ \(getTotalAmount().format())")
                         .font(.title)
@@ -146,7 +138,7 @@ struct PurchaseView: View {
             
             
 
-            PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: nil)
+            PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: nil, foods: foods)
             
             
         }
@@ -212,8 +204,7 @@ struct PurchaseView: View {
                     
                     summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
                     
-                    PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: selectedCard.amount, cards: cards, selectedCardID: selectedCard.id)
-                        
+                    PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: selectedCard.amount, foods: foods, cards: cards, selectedCardID: selectedCard.id)
                 }
             }
             
@@ -259,7 +250,7 @@ struct PurchaseView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PurchaseView(vc: nil, foodPrice: 0, deliveryPrice: 0, summaryPrice: 0)
+            PurchaseView(vc: nil, foodPrice: 0, deliveryPrice: 0, summaryPrice: 0, foods: [])
         }
         
     }
@@ -345,6 +336,7 @@ struct PurchaseButton:  View {
     var deliveryPrice: Double
     var summaryPrice: Double?
     var selectedCardAmount: Double?
+    var foods: [ChosenFood]
     
     var cards: [Card]?
     var selectedCardID: String?
@@ -362,6 +354,10 @@ struct PurchaseButton:  View {
                         viewModel.orderFood(cards: &cards, selectedCardID: selectedCardID, by: summaryPrice)
                         moveToCompletedPurchaseVC = true
                     }
+                }
+                
+                if selectedCardID == nil {
+                    moveToCompletedPurchaseVC = true
                 }
             }
         } label: {

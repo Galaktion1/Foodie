@@ -10,15 +10,15 @@ import Foundation
 
 // MARK: - Mock API Manager
 
-class NetworkManager {
+class RestaurantsNetworkManager {
     
-    static let shared = NetworkManager()
+    static let shared = RestaurantsNetworkManager()
     
     private init() { }
     
     func apiService(completion: @escaping (Result<FetchedData, Error>) -> Void) {
         
-        guard let url = URL(string: "https://run.mocky.io/v3/33a78899-3c38-428c-8460-7d800d94f413") else { return }
+        guard let url = URL(string: "https://run.mocky.io/v3/d41cdc66-dbad-48d8-9d9a-26b2c2d21949") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

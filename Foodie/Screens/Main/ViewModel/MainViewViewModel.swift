@@ -31,7 +31,7 @@ class MainViewViewModel {
     
     // MARK: - Funcs
     func fetchRestaurantsData() {
-        NetworkManager.shared.apiService { [weak self] (result) in
+        RestaurantsNetworkManager.shared.apiService { [weak self] (result) in
             switch result {
             case .success(let listOf):
                 print("succesful retrived data")
@@ -85,7 +85,7 @@ class MainViewViewModel {
         specialRestaurantsArray[indexPath.row].foods?.first
     }
     
-    
+    // controllershi gaditane
     func moveActiveIndicatorView(mainButton: UIButton, button2: UIButton, button3: UIButton, button4: UIButton, indicatorView: UIView) {
         mainButton.tintColor = CustomColors.specialOrangeColor
         button2.tintColor = .systemGray

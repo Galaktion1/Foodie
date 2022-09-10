@@ -22,7 +22,7 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
         didSet {
             guard let data = data else { return }
             
-            restaurantRating.text = "\(data.rating)"
+            restaurantRating.text = data.rating.visualizeRating()
             restaurantName.text = data.name
     
             guard let imgUrl =  data.restaurantImg else { return }
@@ -30,12 +30,7 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
             distanceFromRestaurant.text = "7.8KM Away"
         }
     }
-    
-    // MARK: - Life cycles
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+
     
     // MARK: - IBActions
     @IBAction func favButton(_ sender: UIButton) {
@@ -70,44 +65,5 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
                 favButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
             }
         }
-    }
-}
-
-
-
-
-extension UIImageView {
-    func loadImageUsingCache(withUrl urlString : String) {
-        let imageCache = NSCache<NSString, UIImage>()
-        let url = URL(string: urlString)
-        if url == nil {return}
-        self.image = nil
-
-        // check cached image
-        if let cachedImage = imageCache.object(forKey: urlString as NSString)  {
-            self.image = cachedImage
-            return
-        }
-
-        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.medium)
-        addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        activityIndicator.center = self.center
-
-        // if not, download image from url
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    imageCache.setObject(image, forKey: urlString as NSString)
-                    self.image = image
-                    activityIndicator.removeFromSuperview()
-                }
-            }
-        }).resume()
     }
 }

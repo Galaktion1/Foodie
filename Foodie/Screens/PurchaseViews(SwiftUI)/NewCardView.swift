@@ -35,7 +35,6 @@ struct NewCardView: View {
                         .foregroundColor(.gray)
                 }
                 .padding()
-//
             }
             
             
@@ -72,13 +71,9 @@ struct NewCardView: View {
             .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
             
-                
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
-        
-        
-        
     }
 }
 

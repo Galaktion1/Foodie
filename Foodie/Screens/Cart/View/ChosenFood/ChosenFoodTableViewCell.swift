@@ -20,23 +20,16 @@ class ChosenFoodTableViewCell: UITableViewCell {
     @IBOutlet weak var unchooseButtonOutlet: UIButton!
     @IBOutlet weak var backView: UIView!
     
+    @IBOutlet weak var decreaseButtonOutlet: UIButton!
+    @IBOutlet weak var increaseButtonOutlet: UIButton!
+    @IBOutlet weak var unchooseButtonBackView: UIView!
+    
     // MARK: - Variables
     var foodAmount = 1
     var price: Double!
     var chosen = true
     weak var delegate: ChosenFoodTableViewCellDelegate?
-    
-    // MARK: - Life Cycles
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     // MARK: - IBActions
     @IBAction func increaseNumberOfFood(_ sender: UIButton) {
@@ -91,8 +84,20 @@ class ChosenFoodTableViewCell: UITableViewCell {
     func setDataToElemets(img: UIImage, title: String, price: String, numberOfFood: Int) {
         self.foodImgView.image = img
         self.foodTitleLabel.text = title
-        self.foodPrice.text = price
+        self.foodPrice.text = "\(price) ₾"
         self.numberOfFood.text = "\(numberOfFood)"
         self.price = Double(price.prefix(price.count - 2))
     }
+    
+    
+    func configureCellForMyOrdersScene() {
+        unchooseButtonOutlet.isHidden = true
+        unchooseButtonBackView.isHidden = true
+        increaseButtonOutlet.isUserInteractionEnabled = false
+        decreaseButtonOutlet.isUserInteractionEnabled = false
+        
+        foodPrice.font = .boldSystemFont(ofSize: 20)
+    }
+    
+   
 }

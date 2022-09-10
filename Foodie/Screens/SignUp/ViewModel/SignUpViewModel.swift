@@ -6,34 +6,56 @@
 //
 
 import Foundation
-import UIKit
 
 class SignUpViewModel {
     
     private let manager = FirebaseManager()
     
-    func signUp(emailTextField: UITextField, passwordTextField: UITextField, retypedPasswordTextField: UITextField, usernameTextField: UITextField) -> String {
-        guard let password = passwordTextField.text, let email = emailTextField.text, let retypedPass = retypedPasswordTextField.text, let username = usernameTextField.text else {
-            return "You have to fill each text field."
+    var presentErrorAlert: ((String) -> ())?
+    var presentSuccessAlert: (() -> ())?
+     
+    private func signUp(email: String?, password: String?, retypedPassword: String?, username: String?) -> SignUpResponses {
+        guard let password = password, let email = email, let retypedPass = retypedPassword, let username = username else {
+            return .emptyTextField
         }
         
         if password.isEmpty || email.isEmpty || retypedPass.isEmpty || username.isEmpty {
-            return "You have to fill each text field."
+            return .emptyTextField
         }
         if password != retypedPass {
-            return "passwords don't match"
+            return .unmatchPassword
         } else if !manager.isValidPassword(password) {
-            return "password length should be more than 6 characters"
+            return .shortPassword
         }
         else if !manager.isValidEmail(email) {
-            return "Invalid Email"
+            return .invalidMail
         }
         else {
             manager.signUp(with: email, password: password, username: username) { result in
                 print(result)
             }
         }
-        return ""
-           
+        return .success
     }
+    
+    func signUpResponse(email: String?, password: String?, retypedPassword: String?, username: String?) {
+        let response = signUp(email: email, password: password, retypedPassword: retypedPassword, username: username)
+        
+        switch response {
+        case .success:
+            presentSuccessAlert?()
+        default:
+            presentErrorAlert?(response.rawValue)
+        }
+    }
+    
+}
+
+
+enum SignUpResponses: String {
+    case emptyTextField = "You have to fill each text field."
+    case unmatchPassword = "passwords don't match"
+    case shortPassword = "password length should be more than 6 characters"
+    case invalidMail = "Invalid Email"
+    case success
 }

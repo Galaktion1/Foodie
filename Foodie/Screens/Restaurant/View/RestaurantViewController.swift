@@ -5,6 +5,7 @@
 //  Created by Gaga Nizharadze on 23.07.22.
 //
 
+
 import UIKit
 
 class RestaurantViewController: UIViewController, Storyboarded {
@@ -142,7 +143,6 @@ class RestaurantViewController: UIViewController, Storyboarded {
     }
     
     
-    
     @IBAction func seeAllButton(_ sender: UIButton) {
         
         if sender.titleLabel?.text == "See All " {
@@ -187,14 +187,15 @@ class RestaurantViewController: UIViewController, Storyboarded {
     
     private func setDataToUIElements(_ data: Restaurant) {
         titleLabel.text = data.name
-        ratingLabel.text = "🔴🔴🔴🔴🔴" // !!!
-        causineLabel.text = "Georgian"   //!!!
-        //            foodieRanksLabel.text = ""  // !!!
+        ratingLabel.text = data.rating.visualizeRating()
+        causineLabel.text = "Georgian"
         addressLabel.text = data.descriptions.address
         phoneLabel.text = data.descriptions.phone
         emailLabel.text = data.descriptions.mail
         webSiteLabel.text = data.descriptions.website
+        UserDefaults.standard.set(data.descriptions.coordinates, forKey: "coordinates")
     }
+    
     
     private func checkIfFav(id: Int?) {
         let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
@@ -239,11 +240,9 @@ class RestaurantViewController: UIViewController, Storyboarded {
         view.addSubview(chosenFoodOrangeView)
     }
     
-    
-    
     @objc func handleTap(_ sender: UITapGestureRecognizer?) {
-        let sb = UIStoryboard(name: "Cart", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else { return }
+        
+        let vc = CartViewController.instantiate()
         _ = vc.view
         vc.foods = chosenFood
         vc.address = data.descriptions.address
@@ -258,7 +257,6 @@ class RestaurantViewController: UIViewController, Storyboarded {
         }) { (success) in
             
             button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            
             
             UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {
                 button.transform = .identity
@@ -292,22 +290,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
-    
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        tableView.deselectRow(at: indexPath, animated: true)
-    //
-    //        let sb = UIStoryboard(name: "PagerViewStoryboard", bundle: nil)
-    //        let vc = sb.instantiateViewController(withIdentifier: "PagerViewViewController") as! PagerViewViewController
-    //
-    //        UserDefaults.standard.setValue(indexPath.section, forKey: "numberOfSectionTappedInMyTask")
-    //
-    //        let data = viewModel.cellForRowAt(indexPath: indexPath)
-    //        vc.data = data
-    //
-    //        vc.navigationItem.largeTitleDisplayMode = .never
-    //        navigationController?.pushViewController(vc, animated: true)
-    //    }
+
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

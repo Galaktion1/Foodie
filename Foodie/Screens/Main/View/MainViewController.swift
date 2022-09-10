@@ -26,8 +26,6 @@ class MainViewController: UIViewController, Storyboarded {
     
     // MARK: - Variables
     let viewModel = MainViewViewModel()
-    var favouriteRestaurantIds = [Int]()
-    var search: String = ""
     var coordinator: MainViewCoordinator?
     
     // MARK: - Life Cycles
@@ -35,17 +33,14 @@ class MainViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         
         viewModel.fetchRestaurantsData()
-        favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
 
         configureCollectionViews()
         allRestaurantsButtonOutlet.tintColor = CustomColors.specialOrangeColor
-        restaurantsCollectionView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
+        restaurantsCollectionView.backgroundColor = .clear
         recomendedDishesCollectionView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         searchTextField.delegate = self
         collectionViewsReloading()
-        addBadge(itemvalue: 0)
         getUsername()
-        
     }
     
     
@@ -124,35 +119,7 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     
-    private func addBadge(itemvalue: Int) {
-        
-        let badgeCount = UILabel(frame: CGRect(x: 18, y: -05, width: 20, height: 20))
-
-        badgeCount.layer.borderColor = UIColor.clear.cgColor
-        badgeCount.layer.borderWidth = 2
-        badgeCount.layer.cornerRadius = badgeCount.bounds.size.height / 2
-        badgeCount.textAlignment = .center
-        badgeCount.layer.masksToBounds = true
-        badgeCount.textColor = .white
-        badgeCount.font = badgeCount.font.withSize(12)
-        badgeCount.backgroundColor = .red
-        badgeCount.text = "\(itemvalue)"
-
-        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        rightButton.setBackgroundImage(UIImage(systemName: "bag"), for: .normal)
-        rightButton.addSubview(badgeCount)
-        if itemvalue == 0 {
-            rightButton.tintColor = .gray
-        }
-        rightButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        backgroundView.addSubview(rightButton)
-
-        NSLayoutConstraint.activate([
-            rightButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -30),
-            rightButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10)
-        ])
-    }
+  
     
     func collectionViewsReloading() {
         viewModel.reloadCollectionView = { [weak self] in
@@ -161,6 +128,10 @@ class MainViewController: UIViewController, Storyboarded {
         }
     }
     
+    @objc func moveToMyOrders() {
+        let vc = MyOrdersViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     private func configureCollectionViews() {
         let nibRestaurant = UINib(nibName: "RestaurantsCollectionViewCell", bundle: nil)
@@ -230,7 +201,7 @@ extension MainViewController: UITextFieldDelegate {
     
     // MARK: - Text Field Delegate Function For Each Changes In Textfield
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var filtered = [Restaurant]()
+        var filtered = [Restaurant]()     // esec viewModelshi
      
         if (searchTextField.text?.count)! != 0 {
             filtered.removeAll()

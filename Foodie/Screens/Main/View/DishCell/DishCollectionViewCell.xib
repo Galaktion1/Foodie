@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DishCollectionViewCell" id="gTV-IL-0wX" customClass="DishCollectionViewCell" customModule="Galaktion_Nizharadze__Assignment__14" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DishCollectionViewCell" id="gTV-IL-0wX" customClass="DishCollectionViewCell" customModule="Foodie" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="105" height="125"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -39,36 +39,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 9000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C50-gG-MS7">
-                                <rect key="frame" x="3" y="105" width="42" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <rect key="frame" x="3" y="105" width="44.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="specialYellow"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLV-tk-y0D">
-                                <rect key="frame" x="79" y="102.5" width="20" height="20"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eoP-GX-aj8">
-                                        <rect key="frame" x="2" y="3.5" width="16" height="13.5"/>
-                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="16" id="bAb-Lr-kOK"/>
-                                            <constraint firstAttribute="height" constant="16" id="ynb-3M-GT9"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.98285645249999998" green="0.89536911249999995" blue="0.79998332260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstItem="eoP-GX-aj8" firstAttribute="centerX" secondItem="DLV-tk-y0D" secondAttribute="centerX" id="2e6-rj-37K"/>
-                                    <constraint firstAttribute="height" constant="20" id="P4c-ZF-fmc"/>
-                                    <constraint firstItem="eoP-GX-aj8" firstAttribute="centerY" secondItem="DLV-tk-y0D" secondAttribute="centerY" id="eUb-vD-72n"/>
-                                    <constraint firstAttribute="width" constant="20" id="k7J-VK-yZH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -77,10 +52,8 @@
                             <constraint firstItem="6nL-FI-M3y" firstAttribute="top" secondItem="HGf-tD-CZ3" secondAttribute="bottom" constant="3" id="LBK-t4-SUs"/>
                             <constraint firstItem="6nL-FI-M3y" firstAttribute="leading" secondItem="yP8-bn-2oC" secondAttribute="leading" constant="2" id="LQV-5E-PiA"/>
                             <constraint firstItem="C50-gG-MS7" firstAttribute="leading" secondItem="yP8-bn-2oC" secondAttribute="leading" constant="3" id="Oem-tL-uHK"/>
-                            <constraint firstItem="DLV-tk-y0D" firstAttribute="centerY" secondItem="C50-gG-MS7" secondAttribute="centerY" id="V2p-1J-4YG"/>
                             <constraint firstItem="HGf-tD-CZ3" firstAttribute="top" secondItem="yP8-bn-2oC" secondAttribute="top" id="hhO-zR-Ky4"/>
                             <constraint firstItem="C50-gG-MS7" firstAttribute="top" secondItem="6nL-FI-M3y" secondAttribute="bottom" constant="5" id="j2u-Je-bw4"/>
-                            <constraint firstAttribute="trailing" secondItem="DLV-tk-y0D" secondAttribute="trailing" constant="6" id="oQD-9y-KTU"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -99,7 +72,6 @@
             </constraints>
             <size key="customSize" width="105" height="126"/>
             <connections>
-                <outlet property="favImage" destination="eoP-GX-aj8" id="Ckn-yD-lfr"/>
                 <outlet property="mainImage" destination="HGf-tD-CZ3" id="vsa-bV-Nw9"/>
                 <outlet property="price" destination="C50-gG-MS7" id="bja-V2-QP3"/>
                 <outlet property="title" destination="6nL-FI-M3y" id="wKg-TK-8VX"/>
@@ -108,7 +80,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <namedColor name="specialYellow">
             <color red="0.95800000429153442" green="0.81199997663497925" blue="0.43500000238418579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class CartViewController: UIViewController {
+class CartViewController: UIViewController, Storyboarded {
     
     // MARK: - Outlets
     @IBOutlet weak var orderLabel: UILabel!
@@ -49,15 +49,9 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Your cart is ready to go"
-        tableView.delegate = self
-        tableView.dataSource = self
+        configureTableView()
+        
         setDataToUIElements()
-        
-        let nib = UINib(nibName: "ChosenFoodTableViewCell", bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: "ChosenFoodTableViewCell")
-        
-        let nib2 = UINib(nibName: "DeliveryDetailsTableViewCell", bundle: Bundle.main)
-        tableView.register(nib2, forCellReuseIdentifier: "DeliveryDetailsTableViewCell")
     }
     
     deinit {
@@ -67,7 +61,7 @@ class CartViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func proceedButton(_ sender: UIButton) {
         if let navigationController = navigationController {
-            let swiftUIController = UIHostingController(rootView: PurchaseView(vc: navigationController, foodPrice: foodPrice, deliveryPrice: Double(deliveryPrice), summaryPrice: foodPrice + Double(deliveryPrice)))
+            let swiftUIController = UIHostingController(rootView: PurchaseView(vc: navigationController, foodPrice: foodPrice, deliveryPrice: Double(deliveryPrice), summaryPrice: foodPrice + Double(deliveryPrice), foods: foods ?? []))
             navigationController.pushViewController(swiftUIController, animated: true)
         }
     }
@@ -78,13 +72,31 @@ class CartViewController: UIViewController {
             partialResult + (Double(food.price.prefix(food.price.count - 2)) ?? 0.0)
         }) ?? 0.0
     }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        let nib = UINib(nibName: "ChosenFoodTableViewCell", bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: "ChosenFoodTableViewCell")
+        
+        let nib2 = UINib(nibName: "DeliveryDetailsTableViewCell", bundle: Bundle.main)
+        tableView.register(nib2, forCellReuseIdentifier: "DeliveryDetailsTableViewCell")
+    }
+    
+    
+    private struct TableViewConstants {
+        static let heightForRowAt: CGFloat = 70
+        static let numberOfRowsInSection: Int = 1
+        static let heightForHeaderInSection: CGFloat = 30
+    }
 }
 
 
 extension CartViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        70
+        TableViewConstants.heightForRowAt
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,11 +104,11 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        TableViewConstants.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        30.0
+        TableViewConstants.heightForHeaderInSection
     }
     
     // Make the background color show through
@@ -123,11 +135,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
      
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == foods?.count {
-            
-        }
-       
+      
         switch indexPath.section {
         case foods?.count:
             let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryDetailsTableViewCell") as! DeliveryDetailsTableViewCell

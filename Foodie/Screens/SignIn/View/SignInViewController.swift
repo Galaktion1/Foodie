@@ -18,10 +18,6 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: - Variables
-    var email: String!
-    var password: String!
-    var userName: String!
-    private let modifications = UIElementModifications()
     var coordinator: MainViewCoordinator?
     let viewModel = SignInViewModel()
     
@@ -51,11 +47,13 @@ class SignInViewController: UIViewController {
     
     // MARK: - Funcs
     private func configureUIComponents() {
-        modifications.modifyButtons(button: logInButtonOutlet, color: CustomColors.specialOrangeColor!)
-        modifications.modifyButtons(button: signUpButtonOutlet, color: CustomColors.specialYellowColor!)
         
-        modifications.modifyTextFields(textField: emailTextField)
-        modifications.modifyTextFields(textField: passwordTextField)
+        logInButtonOutlet.modifyButtons(color: CustomColors.specialOrangeColor!)
+        signUpButtonOutlet.modifyButtons(color: CustomColors.specialYellowColor!)
+        
+        emailTextField.modifyTextFields()
+        passwordTextField.modifyTextFields()
+
     }
     
     private func moveToMainScreen() {

@@ -23,7 +23,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButtonOutlet: UIButton!
     
     // MARK: - Variables
-    private let modify = UIElementModifications()
     private let viewModel = SignUpViewModel()
     weak var delegate: SignUpViewControllerDelegate?
     
@@ -32,38 +31,42 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
         
+        handleSignUpActions()
+    }
+    
+    override func viewDidLayoutSubviews() {
         whiteView.backgroundColor = .white.withAlphaComponent(0)
         modifyUIElements()
     }
     
     // MARK: - Actions
     @IBAction func signUpButton(_ sender: UIButton) {
-        let result = viewModel.signUp(emailTextField: emailTextField, passwordTextField: passwordTextField, retypedPasswordTextField: confirmPasswordTextField, usernameTextField: usernameTextField)
-        
-        if result.isEmpty {
-            navigationController?.popViewController(animated: true)
-            delegate?.presentSuccesfullyRegistrationAlert()
-            
-        } else { self.presentAlert(title: "Error", message: result) }
-        
-        
+        viewModel.signUpResponse(email: emailTextField.text, password: passwordTextField.text, retypedPassword: confirmPasswordTextField.text, username: usernameTextField.text)
     }
     
     // MARK: - Funcs
-    private func modifyUIElements() {
-        modify.modifyButtons(button: signUpButtonOutlet, color: CustomColors.specialOrangeColor!)
+    private func handleSignUpActions() {
+        viewModel.presentErrorAlert = { [weak self] error in
+            self?.presentAlert(title: "Error", message: error)
+        }
         
-        modify.modifyTextFields(textField: usernameTextField)
-        modify.modifyTextFields(textField: emailTextField)
-        modify.modifyTextFields(textField: passwordTextField)
-        modify.modifyTextFields(textField: confirmPasswordTextField)
+        viewModel.presentSuccessAlert = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+            self?.delegate?.presentSuccesfullyRegistrationAlert()
+        }
+    }
+    
+    private func modifyUIElements() {
+        signUpButtonOutlet.modifyButtons(color: CustomColors.specialOrangeColor!)
+        
+        usernameTextField.modifyTextFields()
+        emailTextField.modifyTextFields()
+        passwordTextField.modifyTextFields()
+        confirmPasswordTextField.modifyTextFields()
         stackView.setCustomSpacing(45, after: confirmPasswordTextField)
     }
     
     private func checkIfUserCanSignUp() {
         navigationController?.popViewController(animated: true)
     }
-    
-    
-    
 }

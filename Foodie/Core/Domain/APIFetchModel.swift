@@ -16,7 +16,7 @@ struct FetchedData: Decodable {
 struct Restaurant: Decodable {
     let id: Int
     let name: String
-    let rating: Int
+    let rating: Double
     let restaurantImg: String?
     let descriptions: Descriptions
     let foods: [Food]?
@@ -26,10 +26,10 @@ struct Restaurant: Decodable {
 struct Descriptions: Decodable {
     let address, city, phone, mail: String
     let website: String?
-    let shortAddress, descriptionsOpen: String
+    let shortAddress, descriptionsOpen, coordinates: String
 
     enum CodingKeys: String, CodingKey {
-        case address, city, phone, mail, website, shortAddress
+        case address, city, phone, mail, website, shortAddress, coordinates
         case descriptionsOpen = "open"
     }
 }

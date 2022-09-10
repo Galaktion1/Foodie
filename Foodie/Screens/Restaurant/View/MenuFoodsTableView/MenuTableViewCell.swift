@@ -22,17 +22,7 @@ class MenuTableViewCell: UITableViewCell {
     
     
     weak var delegate: MenuTableViewCellDelegate?
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     
     @IBAction func isChoosenButton(_ sender: UIButton) {
         delegate?.chosenFood(food: ChosenFood(foodImage: foodImageView.image ?? UIImage(named: "img_omlette")!, title: foodTitleLabel.text ?? "omlette", price: foodPriceLabel.text ?? "0.0", isChosen: true), button: sender)
