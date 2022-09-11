@@ -16,6 +16,7 @@ class MainViewViewModel {
     var reloadCollectionView: (() -> Void)?
     var setLocationManagerConfigurations: (() -> Void)?
     var getName: ((String) -> Void)?
+    var logOutUser: (() -> Void)?
     
     // MARK: - Variables
     var allRestaurants = [Restaurant](){
@@ -50,6 +51,12 @@ class MainViewViewModel {
     func getUsername() {
         firebaseManager.getUsername { [weak self] username in
             self?.getName?(username)
+        }
+    }
+    
+    func logOut() {
+        firebaseManager.logoutUser { [weak self] in
+            self?.logOutUser?()
         }
     }
     

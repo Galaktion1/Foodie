@@ -10,6 +10,7 @@ import Foundation
 class SignUpViewModel {
     
     private let manager = FirebaseManager()
+    private let validationService = ValidationService()
     
     var presentErrorAlert: ((String) -> ())?
     var presentSuccessAlert: (() -> ())?
@@ -24,10 +25,10 @@ class SignUpViewModel {
         }
         if password != retypedPass {
             return .unmatchPassword
-        } else if !manager.isValidPassword(password) {
+        } else if !validationService.isValidPassword(password) {
             return .shortPassword
         }
-        else if !manager.isValidEmail(email) {
+        else if !validationService.isValidEmail(email) {
             return .invalidMail
         }
         else {

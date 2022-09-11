@@ -10,6 +10,7 @@ import GoogleMaps
 import CoreLocation
 
 class MainViewController: UIViewController, Storyboarded {
+    
     // MARK: - Outlets
     @IBOutlet weak var restaurantsCollectionView: UICollectionView!
     @IBOutlet weak var recomendedDishesCollectionView: UICollectionView!
@@ -24,6 +25,15 @@ class MainViewController: UIViewController, Storyboarded {
     @IBOutlet weak var nearbyButtonOutlet: UIButton!
     @IBOutlet weak var favouriteRestaurantsButtonOutlet: UIButton!
     @IBOutlet weak var topButtonOutlet: UIButton!
+    
+    //MARK: - UIComponent
+    private let logOutButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.right"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
     
     
     // MARK: - Variables
@@ -44,6 +54,9 @@ class MainViewController: UIViewController, Storyboarded {
         searchTextField.delegate = self
         collectionViewsReloading()
         getUsername()
+        logOutButton.addTarget(self, action: #selector(logOutFunctionality), for: .touchUpInside)
+        logOut()
+        
     }
     
     
@@ -57,6 +70,7 @@ class MainViewController: UIViewController, Storyboarded {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        confLogOutButton()
         self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         backgroundView.backgroundColor = .clear
     }
@@ -114,6 +128,29 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     // MARK: - Funcs
+    @objc func logOutFunctionality() {
+        viewModel.logOut()
+    }
+    
+    private func logOut() {
+        viewModel.logOutUser = { [weak self] in
+            let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
+            let nav = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+            self?.view.window?.rootViewController = nav
+            self?.view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    private func confLogOutButton() {
+        view.addSubview(logOutButton)
+        
+        NSLayoutConstraint.activate([
+            logOutButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 5),
+            logOutButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
+            logOutButton.widthAnchor.constraint(equalToConstant: 30),
+            logOutButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
     
     private func configureLocationManager() {
         viewModel.setLocationManagerConfigurations = { [weak self] in
@@ -163,6 +200,7 @@ class MainViewController: UIViewController, Storyboarded {
 
 // MARK: - Collection View Extension
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         collectionView == self.restaurantsCollectionView ? CGSize(width: 145 , height: 180 ) : CGSize(width: 105 , height: 125)
     }
@@ -201,13 +239,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             coordinator?.moveToMenu(of: restaurant)
         }
+        else if collectionView == self.recomendedDishesCollectionView {
+            guard let food = viewModel.foodsCellForItemAt(indexPath: indexPath) else { return }
+            
+            coordinator?.seeInfo(about: food)
+        }
     }
 }
 
 
 extension MainViewController: UITextFieldDelegate {
     
-    // MARK: - Text Field Delegate Function For Each Changes In Textfield
+    // MARK: - Text Field Delegate Function For Each Changes In Textfield.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var filtered = [Restaurant]()     // esec viewModelshi
      
@@ -225,12 +268,11 @@ extension MainViewController: UITextFieldDelegate {
     }
 }
 
-
+// MARK: - LocationManager Delegate Extension To Get Current Location.
 extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         guard let currentLocation = locations.first?.coordinate else { return }
         viewModel.getDistance(currentLocation: CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude))
     }
-    
 }

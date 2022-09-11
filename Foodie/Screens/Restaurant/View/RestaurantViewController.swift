@@ -295,6 +295,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = menuTableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell") as! MenuTableViewCell
+        cell.selectionStyle = .none
         
         if let foods = data.foods {
             cell.contentView.layer.cornerRadius = 10
@@ -303,6 +304,15 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let foods = data.foods else { return }
+        
+        let vc = DishDetailsVC()
+        vc.data = foods[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

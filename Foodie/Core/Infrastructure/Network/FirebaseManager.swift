@@ -14,18 +14,6 @@ class FirebaseManager {
     private let db = Firestore.firestore()
     private let uid = Auth.auth().currentUser?.uid
     
-    // helpershi esec
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
-    func isValidPassword(_ password: String) -> Bool {
-        let minPasswordLength = 6
-        return password.count >= minPasswordLength
-    }
-    
     
     func signUp(with email: String, password: String, username: String, completion: @escaping (String) -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -111,5 +99,16 @@ class FirebaseManager {
                 print("bought food succesfully.")
             }
         }
+    }
+    
+    func logoutUser(completion: @escaping () -> ()) {
+        
+        do {
+            try Auth.auth().signOut()
+            completion()
+        }
+        catch { print("already logged out") }
+        
+        
     }
 }

@@ -38,4 +38,12 @@ class MainViewCoordinator: Coordinator {
                     
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func seeInfo(about food: Food) {
+        
+        let vc = DishDetailsVC()
+        vc.data = food
+        
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

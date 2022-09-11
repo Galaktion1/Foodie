@@ -33,16 +33,21 @@ class ChosenFoodTableViewCell: UITableViewCell {
     
     // MARK: - IBActions
     @IBAction func increaseNumberOfFood(_ sender: UIButton) {
-        
-        if sender.currentImage != UIImage(systemName: "checkmark.circle.fill") {
+        longPress()
+        increaseAmount(by: 1)
+    }
+    
+    private func increaseAmount(by number: Int) {
+        if increaseButtonOutlet.currentImage != UIImage(systemName: "checkmark.circle.fill") {
             unchooseButtonOutlet.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         }
         
-        foodAmount += 1
+        foodAmount += number
         
         numberOfFood.text = "\(foodAmount)"
         self.foodPrice.text = "\((Double(foodAmount) * price).format())"
-        delegate?.orderPriceChange(with: price)
+        delegate?.orderPriceChange(with: price * Double(number))
+        return
     }
     
     
@@ -81,6 +86,22 @@ class ChosenFoodTableViewCell: UITableViewCell {
     }
     
     // MARK: - Funcs
+    private func longPress() {
+        
+        let gesture =  UILongPressGestureRecognizer(target: self, action: #selector(longPressedOnIncrease))
+        
+        gesture.minimumPressDuration = 1.0
+        gesture.delaysTouchesBegan = true
+        gesture.delegate = self
+        
+        increaseButtonOutlet.addGestureRecognizer(gesture)
+    }
+    
+    @objc func longPressedOnIncrease() {
+        increaseAmount(by: 10)
+    }
+    
+    
     func setDataToElemets(img: UIImage, title: String, price: String, numberOfFood: Int) {
         self.foodImgView.image = img
         self.foodTitleLabel.text = title

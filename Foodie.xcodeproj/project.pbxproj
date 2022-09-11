@@ -43,12 +43,14 @@
 		9A618F0D28C72D5000D80A61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A618F0C28C72D5000D80A61 /* GoogleService-Info.plist */; };
 		9A62157128CB4DED00F3218E /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A62157028CB4DED00F3218E /* OnBoardingVC.swift */; };
 		9A62157328CB4E2100F3218E /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A62157228CB4E2100F3218E /* OnBoardingCell.swift */; };
+		9A66A2E628CDC9200088B8F4 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A66A2E528CDC9200088B8F4 /* Validation.swift */; };
 		9A6E027E28C5EC9700E1474B /* MainViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E027D28C5EC9700E1474B /* MainViewCoordinator.swift */; };
 		9A6E028028C5F86F00E1474B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E027F28C5F86F00E1474B /* Coordinator.swift */; };
 		9A77DDB3288BDF6E000F0D5F /* APIFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */; };
 		9A9E407028C9E3DC00729EB1 /* FetchRouteAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E406F28C9E3DC00729EB1 /* FetchRouteAPIService.swift */; };
 		9AA9D56828CB956300008363 /* OnBoardingPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA9D56728CB956300008363 /* OnBoardingPageModel.swift */; };
 		9AB63EF628CCF452001EBF20 /* GetCurrentLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB63EF528CCF452001EBF20 /* GetCurrentLocationService.swift */; };
+		9AB63EFA28CD191B001EBF20 /* DishDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB63EF928CD191B001EBF20 /* DishDetailsVC.swift */; };
 		9AB7ADCC28CCD3A800A8FCEA /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7ADCB28CCD3A800A8FCEA /* UIButton + Extension.swift */; };
 		9AB7ADCE28CCD3B600A8FCEA /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7ADCD28CCD3B600A8FCEA /* UITextField + Extension.swift */; };
 		9AB7ADD028CCD3CB00A8FCEA /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7ADCF28CCD3CB00A8FCEA /* UIViewController + Extension.swift */; };
@@ -100,12 +102,14 @@
 		9A618F0C28C72D5000D80A61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A62157028CB4DED00F3218E /* OnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingVC.swift; sourceTree = "<group>"; };
 		9A62157228CB4E2100F3218E /* OnBoardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCell.swift; sourceTree = "<group>"; };
+		9A66A2E528CDC9200088B8F4 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		9A6E027D28C5EC9700E1474B /* MainViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCoordinator.swift; sourceTree = "<group>"; };
 		9A6E027F28C5F86F00E1474B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchModel.swift; sourceTree = "<group>"; };
 		9A9E406F28C9E3DC00729EB1 /* FetchRouteAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRouteAPIService.swift; sourceTree = "<group>"; };
 		9AA9D56728CB956300008363 /* OnBoardingPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageModel.swift; sourceTree = "<group>"; };
 		9AB63EF528CCF452001EBF20 /* GetCurrentLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentLocationService.swift; sourceTree = "<group>"; };
+		9AB63EF928CD191B001EBF20 /* DishDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailsVC.swift; sourceTree = "<group>"; };
 		9AB7ADCB28CCD3A800A8FCEA /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		9AB7ADCD28CCD3B600A8FCEA /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		9AB7ADCF28CCD3CB00A8FCEA /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				9A3640012879863F006F3387 /* SignUp */,
 				9AC9B0A92887EE0400B4E8AD /* Main */,
 				9A424A8C288C0990008636D8 /* Restaurant */,
+				9AB63EF828CD1211001EBF20 /* FoodDetailsVC */,
 				9A3AD8C928931AC2000C5BA1 /* Cart */,
 				9A423A9B28B25FBB00C2A6B7 /* PurchaseViews(SwiftUI) */,
 				9A15A72528B80B1900AFABAE /* CompletedOrder */,
@@ -423,6 +428,14 @@
 			path = "../New Group/OnBoardingCell";
 			sourceTree = "<group>";
 		};
+		9A66A2E428CDC9020088B8F4 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9A66A2E528CDC9200088B8F4 /* Validation.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		9AA9D56628CB954D00008363 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +451,14 @@
 				9AB63EF528CCF452001EBF20 /* GetCurrentLocationService.swift */,
 			);
 			path = GoogleMapViewManager;
+			sourceTree = "<group>";
+		};
+		9AB63EF828CD1211001EBF20 /* FoodDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				9AB63EF928CD191B001EBF20 /* DishDetailsVC.swift */,
+			);
+			path = FoodDetailsVC;
 			sourceTree = "<group>";
 		};
 		9AB7ADC728CCC68E00A8FCEA /* Resources */ = {
@@ -459,6 +480,7 @@
 		9AB7ADC928CCC6F100A8FCEA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9A66A2E428CDC9020088B8F4 /* Helper */,
 				9AB7ADC728CCC68E00A8FCEA /* Resources */,
 				9AB8E58328C3A59F00505A27 /* Infrastructure */,
 				9AB8E58628C3A69300505A27 /* Domain */,
@@ -677,6 +699,7 @@
 				9A423A9D28B25FF900C2A6B7 /* PurchaseView.swift in Sources */,
 				9A6E027E28C5EC9700E1474B /* MainViewCoordinator.swift in Sources */,
 				9A363FDE2878CEFB006F3387 /* SignInViewController.swift in Sources */,
+				9AB63EFA28CD191B001EBF20 /* DishDetailsVC.swift in Sources */,
 				9A27EF1F288E82C000DAB437 /* MenuTableViewCell.swift in Sources */,
 				9A0B88502888275A00F84D26 /* MainViewViewModel.swift in Sources */,
 				9A6E028028C5F86F00E1474B /* Coordinator.swift in Sources */,
@@ -701,6 +724,7 @@
 				9AB8E58928C3A72600505A27 /* RestaurantsNetworkManager.swift in Sources */,
 				9A9E407028C9E3DC00729EB1 /* FetchRouteAPIService.swift in Sources */,
 				9A423AA028B2605400C2A6B7 /* CardModel.swift in Sources */,
+				9A66A2E628CDC9200088B8F4 /* Validation.swift in Sources */,
 				9A0B88402887FB3800F84D26 /* RestaurantsCollectionViewCell.swift in Sources */,
 				9A15A72728B80BBE00AFABAE /* CompletedOrderViewController.swift in Sources */,
 				9A62157328CB4E2100F3218E /* OnBoardingCell.swift in Sources */,

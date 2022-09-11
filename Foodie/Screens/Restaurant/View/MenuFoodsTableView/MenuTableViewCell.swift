@@ -36,6 +36,6 @@ class MenuTableViewCell: UITableViewCell {
 
         foodTitleLabel.text = food.foodName
         foodDescriptionLabel.text = food.about
-        foodPriceLabel.text = "\(food.price ) ₾"
+        foodPriceLabel.text = "\(food.price)"
     }
 }
