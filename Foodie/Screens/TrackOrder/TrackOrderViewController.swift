@@ -54,7 +54,7 @@ extension TrackOrderViewController: CLLocationManagerDelegate {
         marker.title = "MCDonalds"
         marker.snippet = "Tbilisi, Rustaveli"
         marker.map = mapView
-//        FetchRouteAPIService.shared.fetchRoute(from: destinationLocation, to: currentLocation, for: mapView)  //this line only works for real device
+        FetchRouteAPIService.shared.fetchRoute(from: destinationLocation, to: currentLocation, for: mapView)  //this line only works for real device
         
         let marker2 = GMSMarker()
         marker2.position = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)

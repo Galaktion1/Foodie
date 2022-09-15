@@ -30,6 +30,7 @@ class SignInViewController: UIViewController {
         configureUIComponents()
         moveToMainScreen()
         presentErrorAlertIfNeed()
+        self.hideKeyboardWhenTappedAround()
     }
     
     

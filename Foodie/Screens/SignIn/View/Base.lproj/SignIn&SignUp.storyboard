@@ -34,7 +34,7 @@
                                                             <constraint firstAttribute="height" constant="56" id="1af-ln-JbI"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTc-9C-y7y">
                                                         <rect key="frame" x="0.0" y="78" width="357" height="56"/>
@@ -42,7 +42,7 @@
                                                             <constraint firstAttribute="height" constant="56" id="LPd-Xp-snH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-zq-W5J">
                                                         <rect key="frame" x="0.0" y="156" width="357" height="117"/>

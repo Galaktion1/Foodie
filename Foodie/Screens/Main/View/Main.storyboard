@@ -51,7 +51,7 @@
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Search for restaurants" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nK1-JP-IMe" customClass="DesignableUITextField" customModule="Foodie" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="76" width="364" height="50"/>
-                                                <color key="backgroundColor" red="0.95315569639999997" green="0.95658844710000002" blue="0.97647351029999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" name="specialGray"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="chx-R6-IR7"/>
                                                 </constraints>
@@ -257,12 +257,15 @@
     </scenes>
     <designables>
         <designable name="nK1-JP-IMe">
-            <size key="intrinsicContentSize" width="184.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="156.5" height="19.5"/>
         </designable>
     </designables>
     <resources>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <namedColor name="specialGray">
+            <color red="0.96100002527236938" green="0.9570000171661377" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="specialOrange">
             <color red="0.9179999828338623" green="0.35499998927116394" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

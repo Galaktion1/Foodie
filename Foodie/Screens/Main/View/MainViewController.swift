@@ -56,7 +56,7 @@ class MainViewController: UIViewController, Storyboarded {
         getUsername()
         logOutButton.addTarget(self, action: #selector(logOutFunctionality), for: .touchUpInside)
         logOut()
-        
+        self.hideKeyboardWhenTappedAround()
     }
     
     
@@ -88,7 +88,7 @@ class MainViewController: UIViewController, Storyboarded {
     // MARK: - IBActions
     @IBAction func allRestaurantsButtonAction(_ sender: UIButton) {
         viewModel.setAllRestaurants()
-        viewModel.moveActiveIndicatorView(mainButton: allRestaurantsButtonOutlet,
+        moveActiveIndicatorView(mainButton: allRestaurantsButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
@@ -98,7 +98,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     @IBAction func nearbyButtonAction(_ sender: UIButton) {
         viewModel.sortByNearby()
-        viewModel.moveActiveIndicatorView(mainButton: nearbyButtonOutlet,
+        moveActiveIndicatorView(mainButton: nearbyButtonOutlet,
                                           button2: allRestaurantsButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
@@ -108,7 +108,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     @IBAction func favouriteRestaurantsButtonAction(_ sender: UIButton) {
         viewModel.setFavouriteRestaurants()
-        viewModel.moveActiveIndicatorView(mainButton: favouriteRestaurantsButtonOutlet,
+        moveActiveIndicatorView(mainButton: favouriteRestaurantsButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: allRestaurantsButtonOutlet,
                                           button4: topButtonOutlet,
@@ -118,8 +118,8 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     @IBAction func topButtonAction(_ sender: UIButton) {
-        viewModel.sortByTopAllRestaurants()
-        viewModel.moveActiveIndicatorView(mainButton: topButtonOutlet,
+        viewModel.sortForTopAllRestaurants()
+        moveActiveIndicatorView(mainButton: topButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
                                           button4: allRestaurantsButtonOutlet,
@@ -134,8 +134,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     private func logOut() {
         viewModel.logOutUser = { [weak self] in
-            let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
-            let nav = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+            let nav = self?.coordinator?.logOut()
             self?.view.window?.rootViewController = nav
             self?.view.window?.makeKeyAndVisible()
         }
@@ -194,6 +193,21 @@ class MainViewController: UIViewController, Storyboarded {
         layout.scrollDirection = .horizontal
         
         recomendedDishesCollectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func moveActiveIndicatorView(mainButton: UIButton, button2: UIButton, button3: UIButton, button4: UIButton, indicatorView: UIView) {
+        mainButton.tintColor = CustomColors.specialOrangeColor
+        button2.tintColor = .systemGray
+        button3.tintColor = .systemGray
+        button4.tintColor = .systemGray
+        
+        let xCoordinant = mainButton.frame.origin.x
+        let mainButtonWidth = mainButton.frame.width
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options:[], animations: {
+            indicatorView.transform = CGAffineTransform(translationX: xCoordinant, y: 0)
+            indicatorView.frame.size.width = mainButtonWidth
+        }, completion: nil)
     }
 }
 

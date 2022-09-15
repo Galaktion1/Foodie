@@ -8,13 +8,18 @@
 import Foundation
 import UIKit
 
-// MARK: - Coordinator pattern
 
-// prot
-class MainViewCoordinator: Coordinator {
+protocol MainViewCoordinatorProtocol: Coordinator {
+    func moveToMenu(of restaurant: Restaurant)
+    func seeInfo(about food: Food)
+    func logOut() -> UINavigationController
+}
+
+// MARK: - Coordinator pattern for MainView
+class MainViewCoordinator: MainViewCoordinatorProtocol {
     
     var navigationController: UINavigationController
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -27,7 +32,6 @@ class MainViewCoordinator: Coordinator {
     
     
     func moveToMenu(of restaurant: Restaurant) {
-        
         let vc = RestaurantViewController.instantiate()
         vc.coordinator = self
         vc.data = restaurant
@@ -40,10 +44,16 @@ class MainViewCoordinator: Coordinator {
     }
     
     func seeInfo(about food: Food) {
-        
         let vc = DishDetailsVC()
         vc.data = food
         
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func logOut() -> UINavigationController {
+        let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
+        let nav = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+        
+        return nav
     }
 }

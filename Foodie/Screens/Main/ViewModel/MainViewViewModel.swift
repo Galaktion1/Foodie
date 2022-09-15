@@ -18,6 +18,8 @@ class MainViewViewModel {
     var getName: ((String) -> Void)?
     var logOutUser: (() -> Void)?
     
+    private let globalQueue = DispatchQueue.global()
+    
     // MARK: - Variables
     var allRestaurants = [Restaurant](){
         didSet {
@@ -28,7 +30,9 @@ class MainViewViewModel {
     
     var specialRestaurantsArray = [Restaurant]() {
         didSet {
-            reloadCollectionView?()
+            DispatchQueue.main.async {
+                self.reloadCollectionView?()
+            }
         }
     }
     
@@ -47,6 +51,7 @@ class MainViewViewModel {
             }
         }
     }
+
     
     func getUsername() {
         firebaseManager.getUsername { [weak self] username in
@@ -67,29 +72,37 @@ class MainViewViewModel {
         }
     }
     
-    
-    func setFavouriteRestaurants() {
-        let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
-        specialRestaurantsArray = specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id) }
-    }
-    
-    
+    // MARK: - Functions for: all, nearby, fav and top restaurants sections.
     func setAllRestaurants() {
         specialRestaurantsArray = allRestaurants
     }
     
     
-    func sortByTopAllRestaurants() {
-        specialRestaurantsArray = allRestaurants.sorted { $0.rating > $1.rating }
-    }
-    
     func sortByNearby() {
-        if let _ = allRestaurants.first?.distance {
-            specialRestaurantsArray = allRestaurants.sorted { Double($0.distance!)! < Double($1.distance!)! }
+        globalQueue.async {
+            if let _ = self.allRestaurants.first?.distance {
+                self.specialRestaurantsArray = (self.allRestaurants.sorted { Double($0.distance!)! < Double($1.distance!)! })
+            }
         }
     }
     
     
+    func setFavouriteRestaurants() {
+        globalQueue.async {
+            let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
+            self.specialRestaurantsArray = self.specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id) }
+        }
+    }
+    
+    
+    func sortForTopAllRestaurants() {
+        globalQueue.async {
+            self.specialRestaurantsArray = self.allRestaurants.sorted { $0.rating > $1.rating }
+        }
+    }
+    
+    
+    //MARK: - Functions for CollectionViews
     func numberOfItemsInSection() -> Int {
         specialRestaurantsArray.count
     }
@@ -104,25 +117,8 @@ class MainViewViewModel {
         specialRestaurantsArray[indexPath.row].restaurantImg
     }
     
-    
     func foodsCellForItemAt(indexPath: IndexPath) -> Food? {
         specialRestaurantsArray[indexPath.row].foods?.first
-    }
-    
-    // controllershi gaditane
-    func moveActiveIndicatorView(mainButton: UIButton, button2: UIButton, button3: UIButton, button4: UIButton, indicatorView: UIView) {
-        mainButton.tintColor = CustomColors.specialOrangeColor
-        button2.tintColor = .systemGray
-        button3.tintColor = .systemGray
-        button4.tintColor = .systemGray
-        
-        let xCoordinant = mainButton.frame.origin.x
-        let mainButtonWidth = mainButton.frame.width
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0, options:[], animations: {
-            indicatorView.transform = CGAffineTransform(translationX: xCoordinant, y: 0)
-            indicatorView.frame.size.width = mainButtonWidth
-        }, completion: nil)
     }
 }
 

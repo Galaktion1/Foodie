@@ -39,7 +39,9 @@ class RestaurantViewController: UIViewController, Storyboarded {
     var chosenFood: [ChosenFood] = []
     
     // MARK: - UIComponents By Programmatically
-    private let chosenFoodOrangeView: UIView = {
+    
+    // since the user may just view the dishes and not choose to order, in this case there is no need to initialize these variables, becouse of this i use lazy components
+    lazy var chosenFoodOrangeView: UIView = {
         let orangeView = UIView()
         orangeView.backgroundColor = CustomColors.specialOrangeColor
         orangeView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +50,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         return orangeView
     }()
     
-    private let chosenFoodAmountBackgroundView: UIView = {
+    lazy var chosenFoodAmountBackgroundView: UIView = {
         let view = UIView()
         view.frame = CGRect(x: 15,
                             y: 15,
@@ -61,7 +63,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         return view
     }()
     
-    private let chosenFoodAmountLabel: UILabel = {
+    lazy var chosenFoodAmountLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: UIConstants.chosenFoodAmountLabelFontSize)
         label.frame = CGRect(x: 10, y: 8, width: 15, height: 15)
@@ -70,7 +72,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         return label
     }()
     
-    private let viewOrderLabel: UILabel = {
+    lazy var viewOrderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: UIConstants.chosenFoodAmountLabelFontSize + 3)
         label.frame = CGRect(x: 65, y: 20, width: 90, height: 20)
@@ -80,7 +82,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         return label
     }()
     
-    private let totalPriceLabel: UILabel = {
+    lazy var totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: UIConstants.chosenFoodAmountLabelFontSize + 5)
@@ -310,7 +312,7 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
         guard let foods = data.foods else { return }
         
         let vc = DishDetailsVC()
-        vc.data = foods[indexPath.row]
+        vc.data = foods[indexPath.section]
         
         navigationController?.pushViewController(vc, animated: true)
     }

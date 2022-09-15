@@ -30,7 +30,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
-        
+        self.hideKeyboardWhenTappedAround()
         handleSignUpActions()
     }
     
