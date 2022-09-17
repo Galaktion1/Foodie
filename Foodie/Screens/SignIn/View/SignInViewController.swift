@@ -20,11 +20,12 @@ class SignInViewController: UIViewController {
     // MARK: - Variables
     var coordinator: MainViewCoordinator?
     let viewModel = SignInViewModel()
+    static let identifier = String(describing: SignInViewController.self)
     
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
+        self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         
         whiteView.backgroundColor = .clear
         configureUIComponents()
@@ -40,7 +41,7 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signUpButtonAction(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: SignUpViewController.identifier) as! SignUpViewController
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -54,7 +55,6 @@ class SignInViewController: UIViewController {
         
         emailTextField.modifyTextFields()
         passwordTextField.modifyTextFields()
-
     }
     
     private func moveToMainScreen() {

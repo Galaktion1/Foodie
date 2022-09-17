@@ -85,7 +85,7 @@ class OnboardingVC: UIViewController {
         backButton.addTarget(self, action: #selector(goToBackItem), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(gotoNextItem), for: .touchUpInside)
         
-        onboardingPages.register(OnboardingCell.self, forCellWithReuseIdentifier: "OnboardingCell")
+        onboardingPages.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.identifier)
         
         configiureUIElements()
     }
@@ -122,7 +122,7 @@ class OnboardingVC: UIViewController {
     
     private func goToMainVC() {
         let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
-        let vc = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+        let vc = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: SignInViewController.identifier))
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
@@ -179,7 +179,7 @@ extension OnboardingVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath) as! OnboardingCell
         cell.makeCell(info: animationArray[indexPath.row])
         
         return cell

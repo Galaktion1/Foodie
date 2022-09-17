@@ -25,11 +25,12 @@ class SignUpViewController: UIViewController {
     // MARK: - Variables
     private let viewModel = SignUpViewModel()
     weak var delegate: SignUpViewControllerDelegate?
+    static let identifier = String(describing: SignUpViewController.self)
     
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
+        self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         self.hideKeyboardWhenTappedAround()
         handleSignUpActions()
     }

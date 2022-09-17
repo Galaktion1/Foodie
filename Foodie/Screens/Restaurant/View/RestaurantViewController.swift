@@ -110,7 +110,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         setDataToUIElements(data)
         checkIfFav(id: id)
         configureTableView()
-        self.scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "img_background")!)
+        self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         backgroundView.backgroundColor = .clear
         
         loadMainImage(with: mainImageURLString)

@@ -8,6 +8,9 @@
 import UIKit
 
 class DishCollectionViewCell: UICollectionViewCell {
+    
+    static let identifier = String(describing: DishCollectionViewCell.self)
+    
     // MARK: - Outlets
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var title: UILabel!

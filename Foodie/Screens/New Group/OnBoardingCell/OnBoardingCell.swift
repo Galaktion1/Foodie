@@ -10,6 +10,8 @@ import Lottie
 
 class OnboardingCell: UICollectionViewCell {
     
+    static let identifier = String(describing: OnboardingCell.self)
+    
     let bottomLabelLarge: UILabel = {
         let label = UILabel()
          label.translatesAutoresizingMaskIntoConstraints = false

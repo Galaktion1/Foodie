@@ -179,13 +179,13 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     private func configureCollectionViews() {
-        let nibRestaurant = UINib(nibName: "RestaurantsCollectionViewCell", bundle: nil)
-        restaurantsCollectionView.register(nibRestaurant, forCellWithReuseIdentifier: "RestaurantsCollectionViewCell")
+        let nibRestaurant = UINib(nibName: RestaurantsCollectionViewCell.identifier, bundle: nil)
+        restaurantsCollectionView.register(nibRestaurant, forCellWithReuseIdentifier: RestaurantsCollectionViewCell.identifier)
         restaurantsCollectionView.delegate = self
         restaurantsCollectionView.dataSource = self
         
-        let nibDish = UINib(nibName: "DishCollectionViewCell", bundle: nil)
-        recomendedDishesCollectionView.register(nibDish, forCellWithReuseIdentifier: "DishCollectionViewCell")
+        let nibDish = UINib(nibName: DishCollectionViewCell.identifier, bundle: nil)
+        recomendedDishesCollectionView.register(nibDish, forCellWithReuseIdentifier: DishCollectionViewCell.identifier)
         recomendedDishesCollectionView.delegate = self
         recomendedDishesCollectionView.dataSource = self
         
@@ -227,7 +227,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.restaurantsCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantsCollectionViewCell", for: indexPath) as! RestaurantsCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantsCollectionViewCell.identifier, for: indexPath) as! RestaurantsCollectionViewCell
             
             let currentData = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
   
@@ -237,7 +237,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
         else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishCollectionViewCell", for: indexPath) as! DishCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DishCollectionViewCell.identifier, for: indexPath) as! DishCollectionViewCell
             
             cell.data = viewModel.foodsCellForItemAt(indexPath: indexPath)
             
