@@ -9,6 +9,8 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 
+
+// this screen will crash if you will not set current location on simulator (Features > Location > Custom Location... and fill both textfiled with latitude and longitude), also if you build application on simulator, you have to comment line 59
 class TrackOrderViewController: UIViewController {
     
     // MARK: - Variables

@@ -25,9 +25,18 @@ class MainViewCoordinator: MainViewCoordinatorProtocol {
     }
     
     func start() {
-        let vc = MainViewController.instantiate()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        let viewController = MainViewController.instantiate()
+        viewController.coordinator = self
+        let worker = MainWorker()
+        let presenter = MainPresenter()
+        let interactor = MainInteractor(presenter: presenter, worker: worker)
+        let router = MainRouter(dataStore: interactor)
+        viewController.interactor = interactor
+        viewController.router = router
+
+        presenter.viewController = viewController
+        router.viewController = viewController
+        navigationController.pushViewController(viewController, animated: false)
     }
     
     
@@ -52,7 +61,7 @@ class MainViewCoordinator: MainViewCoordinatorProtocol {
     
     func logOut() -> UINavigationController {
         let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
-        let nav = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+        let nav = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "LogInViewController"))
         
         return nav
     }

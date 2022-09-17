@@ -121,8 +121,7 @@ class OnboardingVC: UIViewController {
     }
     
     private func goToMainVC() {
-        let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
-        let vc = UINavigationController(rootViewController: sb.instantiateViewController(withIdentifier: "SignInViewController"))
+        let vc = LogInConfigurator.configure()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

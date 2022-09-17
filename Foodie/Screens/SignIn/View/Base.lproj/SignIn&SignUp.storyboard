@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vP5-Ya-HO4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sign In View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Foodie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="Foodie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S4k-wi-4CN"/>
+                                                                    <action selector="logInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lIq-k2-nuB"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKx-dI-7RK">
@@ -70,7 +70,7 @@
                                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="signUpButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Oa-4p-wnh"/>
+                                                                    <action selector="signUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VXY-9A-YCg"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -135,17 +135,17 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="414" height="900"/>
                     <connections>
-                        <outlet property="emailTextField" destination="sVz-k6-xg0" id="S4y-1j-2mU"/>
-                        <outlet property="logInButtonOutlet" destination="jY7-MC-r0J" id="z6M-L6-yQR"/>
+                        <outlet property="backView" destination="3za-v2-LaG" id="3Ig-Ks-jJa"/>
+                        <outlet property="emailTextField" destination="sVz-k6-xg0" id="mtQ-mc-mBE"/>
+                        <outlet property="logInButtonOutlet" destination="jY7-MC-r0J" id="Fkk-xJ-Gew"/>
                         <outlet property="passwordTextField" destination="xTc-9C-y7y" id="3CV-hV-IzR"/>
-                        <outlet property="scrollView" destination="aeo-nx-3hJ" id="ENB-Nv-0eS"/>
-                        <outlet property="signUpButtonOutlet" destination="MKx-dI-7RK" id="rLe-HW-zK1"/>
-                        <outlet property="whiteView" destination="3za-v2-LaG" id="hZa-zV-Hui"/>
+                        <outlet property="scrollView" destination="aeo-nx-3hJ" id="1EY-yQ-Z73"/>
+                        <outlet property="signUpButtonOutlet" destination="MKx-dI-7RK" id="XV4-GY-Um8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949.2753623188407" y="93.75"/>
+            <point key="canvasLocation" x="2187" y="94"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="9IW-z0-OPo">
@@ -209,7 +209,7 @@
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="signUpButton:" destination="lmO-CT-c06" eventType="touchUpInside" id="jd1-UL-fWp"/>
+                                                            <action selector="signUpButton:" destination="lmO-CT-c06" eventType="touchUpInside" id="YOV-8B-Sef"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -273,37 +273,19 @@
                     <navigationItem key="navigationItem" id="qX3-A8-H9h"/>
                     <size key="freeformSize" width="414" height="900"/>
                     <connections>
-                        <outlet property="confirmPasswordTextField" destination="4Al-aC-pMo" id="lXU-QR-3JB"/>
-                        <outlet property="emailTextField" destination="cff-9V-XhS" id="LaK-Vf-smt"/>
-                        <outlet property="passwordTextField" destination="hfo-AK-GQh" id="jDq-YU-WE5"/>
-                        <outlet property="scrollView" destination="yGd-HO-TAy" id="m6D-kv-8fP"/>
-                        <outlet property="signUpButtonOutlet" destination="CCv-hQ-9eI" id="6FE-06-tb4"/>
-                        <outlet property="stackView" destination="ga2-iN-ZkA" id="MEW-gS-hIG"/>
-                        <outlet property="usernameTextField" destination="dkD-dZ-oJN" id="2P0-c1-iRG"/>
-                        <outlet property="whiteView" destination="4a8-ge-N3w" id="pp7-iV-R1M"/>
+                        <outlet property="backView" destination="4a8-ge-N3w" id="ERw-43-TWO"/>
+                        <outlet property="confirmPasswordTextField" destination="4Al-aC-pMo" id="84K-S4-Z92"/>
+                        <outlet property="emailTextField" destination="cff-9V-XhS" id="ELr-0n-Sb4"/>
+                        <outlet property="passwordTextField" destination="hfo-AK-GQh" id="vN6-8V-k2r"/>
+                        <outlet property="scrollView" destination="yGd-HO-TAy" id="Cuh-7e-3p0"/>
+                        <outlet property="signUpButtonOutlet" destination="CCv-hQ-9eI" id="UMB-aF-08C"/>
+                        <outlet property="textFieldStackView" destination="ga2-iN-ZkA" id="aVB-1y-96v"/>
+                        <outlet property="usernameTextField" destination="dkD-dZ-oJN" id="t6M-XD-PJE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ep1-4A-2BJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3108.6956521739135" y="92.410714285714278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RB7-ms-4sa">
-            <objects>
-                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="vP5-Ya-HO4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bJ4-dv-mvA">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1BX-Rt-X1O"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nuF-oX-INB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1039.1304347826087" y="93.75"/>
         </scene>
     </scenes>
     <resources>

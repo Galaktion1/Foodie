@@ -8,18 +8,18 @@
 import Foundation
 
 class SignUpViewModel {
-    
+
     private let manager = FirebaseManager()
     private let validationService = ValidationService()
-    
+
     var presentErrorAlert: ((String) -> ())?
     var presentSuccessAlert: (() -> ())?
-     
+
     private func signUp(email: String?, password: String?, retypedPassword: String?, username: String?) -> SignUpResponses {
         guard let password = password, let email = email, let retypedPass = retypedPassword, let username = username else {
             return .emptyTextField
         }
-        
+
         if password.isEmpty || email.isEmpty || retypedPass.isEmpty || username.isEmpty {
             return .emptyTextField
         }
@@ -38,10 +38,10 @@ class SignUpViewModel {
         }
         return .success
     }
-    
+
     func signUpResponse(email: String?, password: String?, retypedPassword: String?, username: String?) {
         let response = signUp(email: email, password: password, retypedPassword: retypedPassword, username: username)
-        
+
         switch response {
         case .success:
             presentSuccessAlert?()
@@ -49,7 +49,7 @@ class SignUpViewModel {
             presentErrorAlert?(response.rawValue)
         }
     }
-    
+
 }
 
 

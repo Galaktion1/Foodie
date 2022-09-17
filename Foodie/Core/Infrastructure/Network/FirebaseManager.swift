@@ -21,7 +21,7 @@ class FirebaseManager {
                 completion(error.localizedDescription)
             }
             else if let user = user {
-                completion("Sign Up Successfully. \(user.user.uid)")
+                completion("Sign Up Success. \(user.user.uid)")
                 
                 self.db.collection("users").document(user.user.uid).setData(["creditCards" : [], "email" : email,"username" : username, "uid" : user.user.uid]) { error in
                     
@@ -32,6 +32,8 @@ class FirebaseManager {
             }
         }
     }
+    
+    
     
     func signIn(email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
@@ -108,7 +110,6 @@ class FirebaseManager {
             completion()
         }
         catch { print("already logged out") }
-        
         
     }
 }
