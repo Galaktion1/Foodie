@@ -7,13 +7,12 @@
 
 import UIKit
 
-class CompletedOrderViewController: UIViewController {
+final class CompletedOrderViewController: UIViewController {
     
     // MARK: - Variables
     var orderPrice: String!
     var deliveryPrice: String!
     var summaryPrice: String!
-    var coordinator: MainViewCoordinator?
     
     
     // MARK: - UIComponents By Programmatically
@@ -126,8 +125,8 @@ class CompletedOrderViewController: UIViewController {
     
     @objc func moveToContinueShoppingButtonAction() {
         let nav = UINavigationController()
-        coordinator = MainViewCoordinator(navigationController: nav)
-        coordinator?.start()
+        let coordinator = MainViewCoordinator(navigationController: nav)
+        coordinator.start()
         
         self.view.window?.rootViewController = nav
         self.view.window?.makeKeyAndVisible()
@@ -150,7 +149,7 @@ class CompletedOrderViewController: UIViewController {
         return label
     }
     
-    func createLabels() {
+    private func createLabels() {
         let orderCompletedLabel: UILabel = generatePricesLabels(fontSize: 24, isBold: true, textColor: CustomColors.specialOrangeColor, text: "Order completed!", textAlignment: .center)
         let orderNumberLabel: UILabel = generatePricesLabels(fontSize: 15, isBold: false, textColor: .systemGray2, text: "Order number: #\(Int.random(in: 100_000 ... 999_999))", textAlignment: .center)
         

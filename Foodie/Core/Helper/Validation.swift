@@ -19,5 +19,4 @@ class ValidationService {
         let minPasswordLength = 6
         return password.count >= minPasswordLength
     }
-    
 }

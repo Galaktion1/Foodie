@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class SignInViewModel {
     
@@ -14,8 +13,8 @@ class SignInViewModel {
     var moveToMainScreen: (() -> Void)?
     var presentErrorAlert: ((String) -> Void)?
     
-    func signIn(emailTextField: UITextField, passwordTextField: UITextField) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+    func signIn(emailTextField: String?, passwordTextField: String?) {
+        guard let email = emailTextField, let password = passwordTextField else {
             presentErrorAlert?("You should fill each textfield")
             return
         }

@@ -25,15 +25,12 @@ struct PurchaseView: View {
     var foods: [ChosenFood]
     let specialOrange = Color.init(CustomColors.specialOrangeColor!)
     
-    @Namespace var animation
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    
     @State var cards = [Card]()
     private let viewModel = PurchaseViewModel()
     
-
+    @Namespace var animation
+    @Environment(\.colorScheme) var colorScheme
+    
     private func getCards() {
         viewModel.fetchCards { cardsArray in
             cards = cardsArray
@@ -41,16 +38,14 @@ struct PurchaseView: View {
     }
     
     var body: some View {
-       
+        
         let paymentOnDeliveryCheckBox = Toggle("", isOn: $isOnByCash)
             .toggleStyle(CheckboxToggleStyle())
             .font(.system(size: 23))
             .foregroundColor(specialOrange)
         
         ScrollView {
-            
             VStack {
-                
                 ZStack {
                     ForEach(cards.indices.reversed(), id: \.self) { index in
                         CardView(card: cards[index])
@@ -61,12 +56,8 @@ struct PurchaseView: View {
                                 animateView(card: cards[index])
                             }
                             .offset(y: startAnimation ? 0 : index == 1 ? 60 : (index == 2 ? -60 : 0))
-                        
                             .matchedGeometryEffect(id: "CARD_ANIMATION", in: animation)
-                        
-                        
                             .rotationEffect(.init(degrees: selectedCard.id == cards[index].id && startCardRotation ? -90 : 0))
-                        
                         
                         // moving selected card to top
                         
@@ -91,7 +82,7 @@ struct PurchaseView: View {
                         Spacer()
                         
                         Button(action: {
-                                addCardAction = true
+                            addCardAction = true
                             
                         }, label: {
                             Text("+ add new card")
@@ -119,9 +110,7 @@ struct PurchaseView: View {
                         Spacer()
                         
                         paymentOnDeliveryCheckBox
-                        
                     }
-                    
                     
                     Text("\(address)")
                         .font(.system(size: 15))
@@ -132,14 +121,11 @@ struct PurchaseView: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                 Spacer()
-                    
+                
                 summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
             }
             
-            
-
             PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: nil, foods: foods)
-            
             
         }
         .frame( maxWidth: .infinity, maxHeight: .infinity)
@@ -176,17 +162,12 @@ struct PurchaseView: View {
                         }
                         .padding()
                         
-                        
                         CardView(card: selectedCard)
                             .matchedGeometryEffect(id: "CARD_ANIMATION", in: animation)
                             .padding(.top, -(getRect().height / 20))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        
-                        
                     }
                 })
-                
-                
                 
                 if cardAnimation {
                     VStack(alignment: .leading, spacing: 6) {
@@ -206,10 +187,7 @@ struct PurchaseView: View {
                     
                     PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: selectedCard.amount, foods: foods, cards: cards, selectedCardID: selectedCard.id)
                 }
-            }
-            
-            
-        )
+            })
     }
     
     // MARK: - Funcs
@@ -244,7 +222,6 @@ struct PurchaseView: View {
             partialResult + card.amount
         }
     }
-    
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -252,7 +229,6 @@ struct MainView_Previews: PreviewProvider {
         Group {
             PurchaseView(vc: nil, foodPrice: 0, deliveryPrice: 0, summaryPrice: 0, foods: [])
         }
-        
     }
 }
 
@@ -272,9 +248,7 @@ struct CardView: View {
             .cornerRadius(40)
             .overlay(
                 VStack(alignment: .leading, spacing: 10) {
-                    
                     Spacer()
-                    
                     Text(card.cardNumber)
                         .font(.title2)
                         .fontWeight(.bold)
@@ -284,7 +258,6 @@ struct CardView: View {
                     Spacer()
                     
                     HStack {
-                        
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Card Holder")
                                 .fontWeight(.semibold)
@@ -319,13 +292,13 @@ struct CardView: View {
 struct PurchaseButtonLabel: View {
     var body: some View {
         Text("Purchase")
-                        .font(.system(size: 23, weight: .semibold))
-                        .padding(.horizontal, 50)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.init(CustomColors.specialOrangeColor!))
-                        .clipShape(Rectangle())
-                        .cornerRadius(15)
+            .font(.system(size: 23, weight: .semibold))
+            .padding(.horizontal, 50)
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.init(CustomColors.specialOrangeColor!))
+            .clipShape(Rectangle())
+            .cornerRadius(15)
     }
 }
 
@@ -384,16 +357,13 @@ struct CompletedOrderViewControllerRepresentation: UIViewControllerRepresentable
         controller.deliveryPrice  = "\(deliveryPrice.format()) ₾"
         controller.summaryPrice  = "\(summaryPrice.format()) ₾"
         
-        
         navigationControllerr.viewControllers = []
         let navController = UINavigationController(rootViewController: controller)
         
-        
         return navController
     }
-
+    
     func updateUIViewController(_ uiViewController: UINavigationController, context: UIViewControllerRepresentableContext<CompletedOrderViewControllerRepresentation>) {
-
     }
 }
 
@@ -418,7 +388,6 @@ struct CheckboxToggleStyle: ToggleStyle {
         .buttonStyle(PlainButtonStyle()) // remove any implicit styling from the button
         .disabled(!isEnabled)
     }
-    
 }
 
 
@@ -427,7 +396,6 @@ struct summarySections: View {
     var order: Double
     var delivery: Double
     var summary: Double
-   
     
     var body: some View {
         HStack {
@@ -443,7 +411,6 @@ struct summarySections: View {
                 .padding(.top, 0.1)
                 .padding(.leading)
             }
-            
             
             VStack {
                 Group {

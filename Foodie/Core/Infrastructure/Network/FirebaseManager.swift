@@ -53,6 +53,7 @@ class FirebaseManager {
         }
     }
     
+    
     func addCreditCardInDataBase(nameOnCard: String, cardNumber: String, expiryDate: String, cvv: Int, cardImage: String ,completion: @escaping (Result<String, Error>) -> Void) {
         
         let card = Card(cardHolder: nameOnCard, cardNumber: cardNumber, cardValidaity: expiryDate, amount: 0.0, cvv: cvv, cardImage: cardImage)
@@ -108,7 +109,5 @@ class FirebaseManager {
             completion()
         }
         catch { print("already logged out") }
-        
-        
     }
 }

@@ -11,7 +11,9 @@ protocol MenuTableViewCellDelegate: AnyObject{
     func chosenFood(food: ChosenFood, button: UIButton)
 }
 
-class MenuTableViewCell: UITableViewCell {
+final class MenuTableViewCell: UITableViewCell {
+    
+    static let identifier = String(describing: MenuTableViewCell.self)
     
     // MARK: - Outlets
     @IBOutlet weak var foodImageView: UIImageView!

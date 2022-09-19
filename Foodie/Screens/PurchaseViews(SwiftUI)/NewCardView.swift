@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewCardView: View {
-    
+    //MARK: - Variables
     @State var name: String = ""
     @State var cardNumber: String = ""
     @State var expiryDate: String = ""
@@ -24,9 +24,7 @@ struct NewCardView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.init(CustomColors.specialOrangeColor!))
                     .padding(.vertical)
-                
                 Spacer()
-                
                 Button {
                     self.dismissAction()
                 } label: {
@@ -37,19 +35,16 @@ struct NewCardView: View {
                 .padding()
             }
             
-            
             CustomTextField(textFieldPlaceHolder: "name", text: $name, title: "Name On Card")
             
             CustomTextField(textFieldPlaceHolder: "card number", text: $cardNumber, title: "Card Number")
             
             HStack {
-                
                 CustomTextField(textFieldPlaceHolder: "MM/YY", text: $expiryDate, title: "Expiry Date")
                     .padding(.trailing)
             
                 CustomTextField(textFieldPlaceHolder: "CVV", text: $cvvString, title: "Cvv")
                     .padding(.leading)
-                
             }
             .padding(.vertical, 20)
             
@@ -70,7 +65,6 @@ struct NewCardView: View {
             .padding()
             .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
-            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
@@ -87,7 +81,6 @@ struct CustomTextField: View {
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(Color.init(uiColor: CustomColors.specialYellowColor!))
-            
             TextField(textFieldPlaceHolder, text: text)
                 Divider()
         }
@@ -96,7 +89,6 @@ struct CustomTextField: View {
 }
 
 struct NewCardView_Previews: PreviewProvider {
-    
     static var previews: some View {
         NewCardView {
             print("pressed dismiss")

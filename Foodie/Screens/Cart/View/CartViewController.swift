@@ -19,6 +19,7 @@ class CartViewController: UIViewController, Storyboarded {
     
     // MARK: - Variables
     var address: String!
+    private let viewModel = CartViewViewModel()
     var deliveryPrice = Int.random(in: 2 ... 15)
     var foodPrice = Double() {
         didSet {
@@ -77,15 +78,15 @@ class CartViewController: UIViewController, Storyboarded {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let nib = UINib(nibName: "ChosenFoodTableViewCell", bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: "ChosenFoodTableViewCell")
+        let nib = UINib(nibName: ChosenFoodTableViewCell.identifier, bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: ChosenFoodTableViewCell.identifier)
         
-        let nib2 = UINib(nibName: "DeliveryDetailsTableViewCell", bundle: Bundle.main)
-        tableView.register(nib2, forCellReuseIdentifier: "DeliveryDetailsTableViewCell")
+        let nib2 = UINib(nibName: DeliveryDetailsTableViewCell.identifier, bundle: Bundle.main)
+        tableView.register(nib2, forCellReuseIdentifier: DeliveryDetailsTableViewCell.identifier)
     }
     
     
-    private struct TableViewConstants {
+    fileprivate struct TableViewConstants {
         static let heightForRowAt: CGFloat = 70
         static let numberOfRowsInSection: Int = 1
         static let heightForHeaderInSection: CGFloat = 30
@@ -93,11 +94,7 @@ class CartViewController: UIViewController, Storyboarded {
 }
 
 
-extension CartViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        TableViewConstants.heightForRowAt
-    }
+extension CartViewController:  UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         (foods?.count ?? 0) + 1
@@ -105,6 +102,37 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         TableViewConstants.numberOfRowsInSection
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      
+        switch indexPath.section {
+        case foods?.count:
+            let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryDetailsTableViewCell.identifier) as! DeliveryDetailsTableViewCell
+            
+            cell.addressLabel.text = address
+            
+            return cell
+            
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ChosenFoodTableViewCell.identifier) as! ChosenFoodTableViewCell
+            
+            if let currentElement = foods?[indexPath.section] {
+                cell.setDataToElemets(img: currentElement.foodImage, title: currentElement.title, price: currentElement.price, numberOfFood: 1)
+            }
+            
+            cell.delegate = self
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+    }
+}
+
+extension CartViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        TableViewConstants.heightForRowAt
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -118,11 +146,9 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 0, width: 140, height: 20)
-        if section == 0 {
-            label.text = "Combos"
-        }
-        else if section == foods?.count {
-            label.text = "Delivery details"
+        
+        viewModel.identifySections(section: section, sectionCount: foods?.count ?? 0) { title in
+            label.text = title
         }
         
         label.font = .systemFont(ofSize: 17)
@@ -131,31 +157,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.addSubview(label)
         
         return headerView
-    }
-     
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
-        switch indexPath.section {
-        case foods?.count:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryDetailsTableViewCell") as! DeliveryDetailsTableViewCell
-            
-            cell.addressLabel.text = address
-            
-            return cell
-            
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChosenFoodTableViewCell") as! ChosenFoodTableViewCell
-            
-            if let currentElement = foods?[indexPath.section] {
-                cell.setDataToElemets(img: currentElement.foodImage, title: currentElement.title, price: currentElement.price, numberOfFood: 1)
-            }
-            
-            cell.delegate = self
-            cell.selectionStyle = .none
-            
-            return cell
-        }
     }
 }
 

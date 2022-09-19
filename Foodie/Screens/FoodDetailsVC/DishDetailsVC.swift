@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DishDetailsVC: UIViewController {
+final class DishDetailsVC: UIViewController {
     
     var data: Food?
     

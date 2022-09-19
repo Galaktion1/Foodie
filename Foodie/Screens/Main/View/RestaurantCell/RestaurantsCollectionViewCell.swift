@@ -19,7 +19,14 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
     // MARK: - Variables
     static let identifier = String(describing: RestaurantsCollectionViewCell.self)
     private let userDefaultsKeyForFavouriteRestaurantIds: String = "favRestaurantsIds"
-    var isFavourite = false
+    var isFavourite = false {
+        didSet {
+            if isFavourite { favButtonOutlet.setImage(FavoriteIndicatorImage.fillHeartImage, for: .normal) }
+            else {favButtonOutlet.setImage(FavoriteIndicatorImage.emptyHeartImage, for: .normal) }
+        }
+    }
+    
+    private var favourityChecker: FavourityCheckerProtocol!
     var data: Restaurant? {
         didSet {
             guard let data = data else { return }
@@ -32,47 +39,15 @@ class RestaurantsCollectionViewCell: UICollectionViewCell {
             if let distance = data.distance {
                 distanceFromRestaurant.text = distance + "KM Away"
             }
+            
+            favourityChecker = FavourityChecker(isFavourite: isFavourite, data: data)
+            isFavourite = favourityChecker.checkIfFav(id: data.id)
         }
     }
 
     
     // MARK: - IBActions
     @IBAction func favButton(_ sender: UIButton) {
-        guard let data = data else { return }
-        var favouriteRestaurantIds = UserDefaults.standard.array(forKey: userDefaultsKeyForFavouriteRestaurantIds) as? [Int] ?? []
-
-        isFavourite.toggle()
-        
-        if isFavourite {
-            sender.setImage(FavoriteIndicatorImage.fillHeartImage, for: .normal)
-            
-            favouriteRestaurantIds.append(data.id)
-            UserDefaults.standard.set(favouriteRestaurantIds, forKey: userDefaultsKeyForFavouriteRestaurantIds)
-            
-        } else {
-            if let index = favouriteRestaurantIds.firstIndex(of: data.id) {
-                sender.setImage(FavoriteIndicatorImage.emptyHeartImage, for: .normal)
-                favouriteRestaurantIds.remove(at: index)
-                UserDefaults.standard.set(favouriteRestaurantIds, forKey: userDefaultsKeyForFavouriteRestaurantIds)
-            }
-        }
-    }
-    
-    // MARK: - Funcs
-    func checkIfFav(id: Int?) {
-        let favouriteRestaurantIds = UserDefaults.standard.array(forKey: userDefaultsKeyForFavouriteRestaurantIds) as? [Int] ?? []
-        if let id = id {
-            if favouriteRestaurantIds.contains(id) {
-                favButtonOutlet.setImage(FavoriteIndicatorImage.fillHeartImage, for: .normal)
-                isFavourite = true
-            } else {
-                favButtonOutlet.setImage(FavoriteIndicatorImage.emptyHeartImage, for: .normal)
-            }
-        }
-    }
-    
-    private struct FavoriteIndicatorImage {
-        static let fillHeartImage: UIImage? = UIImage(systemName: "heart.fill")
-        static let emptyHeartImage: UIImage? = UIImage(systemName: "heart")
+        isFavourite = favourityChecker.favButton()
     }
 }

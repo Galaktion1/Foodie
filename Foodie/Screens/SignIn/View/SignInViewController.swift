@@ -18,7 +18,6 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: - Variables
-    var coordinator: MainViewCoordinator?
     let viewModel = SignInViewModel()
     static let identifier = String(describing: SignInViewController.self)
     
@@ -37,7 +36,7 @@ class SignInViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func loginButton(_ sender: UIButton) {
-        viewModel.signIn(emailTextField: emailTextField, passwordTextField: passwordTextField)
+        viewModel.signIn(emailTextField: emailTextField.text, passwordTextField: passwordTextField.text)
     }
     
     @IBAction func signUpButtonAction(_ sender: UIButton) {
@@ -60,8 +59,8 @@ class SignInViewController: UIViewController {
     private func moveToMainScreen() {
         viewModel.moveToMainScreen = { [weak self] in
             let nav = UINavigationController()
-            self?.coordinator = MainViewCoordinator(navigationController: nav)
-            self?.coordinator?.start()
+            let coordinator = MainViewCoordinator(navigationController: nav)
+            coordinator.start()
             
             self?.view.window?.rootViewController = nav
             self?.view.window?.makeKeyAndVisible()

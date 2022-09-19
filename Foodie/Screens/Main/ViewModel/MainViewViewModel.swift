@@ -11,7 +11,39 @@ import GoogleMaps
 import CoreLocation
 
 
-class MainViewViewModel {
+protocol FirebaseHelperProtocol {
+    func getUsername()
+    var getName: ((String) -> Void)? { get set }
+    
+    func logOut()
+    var logOutUser: (() -> Void)? { get set }
+}
+
+protocol CollectionViewHelperProtocol {
+    var numberOfItemsInSection: Int { get }
+    func restaurantsCellForRowAt(indexPath: IndexPath) -> Restaurant
+    func getRestaurantImageURL(indexPath: IndexPath) -> String?
+    func foodsCellForItemAt(indexPath: IndexPath) -> Food?
+}
+
+protocol MapsHelperProtocol {
+    func getDistance(currentLocation: CLLocation)
+    var setLocationManagerConfigurations: (() -> Void)? { get set }
+}
+
+protocol MainViewUIChangesResponsibleProtocol {
+    func setCollectionViewContent(about criterion: RestaurantCriterions)
+    var reloadCollectionView: (() -> Void)? { get set }
+    func searchRestaurant(text: String?) -> Bool
+}
+
+protocol MainViewViewModelProtocol: FirebaseHelperProtocol, MapsHelperProtocol, MainViewUIChangesResponsibleProtocol {
+    func getRestaurants()
+    init(with restaurantManager: RestaurantManagerProtocol)
+}
+
+final class MainViewViewModel: MainViewViewModelProtocol {
+    
     // MARK: - Closures for data set
     var reloadCollectionView: (() -> Void)?
     var setLocationManagerConfigurations: (() -> Void)?
@@ -37,18 +69,38 @@ class MainViewViewModel {
     }
     
     private var firebaseManager = FirebaseManager()
+    private var restaurantsManager: RestaurantManagerProtocol
+    
+    init(with restaurantManager: RestaurantManagerProtocol) {
+        self.restaurantsManager = restaurantManager
+    }
     
     // MARK: - Funcs
-    func fetchRestaurantsData() {
-        RestaurantsNetworkManager.shared.apiService { [weak self] (result) in
-            switch result {
-            case .success(let listOf):
-                print("succesful retrived data")
-                guard let data = listOf.restaurants else { return }
-                self?.allRestaurants = data
-            case .failure(let error):
-                print("error processing json data \(error)")
+    func getRestaurants() {
+        Task {
+            do {
+                let fetchedData = try await restaurantsManager.fetchRestaurantsData()
+                guard let restaurants = fetchedData.restaurants else { return }
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.allRestaurants = restaurants
+                }
+            } catch {
+                print(error.localizedDescription)
             }
+        }
+    }
+    
+    func setCollectionViewContent(about criterion: RestaurantCriterions) {
+        switch criterion {
+        case .all:
+            setAllRestaurants()
+        case .nearby:
+            sortByNearby()
+        case .favourite:
+            setFavouriteRestaurants()
+        case .top:
+            sortForTopAllRestaurants()
         }
     }
 
@@ -73,12 +125,11 @@ class MainViewViewModel {
     }
     
     // MARK: - Functions for: all, nearby, fav and top restaurants sections.
-    func setAllRestaurants() {
+    private func setAllRestaurants() {
         specialRestaurantsArray = allRestaurants
     }
     
-    
-    func sortByNearby() {
+    private func sortByNearby() {
         globalQueue.async {
             if let _ = self.allRestaurants.first?.distance {
                 self.specialRestaurantsArray = (self.allRestaurants.sorted { Double($0.distance!)! < Double($1.distance!)! })
@@ -86,32 +137,30 @@ class MainViewViewModel {
         }
     }
     
-    
-    func setFavouriteRestaurants() {
+    private func setFavouriteRestaurants() {
         globalQueue.async {
             let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
             self.specialRestaurantsArray = self.specialRestaurantsArray.filter { favouriteRestaurantIds.contains($0.id) }
         }
     }
     
-    
-    func sortForTopAllRestaurants() {
+    private func sortForTopAllRestaurants() {
         globalQueue.async {
             self.specialRestaurantsArray = self.allRestaurants.sorted { $0.rating > $1.rating }
         }
     }
-    
-    
-    //MARK: - Functions for CollectionViews
-    func numberOfItemsInSection() -> Int {
+}
+
+
+//MARK: - Extension For Functions Of CollectionView
+extension MainViewViewModel: CollectionViewHelperProtocol {
+    var numberOfItemsInSection: Int {
         specialRestaurantsArray.count
     }
-    
     
     func restaurantsCellForRowAt(indexPath: IndexPath) -> Restaurant {
         specialRestaurantsArray[indexPath.row]
     }
-    
     
     func getRestaurantImageURL(indexPath: IndexPath) -> String?  {
         specialRestaurantsArray[indexPath.row].restaurantImg
@@ -122,3 +171,23 @@ class MainViewViewModel {
     }
 }
 
+
+// MARK: - Extension For TextField Delegate Function
+extension MainViewViewModel {
+    func searchRestaurant(text: String?) -> Bool {
+        var filtered = [Restaurant]()
+        guard let charactersCount = text?.count else { return false }
+
+        if charactersCount != 0 {
+            filtered.removeAll()
+            for each in specialRestaurantsArray {
+                let range = each.name.lowercased().range(of: text ?? "", options: .caseInsensitive, range: nil, locale: nil)
+                if range != nil {
+                    filtered.append(each)
+                }
+            }
+            specialRestaurantsArray = filtered
+        }
+        return true
+    }
+}

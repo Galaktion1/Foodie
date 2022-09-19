@@ -11,7 +11,7 @@ protocol ChosenFoodTableViewCellDelegate: AnyObject {
     func orderPriceChange(with number: Double)
 }
 
-class ChosenFoodTableViewCell: UITableViewCell {
+final class ChosenFoodTableViewCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet weak var foodImgView: UIImageView!
     @IBOutlet weak var foodTitleLabel: UILabel!
@@ -25,6 +25,7 @@ class ChosenFoodTableViewCell: UITableViewCell {
     @IBOutlet weak var unchooseButtonBackView: UIView!
     
     // MARK: - Variables
+    static let identifier = String(describing: ChosenFoodTableViewCell.self)
     var foodAmount = 1
     var price: Double!
     var chosen = true
