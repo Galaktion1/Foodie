@@ -273,14 +273,14 @@
                     <navigationItem key="navigationItem" id="qX3-A8-H9h"/>
                     <size key="freeformSize" width="414" height="900"/>
                     <connections>
+                        <outlet property="backView" destination="4a8-ge-N3w" id="yBQ-ja-1Uf"/>
                         <outlet property="confirmPasswordTextField" destination="4Al-aC-pMo" id="lXU-QR-3JB"/>
                         <outlet property="emailTextField" destination="cff-9V-XhS" id="LaK-Vf-smt"/>
                         <outlet property="passwordTextField" destination="hfo-AK-GQh" id="jDq-YU-WE5"/>
                         <outlet property="scrollView" destination="yGd-HO-TAy" id="m6D-kv-8fP"/>
                         <outlet property="signUpButtonOutlet" destination="CCv-hQ-9eI" id="6FE-06-tb4"/>
-                        <outlet property="stackView" destination="ga2-iN-ZkA" id="MEW-gS-hIG"/>
+                        <outlet property="textFieldStackView" destination="ga2-iN-ZkA" id="VZi-RU-JXO"/>
                         <outlet property="usernameTextField" destination="dkD-dZ-oJN" id="2P0-c1-iRG"/>
-                        <outlet property="whiteView" destination="4a8-ge-N3w" id="pp7-iV-R1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ep1-4A-2BJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
