@@ -43,3 +43,9 @@ extension UIImageView {
         }).resume()
     }
 }
+
+
+struct FavoriteIndicatorImage {
+   static let fillHeartImage: UIImage? = UIImage(systemName: "heart.fill")
+   static let emptyHeartImage: UIImage? = UIImage(systemName: "heart")
+}

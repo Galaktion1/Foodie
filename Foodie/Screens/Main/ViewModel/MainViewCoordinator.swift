@@ -16,7 +16,7 @@ protocol MainViewCoordinatorProtocol: Coordinator {
 }
 
 // MARK: - Coordinator pattern for MainView
-class MainViewCoordinator: MainViewCoordinatorProtocol {
+final class MainViewCoordinator: MainViewCoordinatorProtocol {
     
     var navigationController: UINavigationController
 
@@ -33,7 +33,6 @@ class MainViewCoordinator: MainViewCoordinatorProtocol {
     
     func moveToMenu(of restaurant: Restaurant) {
         let vc = RestaurantViewController.instantiate()
-        vc.coordinator = self
         vc.data = restaurant
         vc.id = restaurant.id
         if let imgURLString = restaurant.restaurantImg {

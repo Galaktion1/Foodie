@@ -7,7 +7,9 @@
 
 import UIKit
 
-class DeliveryDetailsTableViewCell: UITableViewCell {
+final class DeliveryDetailsTableViewCell: UITableViewCell {
+    
+    static let identifier = String(describing: DeliveryDetailsTableViewCell.self)
     
     @IBOutlet weak var addressLabel: UILabel!
 }

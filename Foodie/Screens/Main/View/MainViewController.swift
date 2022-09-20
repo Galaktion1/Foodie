@@ -37,27 +37,26 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     // MARK: - Variables
-    private let viewModel = MainViewViewModel()
-    var coordinator: MainViewCoordinator?
+    private var viewModel: (MainViewViewModelProtocol & CollectionViewHelperProtocol)!
+    var coordinator: MainViewCoordinatorProtocol?
     private let locationManager = CLLocationManager()
     
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchRestaurantsData()
+        configureViewModel()
+        viewModel.getRestaurants()
         configureLocationManager()
         configureCollectionViews()
-        allRestaurantsButtonOutlet.tintColor = CustomColors.specialOrangeColor
-        restaurantsCollectionView.backgroundColor = .clear
-        recomendedDishesCollectionView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         searchTextField.delegate = self
         collectionViewsReloading()
         getUsername()
+        allRestaurantsButtonOutlet.tintColor = CustomColors.specialOrangeColor
         logOutButton.addTarget(self, action: #selector(logOutFunctionality), for: .touchUpInside)
-        logOut()
         self.hideKeyboardWhenTappedAround()
     }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,25 +68,17 @@ class MainViewController: UIViewController, Storyboarded {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        confLogOutButton()
-        self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
-        backgroundView.backgroundColor = .clear
+        configureUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-    
-    
-    deinit {
-        print("mainvc deinited")
-    }
-    
+   
     // MARK: - IBActions
     @IBAction func allRestaurantsButtonAction(_ sender: UIButton) {
-        viewModel.setAllRestaurants()
+        viewModel.setCollectionViewContent(about: .all)
         moveActiveIndicatorView(mainButton: allRestaurantsButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
@@ -97,7 +88,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     @IBAction func nearbyButtonAction(_ sender: UIButton) {
-        viewModel.sortByNearby()
+        viewModel.setCollectionViewContent(about: .nearby)
         moveActiveIndicatorView(mainButton: nearbyButtonOutlet,
                                           button2: allRestaurantsButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
@@ -107,7 +98,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     @IBAction func favouriteRestaurantsButtonAction(_ sender: UIButton) {
-        viewModel.setFavouriteRestaurants()
+        viewModel.setCollectionViewContent(about: .favourite)
         moveActiveIndicatorView(mainButton: favouriteRestaurantsButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: allRestaurantsButtonOutlet,
@@ -118,7 +109,7 @@ class MainViewController: UIViewController, Storyboarded {
     
     
     @IBAction func topButtonAction(_ sender: UIButton) {
-        viewModel.sortForTopAllRestaurants()
+        viewModel.setCollectionViewContent(about: .top)
         moveActiveIndicatorView(mainButton: topButtonOutlet,
                                           button2: nearbyButtonOutlet,
                                           button3: favouriteRestaurantsButtonOutlet,
@@ -126,18 +117,27 @@ class MainViewController: UIViewController, Storyboarded {
                                           indicatorView: activeIndicatorView)
     }
     
-    
-    // MARK: - Funcs
+    // MARK: - Selector Method
     @objc func logOutFunctionality() {
         viewModel.logOut()
-    }
-    
-    private func logOut() {
         viewModel.logOutUser = { [weak self] in
             let nav = self?.coordinator?.logOut()
             self?.view.window?.rootViewController = nav
             self?.view.window?.makeKeyAndVisible()
         }
+    }
+    
+    // MARK: - Funcs
+    private func configureViewModel() {
+        let restaurantManager = RestaurantManager()
+        viewModel = MainViewViewModel(with: restaurantManager)
+    }
+    private func configureUI() {
+        restaurantsCollectionView.backgroundColor = .clear
+        recomendedDishesCollectionView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
+        confLogOutButton()
+        self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
+        backgroundView.backgroundColor = .clear
     }
     
     private func confLogOutButton() {
@@ -170,7 +170,7 @@ class MainViewController: UIViewController, Storyboarded {
     }
     
     
-    func collectionViewsReloading() {
+    private func collectionViewsReloading() {
         viewModel.reloadCollectionView = { [weak self] in
             self?.restaurantsCollectionView.reloadData()
             self?.recomendedDishesCollectionView.reloadData()
@@ -213,17 +213,11 @@ class MainViewController: UIViewController, Storyboarded {
 
 
 // MARK: - Collection View Extension
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        collectionView == self.restaurantsCollectionView ? CGSize(width: 145 , height: 180 ) : CGSize(width: 105 , height: 125)
-    }
+extension MainViewController: UICollectionViewDataSource {
 
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfItemsInSection()
+        viewModel.numberOfItemsInSection
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.restaurantsCollectionView {
@@ -232,7 +226,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let currentData = viewModel.restaurantsCellForRowAt(indexPath: indexPath)
   
             cell.data = currentData
-            cell.checkIfFav(id: currentData.id)
+//            cell.checkIfFav(id: currentData.id)
             
             return cell
         }
@@ -244,8 +238,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
     }
-    
-    
+}
+
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        collectionView == self.restaurantsCollectionView ? CGSize(width: 145 , height: 180 ) : CGSize(width: 105 , height: 125)
+    }
+}
+
+
+extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == self.restaurantsCollectionView {
@@ -266,19 +269,7 @@ extension MainViewController: UITextFieldDelegate {
     
     // MARK: - Text Field Delegate Function For Each Changes In Textfield.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var filtered = [Restaurant]()     // esec viewModelshi
-     
-        if (searchTextField.text?.count)! != 0 {
-            filtered.removeAll()
-            for each in viewModel.specialRestaurantsArray {
-                let range = each.name.lowercased().range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
-                if range != nil {
-                    filtered.append(each)
-                }
-            }
-            viewModel.specialRestaurantsArray = filtered
-        }
-        return true
+        viewModel.searchRestaurant(text: textField.text)
     }
 }
 

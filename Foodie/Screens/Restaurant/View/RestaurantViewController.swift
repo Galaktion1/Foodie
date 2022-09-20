@@ -31,16 +31,22 @@ class RestaurantViewController: UIViewController, Storyboarded {
     
     
     // MARK: - Variables
-    weak var coordinator: MainViewCoordinator?
-    private var isFavourite = false
+    private var isFavourite = false {
+        didSet {
+            if isFavourite { favButtonOutlet.setImage(FavoriteIndicatorImage.fillHeartImage, for: .normal) }
+            else {favButtonOutlet.setImage(FavoriteIndicatorImage.emptyHeartImage, for: .normal) }
+        }
+    }
     var id: Int!
     var mainImageURLString: String!
     var data: Restaurant!
     var chosenFood: [ChosenFood] = []
+    private var viewModel: RestaurantViewViewModel!
     
-    // MARK: - UIComponents By Programmatically
     
     // since the user may just view the dishes and not choose to order, in this case there is no need to initialize these variables, becouse of this i use lazy components
+    
+    // MARK: - UIComponents By Programmatically
     lazy var chosenFoodOrangeView: UIView = {
         let orangeView = UIView()
         orangeView.backgroundColor = CustomColors.specialOrangeColor
@@ -108,7 +114,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         
         setDataToUIElements(data)
-        checkIfFav(id: id)
+        //        checkIfFav(id: id)
         configureTableView()
         self.scrollView.backgroundColor = UIColor(patternImage: CustomImages.backgroundImage!)
         backgroundView.backgroundColor = .clear
@@ -117,31 +123,10 @@ class RestaurantViewController: UIViewController, Storyboarded {
     }
     
     
-    deinit {
-        print("restaurant deinited")
-    }
     
-   
     // MARK: - IBActions
     @IBAction func favButttonAction(_ sender: UIButton) {
-        guard let data = data else { return }
-        var favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
-        
-        isFavourite.toggle()
-        
-        if isFavourite {
-            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            
-            favouriteRestaurantIds.append(data.id)
-            UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
-            
-        } else {
-            if let index = favouriteRestaurantIds.firstIndex(of: data.id) {
-                sender.setImage(UIImage(systemName: "heart"), for: .normal)
-                favouriteRestaurantIds.remove(at: index)
-                UserDefaults.standard.set(favouriteRestaurantIds, forKey: "favRestaurantsIds")
-            }
-        }
+        isFavourite = viewModel.makeFav()
     }
     
     
@@ -173,14 +158,19 @@ class RestaurantViewController: UIViewController, Storyboarded {
             UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseInOut, animations: { [weak self] in
                 self?.infoStackView?.isHidden = false
             }, completion: nil)
-            
         }
     }
     
     // MARK: - Funcs
+    private func setViewModel(data: Restaurant) {
+        let favourityChecker = FavourityChecker(isFavourite: isFavourite, data: data)
+        isFavourite = favourityChecker.checkIfFav(id: data.id)
+        viewModel = RestaurantViewViewModel(favourityChecker: favourityChecker)
+    }
+    
     private func configureTableView() {
-        let nib = UINib(nibName: "MenuTableViewCell", bundle: Bundle.main)
-        menuTableView.register(nib, forCellReuseIdentifier: "MenuTableViewCell")
+        let nib = UINib(nibName: MenuTableViewCell.identifier, bundle: Bundle.main)
+        menuTableView.register(nib, forCellReuseIdentifier: MenuTableViewCell.identifier)
         menuTableView.delegate = self
         menuTableView.dataSource = self
         menuTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -196,19 +186,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
         emailLabel.text = data.descriptions.mail
         webSiteLabel.text = data.descriptions.website
         UserDefaults.standard.set(data.descriptions.coordinates, forKey: "coordinates")
-    }
-    
-    
-    private func checkIfFav(id: Int?) {
-        let favouriteRestaurantIds = UserDefaults.standard.array(forKey: "favRestaurantsIds") as? [Int] ?? []
-        if let id = id {
-            if favouriteRestaurantIds.contains(id) {
-                favButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                isFavourite = true
-            } else {
-                favButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-            }
-        }
+        setViewModel(data: data)
     }
     
     private func loadMainImage(with url: String) {
@@ -268,11 +246,7 @@ class RestaurantViewController: UIViewController, Storyboarded {
 }
 
 
-extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UIConstants.heightForRowAt
-    }
+extension RestaurantViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         data.foods?.count ?? 0
@@ -280,6 +254,26 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         UIConstants.numberOfRowsInSection
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = menuTableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.identifier) as! MenuTableViewCell
+        cell.selectionStyle = .none
+        
+        if let foods = data.foods {
+            cell.contentView.layer.cornerRadius = 10
+            cell.configureUIComponents(food: foods[indexPath.section])
+        }
+        cell.delegate = self
+        
+        return cell
+    }
+}
+
+extension RestaurantViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UIConstants.heightForRowAt
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -292,25 +286,9 @@ extension RestaurantViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
-
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = menuTableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell") as! MenuTableViewCell
-        cell.selectionStyle = .none
-        
-        if let foods = data.foods {
-            cell.contentView.layer.cornerRadius = 10
-            cell.configureUIComponents(food: foods[indexPath.section])
-        }
-        cell.delegate = self
-        
-        return cell
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let foods = data.foods else { return }
-        
         let vc = DishDetailsVC()
         vc.data = foods[indexPath.section]
         
