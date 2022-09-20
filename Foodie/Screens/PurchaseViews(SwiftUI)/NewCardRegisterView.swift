@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewCardView: View {
+struct NewCardRegisterView: View {
     //MARK: - Variables
     @State var name: String = ""
     @State var cardNumber: String = ""
@@ -38,12 +38,17 @@ struct NewCardView: View {
             CustomTextField(textFieldPlaceHolder: "name", text: $name, title: "Name On Card")
             
             CustomTextField(textFieldPlaceHolder: "card number", text: $cardNumber, title: "Card Number")
+                .keyboardType(.numberPad)
+                .onReceive(cardNumber.publisher.collect()) { self.cardNumber = String($0.prefix(19)).applyPattern() }
             
             HStack {
                 CustomTextField(textFieldPlaceHolder: "MM/YY", text: $expiryDate, title: "Expiry Date")
+                    .onReceive(expiryDate.publisher.collect()) { self.expiryDate = String($0.prefix(5)) }
                     .padding(.trailing)
             
                 CustomTextField(textFieldPlaceHolder: "CVV", text: $cvvString, title: "Cvv")
+                    .onReceive(cvvString.publisher.collect()) { self.cvvString = String($0.prefix(3)) }
+                    .keyboardType(.numberPad)
                     .padding(.leading)
             }
             .padding(.vertical, 20)
@@ -90,9 +95,8 @@ struct CustomTextField: View {
 
 struct NewCardView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCardView {
+        NewCardRegisterView {
             print("pressed dismiss")
         }
     }
 }
-

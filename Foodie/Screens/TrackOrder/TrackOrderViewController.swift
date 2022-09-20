@@ -9,7 +9,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 
-// this screen will crash if you will not set current location on simulator (Features > Location > Custom Location... and fill both textfiled with latitude and longitude), also if you build application on simulator, you have to comment line 59
+// this screen will crash if you will not set current location on simulator (Features > Location > Custom Location... and fill both textfiled with latitude and longitude), also if you build application on simulator, you have to comment line 56
 
 final class TrackOrderViewController: UIViewController {
     
@@ -17,7 +17,6 @@ final class TrackOrderViewController: UIViewController {
     let manager = CLLocationManager()
     var mapView = GMSMapView()
     var destinationLocation = CLLocationCoordinate2D()
-    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -37,7 +36,6 @@ final class TrackOrderViewController: UIViewController {
         let service = LocationService()
         destinationLocation = service.getRestaurantLocation()
     }
-
 }
 
 
@@ -50,13 +48,12 @@ extension TrackOrderViewController: CLLocationManagerDelegate {
         mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
         view.addSubview(mapView)
        
-        // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: destinationLocation.latitude, longitude: destinationLocation.longitude)
         marker.title = "MCDonalds"
         marker.snippet = "Tbilisi, Rustaveli"
         marker.map = mapView
-        FetchRouteAPIService.shared.fetchRoute(from: destinationLocation, to: currentLocation, for: mapView)  //this line only works for real device
+//        FetchRouteAPIService.shared.fetchRoute(from: destinationLocation, to: currentLocation, for: mapView)  //this line only works for real device
         
         let marker2 = GMSMarker()
         marker2.position = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)

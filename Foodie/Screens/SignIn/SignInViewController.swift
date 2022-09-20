@@ -19,6 +19,8 @@ protocol SignInDisplayLogic: AnyObject {
 
 class SignInViewController: UIViewController, SignInDisplayLogic {
     
+    static let identifier = String(describing: SignInViewController.self)
+    
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var whiteView: UIView!
@@ -31,8 +33,6 @@ class SignInViewController: UIViewController, SignInDisplayLogic {
     //MARK: - Clean Components
     var interactor: SignInBusinessLogic?
     var router: (NSObjectProtocol & SignInRoutingLogic & SignInDataPassing)?
-    
-    static let identifier = String(describing: SignInViewController.self)
     
     // MARK: View lifecycle
     override func viewDidLoad() {

@@ -18,7 +18,7 @@ enum SignInConfigurator {
         let interactor = SignInInteractor(presenter: presenter, worker: worker)
         let router = SignInRouter(dataStore: interactor)
         let sb = UIStoryboard(name: "SignIn&SignUp", bundle: Bundle.main)
-        let viewController = sb.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        let viewController = sb.instantiateViewController(withIdentifier: SignInViewController.identifier) as! SignInViewController
         viewController.interactor = interactor
         viewController.router = router
         

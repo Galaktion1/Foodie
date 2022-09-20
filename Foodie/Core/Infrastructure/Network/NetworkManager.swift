@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class NetworkManager {
     
     static let shared = NetworkManager()
@@ -16,7 +14,8 @@ class NetworkManager {
     
     func fetchRestaurants<T: Decodable>(decodingType: T.Type) async throws ->T {
         let session = URLSession.shared
-        guard let url = URL(string: "https://run.mocky.io/v3/d41cdc66-dbad-48d8-9d9a-26b2c2d21949") else { throw ApiError.invalidUrl }
+        let urlString = "https://run.mocky.io/v3/42db0b05-9626-41cd-b5a2-cfd5e232147d"
+        guard let url = URL(string: urlString) else { throw ApiError.invalidUrl }
         
         let (data, response) = try await session.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse,

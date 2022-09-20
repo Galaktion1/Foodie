@@ -23,6 +23,9 @@ protocol SignUpViewControllerDelegate: AnyObject {
 
 class SignUpViewController: UIViewController, SignUpDisplayLogic {
     
+    static let identifier = String(describing: SignUpViewController.self)
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var textFieldStackView: UIStackView!
@@ -38,9 +41,11 @@ class SignUpViewController: UIViewController, SignUpDisplayLogic {
     var interactor: SignUpBusinessLogic?
     var router: (NSObjectProtocol & SignUpRoutingLogic & SignUpDataPassing)?
     
+    
     @IBAction func signUpButton(_ sender: UIButton) {
         interactorCall()
     }
+    
     
     // MARK: View lifecycle
     override func viewDidLoad() {

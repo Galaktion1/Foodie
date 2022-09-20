@@ -78,9 +78,7 @@ struct PurchaseView: View {
                             .font(.callout)
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
-                        
                         Spacer()
-                        
                         Button(action: {
                             addCardAction = true
                             
@@ -122,7 +120,7 @@ struct PurchaseView: View {
                     .padding()
                 Spacer()
                 
-                summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
+                SummarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
             }
             
             PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: nil, foods: foods)
@@ -135,7 +133,8 @@ struct PurchaseView: View {
         .overlay(
             ZStack {
                 if addCardAction {
-                    NewCardView(dismissAction: self.dismissNewCard)
+                    NewCardRegisterView(dismissAction: self.dismissNewCard)
+                        .navigationBarHidden(true)
                 }
             }
         )
@@ -183,7 +182,7 @@ struct PurchaseView: View {
                     }.frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                     
-                    summarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
+                    SummarySections(order: foodPrice, delivery: deliveryPrice, summary: summaryPrice)
                     
                     PurchaseButton(vc: vc, orderPrice: foodPrice, deliveryPrice: deliveryPrice, summaryPrice: summaryPrice, selectedCardAmount: selectedCard.amount, foods: foods, cards: cards, selectedCardID: selectedCard.id)
                 }
@@ -229,62 +228,6 @@ struct MainView_Previews: PreviewProvider {
         Group {
             PurchaseView(vc: nil, foodPrice: 0, deliveryPrice: 0, summaryPrice: 0, foods: [])
         }
-    }
-}
-
-extension View {
-    func getRect() -> CGRect {
-        UIScreen.main.bounds
-    }
-}
-
-
-struct CardView: View {
-    var card: Card
-    var body: some View {
-        Image(card.cardImage ?? "card1")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .cornerRadius(40)
-            .overlay(
-                VStack(alignment: .leading, spacing: 10) {
-                    Spacer()
-                    Text(card.cardNumber)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .offset(y: 25)
-                    
-                    Spacer()
-                    
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Card Holder")
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            
-                            Text(card.cardHolder)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                        }
-                        
-                        Spacer(minLength: 10)
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Valid Till")
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            
-                            Text(card.cardValidity)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                        }
-                        
-                    }
-                    .foregroundColor(.white)
-                }
-                    .padding()
-            )
     }
 }
 
@@ -387,43 +330,5 @@ struct CheckboxToggleStyle: ToggleStyle {
         })
         .buttonStyle(PlainButtonStyle()) // remove any implicit styling from the button
         .disabled(!isEnabled)
-    }
-}
-
-
-struct summarySections: View {
-    
-    var order: Double
-    var delivery: Double
-    var summary: Double
-    
-    var body: some View {
-        HStack {
-            VStack {
-                Group {
-                    Text("Order")
-                    Text("Delivery")
-                    Text("Summary")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 0.1)
-                .padding(.leading)
-            }
-            
-            VStack {
-                Group {
-                    Text("\(order.format()) ₾")
-                    Text("\(delivery.format()) ₾")
-                    Text("\(summary.format()) ₾")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.top, 0.1)
-                .padding(.trailing)
-            }
-        }
     }
 }

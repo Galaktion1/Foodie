@@ -34,7 +34,7 @@
 		9A3BFF4328D8715200A99CA7 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFF4228D8715200A99CA7 /* RestaurantManager.swift */; };
 		9A423A9D28B25FF900C2A6B7 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A423A9C28B25FF900C2A6B7 /* PurchaseView.swift */; };
 		9A423AA028B2605400C2A6B7 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A423A9F28B2605400C2A6B7 /* CardModel.swift */; };
-		9A423AA228B260A700C2A6B7 /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A423AA128B260A700C2A6B7 /* NewCardView.swift */; };
+		9A423AA228B260A700C2A6B7 /* NewCardRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A423AA128B260A700C2A6B7 /* NewCardRegisterView.swift */; };
 		9A424A8E288C09A9008636D8 /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A424A8D288C09A9008636D8 /* Restaurant.storyboard */; };
 		9A424A90288C09BC008636D8 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A424A8F288C09BC008636D8 /* RestaurantViewController.swift */; };
 		9A426C8528D9A530000FFE14 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A426C7F28D9A530000FFE14 /* SignInPresenter.swift */; };
@@ -60,6 +60,7 @@
 		9A62157128CB4DED00F3218E /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A62157028CB4DED00F3218E /* OnBoardingVC.swift */; };
 		9A62157328CB4E2100F3218E /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A62157228CB4E2100F3218E /* OnBoardingCell.swift */; };
 		9A66A2E628CDC9200088B8F4 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A66A2E528CDC9200088B8F4 /* Validation.swift */; };
+		9A67D3D628DA30ED00FDCDFD /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67D3D528DA30ED00FDCDFD /* String + Extension.swift */; };
 		9A6E027E28C5EC9700E1474B /* MainViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E027D28C5EC9700E1474B /* MainViewCoordinator.swift */; };
 		9A6E028028C5F86F00E1474B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6E027F28C5F86F00E1474B /* Coordinator.swift */; };
 		9A77DDB3288BDF6E000F0D5F /* APIFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */; };
@@ -75,6 +76,9 @@
 		9AB7ADD628CCD47F00A8FCEA /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7ADD528CCD47F00A8FCEA /* Double + Extension.swift */; };
 		9AB8E58928C3A72600505A27 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8E58828C3A72600505A27 /* NetworkManager.swift */; };
 		9AC3EAB228BCE93100F9855D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC3EAB128BCE93100F9855D /* GlobalConstants.swift */; };
+		9AC6523928D9D50000690147 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6523828D9D50000690147 /* CardView.swift */; };
+		9AC6523B28D9D64D00690147 /* SummarySectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6523A28D9D64D00690147 /* SummarySectionsView.swift */; };
+		9AC6523D28D9D74A00690147 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6523C28D9D74A00690147 /* View + Extension.swift */; };
 		9AC9B0AC2887EE2800B4E8AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC9B0AA2887EE2800B4E8AD /* MainViewController.swift */; };
 		9AC9B0AF2887EE6B00B4E8AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC9B0AE2887EE6B00B4E8AD /* Main.storyboard */; };
 		9AFC8F2E28C7E89E00CF176A /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC8F2D28C7E89E00CF176A /* PurchaseViewModel.swift */; };
@@ -109,7 +113,7 @@
 		9A3BFF4228D8715200A99CA7 /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
 		9A423A9C28B25FF900C2A6B7 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		9A423A9F28B2605400C2A6B7 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		9A423AA128B260A700C2A6B7 /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
+		9A423AA128B260A700C2A6B7 /* NewCardRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRegisterView.swift; sourceTree = "<group>"; };
 		9A424A8D288C09A9008636D8 /* Restaurant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurant.storyboard; sourceTree = "<group>"; };
 		9A424A8F288C09BC008636D8 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		9A426C7F28D9A530000FFE14 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		9A62157028CB4DED00F3218E /* OnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingVC.swift; sourceTree = "<group>"; };
 		9A62157228CB4E2100F3218E /* OnBoardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCell.swift; sourceTree = "<group>"; };
 		9A66A2E528CDC9200088B8F4 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		9A67D3D528DA30ED00FDCDFD /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		9A6E027D28C5EC9700E1474B /* MainViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCoordinator.swift; sourceTree = "<group>"; };
 		9A6E027F28C5F86F00E1474B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9A77DDB2288BDF6D000F0D5F /* APIFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchModel.swift; sourceTree = "<group>"; };
@@ -150,6 +155,9 @@
 		9AB7ADD528CCD47F00A8FCEA /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		9AB8E58828C3A72600505A27 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9AC3EAB128BCE93100F9855D /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		9AC6523828D9D50000690147 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		9AC6523A28D9D64D00690147 /* SummarySectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySectionsView.swift; sourceTree = "<group>"; };
+		9AC6523C28D9D74A00690147 /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		9AC9B0AA2887EE2800B4E8AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9AC9B0AE2887EE6B00B4E8AD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9AFC8F2D28C7E89E00CF176A /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
@@ -418,7 +426,9 @@
 				9AFC8F2C28C7E88F00CF176A /* ViewModel */,
 				9A423A9E28B2603F00C2A6B7 /* Model */,
 				9A423A9C28B25FF900C2A6B7 /* PurchaseView.swift */,
-				9A423AA128B260A700C2A6B7 /* NewCardView.swift */,
+				9A423AA128B260A700C2A6B7 /* NewCardRegisterView.swift */,
+				9AC6523828D9D50000690147 /* CardView.swift */,
+				9AC6523A28D9D64D00690147 /* SummarySectionsView.swift */,
 			);
 			path = "PurchaseViews(SwiftUI)";
 			sourceTree = "<group>";
@@ -582,6 +592,8 @@
 				9AB7ADD128CCD3DC00A8FCEA /* UIImageView + Extension.swift */,
 				9AB7ADD328CCD3FB00A8FCEA /* UIStoryboard + Extension.swift */,
 				9AB7ADD528CCD47F00A8FCEA /* Double + Extension.swift */,
+				9AC6523C28D9D74A00690147 /* View + Extension.swift */,
+				9A67D3D528DA30ED00FDCDFD /* String + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -760,7 +772,7 @@
 				9A426C8A28D9A530000FFE14 /* SignInInteractor.swift in Sources */,
 				9A363FEF2878DE47006F3387 /* DesignableUITextField.swift in Sources */,
 				9AB7ADD228CCD3DC00A8FCEA /* UIImageView + Extension.swift in Sources */,
-				9A423AA228B260A700C2A6B7 /* NewCardView.swift in Sources */,
+				9A423AA228B260A700C2A6B7 /* NewCardRegisterView.swift in Sources */,
 				9AB7ADD028CCD3CB00A8FCEA /* UIViewController + Extension.swift in Sources */,
 				9A423A9D28B25FF900C2A6B7 /* PurchaseView.swift in Sources */,
 				9A6E027E28C5EC9700E1474B /* MainViewCoordinator.swift in Sources */,
@@ -772,9 +784,11 @@
 				9AB7ADD628CCD47F00A8FCEA /* Double + Extension.swift in Sources */,
 				9A36083128D91D4200988C49 /* FavourityChecker.swift in Sources */,
 				9AB7ADCE28CCD3B600A8FCEA /* UITextField + Extension.swift in Sources */,
+				9A67D3D628DA30ED00FDCDFD /* String + Extension.swift in Sources */,
 				9A426C9528D9AB07000FFE14 /* SignUpRouter.swift in Sources */,
 				9A426C8628D9A530000FFE14 /* SignInWorker.swift in Sources */,
 				9A0B884C288810E900F84D26 /* DishCollectionViewCell.swift in Sources */,
+				9AC6523D28D9D74A00690147 /* View + Extension.swift in Sources */,
 				9A426C8C28D9A5AC000FFE14 /* SignInConfigurator.swift in Sources */,
 				9A3BFF4328D8715200A99CA7 /* RestaurantManager.swift in Sources */,
 				9AB7ADD428CCD3FB00A8FCEA /* UIStoryboard + Extension.swift in Sources */,
@@ -787,6 +801,7 @@
 				9A36082E28D9171A00988C49 /* RestaurantViewViewModel.swift in Sources */,
 				9A426C9A28D9AB21000FFE14 /* SignUpConfigurator.swift in Sources */,
 				9AC9B0AC2887EE2800B4E8AD /* MainViewController.swift in Sources */,
+				9AC6523B28D9D64D00690147 /* SummarySectionsView.swift in Sources */,
 				9A4EA603289A702800ADDF7F /* ChosenFoodTableViewCell.swift in Sources */,
 				9A527F9828C73101001A441C /* FirebaseManager.swift in Sources */,
 				9A31FBE728C21A2F004072BB /* TrackOrderViewController.swift in Sources */,
@@ -804,6 +819,7 @@
 				9A0B88402887FB3800F84D26 /* RestaurantsCollectionViewCell.swift in Sources */,
 				9A15A72728B80BBE00AFABAE /* CompletedOrderViewController.swift in Sources */,
 				9A426C9628D9AB07000FFE14 /* SignUpModels.swift in Sources */,
+				9AC6523928D9D50000690147 /* CardView.swift in Sources */,
 				9A62157328CB4E2100F3218E /* OnBoardingCell.swift in Sources */,
 				9A77DDB3288BDF6E000F0D5F /* APIFetchModel.swift in Sources */,
 				9AC3EAB228BCE93100F9855D /* GlobalConstants.swift in Sources */,
